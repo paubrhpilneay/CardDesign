@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */; };
 		54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DDF1E01F92E00D9A007 /* AppDelegate.swift */; };
 		54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DE11E01F92E00D9A007 /* ViewController.swift */; };
 		54039DE51E01F92E00D9A007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE31E01F92E00D9A007 /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 		54792B231E0299CE003C6372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54792B221E0299CE003C6372 /* Assets.xcassets */; };
 		54792B251E02B2C4003C6372 /* restaurant-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 54792B241E02B2C4003C6372 /* restaurant-1.jpg */; };
 		54792B271E02B777003C6372 /* greenRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 54792B261E02B777003C6372 /* greenRect.png */; };
+		54AA26BF1E04085F004BE786 /* GetFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */; };
+		54AA26C11E040A02004BE786 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA26C01E040A02004BE786 /* RestaurantModel.swift */; };
 		54BA92D01E03C74C00F71AF1 /* FIRDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */; };
 		54BA92D21E03D14400F71AF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -41,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05D84B35CB793CD878790675 /* Pods_CardsDesignUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DDC1E01F92E00D9A007 /* CardsDesign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsDesign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DDF1E01F92E00D9A007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54039DE11E01F92E00D9A007 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,8 +63,14 @@
 		54792B221E0299CE003C6372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54792B241E02B2C4003C6372 /* restaurant-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "restaurant-1.jpg"; sourceTree = "<group>"; };
 		54792B261E02B777003C6372 /* greenRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenRect.png; sourceTree = "<group>"; };
+		54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFirebaseData.swift; sourceTree = "<group>"; };
+		54AA26C01E040A02004BE786 /* RestaurantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDataObject.swift; sourceTree = "<group>"; };
 		54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.debug.xcconfig"; sourceTree = "<group>"; };
+		6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.release.xcconfig"; sourceTree = "<group>"; };
+		9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesign.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2678F01846E20862CFAB955E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */,
+				9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */,
+				05D84B35CB793CD878790675 /* Pods_CardsDesignUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		54039DD31E01F92E00D9A007 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +116,8 @@
 				54039DF31E01F92E00D9A007 /* CardsDesignTests */,
 				54039DFE1E01F92F00D9A007 /* CardsDesignUITests */,
 				54039DDD1E01F92E00D9A007 /* Products */,
+				844E11BE99E66B624EB7DF54 /* Pods */,
+				2678F01846E20862CFAB955E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +140,8 @@
 				54792B191E02162B003C6372 /* DraggableViewBackground.swift */,
 				54792B1A1E02162B003C6372 /* OverlayView.swift */,
 				54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */,
+				54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */,
+				54AA26C01E040A02004BE786 /* RestaurantModel.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
 				54792B221E0299CE003C6372 /* Assets.xcassets */,
@@ -146,6 +171,15 @@
 			path = CardsDesignUITests;
 			sourceTree = "<group>";
 		};
+		844E11BE99E66B624EB7DF54 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */,
+				6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54039E041E01F92F00D9A007 /* Build configuration list for PBXNativeTarget "CardsDesign" */;
 			buildPhases = (
+				462466455DE52C0053CE8957 /* [CP] Check Pods Manifest.lock */,
 				54039DD81E01F92E00D9A007 /* Sources */,
 				54039DD91E01F92E00D9A007 /* Frameworks */,
 				54039DDA1E01F92E00D9A007 /* Resources */,
+				2F86FF51204C502FB4193ED8 /* [CP] Embed Pods Frameworks */,
+				EEEF3286332916D2BF8E0ECC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,12 +315,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F86FF51204C502FB4193ED8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		462466455DE52C0053CE8957 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EEEF3286332916D2BF8E0ECC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		54039DD81E01F92E00D9A007 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54AA26BF1E04085F004BE786 /* GetFirebaseData.swift in Sources */,
 				54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */,
+				54AA26C11E040A02004BE786 /* RestaurantModel.swift in Sources */,
 				54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */,
 				54BA92D01E03C74C00F71AF1 /* FIRDataObject.swift in Sources */,
 				54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */,
@@ -438,6 +525,7 @@
 		};
 		54039E051E01F92F00D9A007 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardsDesign/Info.plist;
@@ -450,6 +538,7 @@
 		};
 		54039E061E01F92F00D9A007 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardsDesign/Info.plist;
