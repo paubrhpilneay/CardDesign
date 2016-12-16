@@ -10,10 +10,17 @@
 		54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DDF1E01F92E00D9A007 /* AppDelegate.swift */; };
 		54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DE11E01F92E00D9A007 /* ViewController.swift */; };
 		54039DE51E01F92E00D9A007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE31E01F92E00D9A007 /* Main.storyboard */; };
-		54039DE71E01F92E00D9A007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE61E01F92E00D9A007 /* Assets.xcassets */; };
 		54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */; };
 		54039DF51E01F92E00D9A007 /* CardsDesignTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DF41E01F92E00D9A007 /* CardsDesignTests.swift */; };
 		54039E001E01F92F00D9A007 /* CardsDesignUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */; };
+		54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B181E02162B003C6372 /* DraggableView.swift */; };
+		54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B191E02162B003C6372 /* DraggableViewBackground.swift */; };
+		54792B1D1E02162B003C6372 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B1A1E02162B003C6372 /* OverlayView.swift */; };
+		54792B231E0299CE003C6372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54792B221E0299CE003C6372 /* Assets.xcassets */; };
+		54792B251E02B2C4003C6372 /* restaurant-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 54792B241E02B2C4003C6372 /* restaurant-1.jpg */; };
+		54792B271E02B777003C6372 /* greenRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 54792B261E02B777003C6372 /* greenRect.png */; };
+		54BA92D01E03C74C00F71AF1 /* FIRDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */; };
+		54BA92D21E03D14400F71AF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +45,6 @@
 		54039DDF1E01F92E00D9A007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54039DE11E01F92E00D9A007 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		54039DE41E01F92E00D9A007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		54039DE61E01F92E00D9A007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54039DE91E01F92E00D9A007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54039DEB1E01F92E00D9A007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54039DF01E01F92E00D9A007 /* CardsDesignTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsDesignTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +53,14 @@
 		54039DFB1E01F92F00D9A007 /* CardsDesignUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsDesignUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDesignUITests.swift; sourceTree = "<group>"; };
 		54039E011E01F92F00D9A007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54792B181E02162B003C6372 /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
+		54792B191E02162B003C6372 /* DraggableViewBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableViewBackground.swift; sourceTree = "<group>"; };
+		54792B1A1E02162B003C6372 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		54792B221E0299CE003C6372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		54792B241E02B2C4003C6372 /* restaurant-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "restaurant-1.jpg"; sourceTree = "<group>"; };
+		54792B261E02B777003C6372 /* greenRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenRect.png; sourceTree = "<group>"; };
+		54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDataObject.swift; sourceTree = "<group>"; };
+		54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +113,16 @@
 			children = (
 				54039DDF1E01F92E00D9A007 /* AppDelegate.swift */,
 				54039DE11E01F92E00D9A007 /* ViewController.swift */,
+				54792B181E02162B003C6372 /* DraggableView.swift */,
+				54792B191E02162B003C6372 /* DraggableViewBackground.swift */,
+				54792B1A1E02162B003C6372 /* OverlayView.swift */,
+				54BA92CF1E03C74C00F71AF1 /* FIRDataObject.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
-				54039DE61E01F92E00D9A007 /* Assets.xcassets */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
+				54792B221E0299CE003C6372 /* Assets.xcassets */,
+				54792B261E02B777003C6372 /* greenRect.png */,
+				54792B241E02B2C4003C6372 /* restaurant-1.jpg */,
+				54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */,
 				54039DEB1E01F92E00D9A007 /* Info.plist */,
 			);
 			path = CardsDesign;
@@ -233,8 +254,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */,
-				54039DE71E01F92E00D9A007 /* Assets.xcassets in Resources */,
+				54792B231E0299CE003C6372 /* Assets.xcassets in Resources */,
+				54792B271E02B777003C6372 /* greenRect.png in Resources */,
+				54792B251E02B2C4003C6372 /* restaurant-1.jpg in Resources */,
 				54039DE51E01F92E00D9A007 /* Main.storyboard in Resources */,
+				54BA92D21E03D14400F71AF1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +283,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */,
+				54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */,
+				54BA92D01E03C74C00F71AF1 /* FIRDataObject.swift in Sources */,
 				54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */,
 				54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */,
+				54792B1D1E02162B003C6372 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +533,7 @@
 				54039E061E01F92F00D9A007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54039E071E01F92F00D9A007 /* Build configuration list for PBXNativeTarget "CardsDesignTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +542,7 @@
 				54039E091E01F92F00D9A007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54039E0A1E01F92F00D9A007 /* Build configuration list for PBXNativeTarget "CardsDesignUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +551,7 @@
 				54039E0C1E01F92F00D9A007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

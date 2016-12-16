@@ -1,26 +1,89 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants to fit you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLd-P2-0HU">
+                                <rect key="frame" x="20" y="33" width="163" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="163" id="9gy-KV-F1g"/>
+                                    <constraint firstAttribute="height" constant="21" id="nM7-li-F70"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.69589944948186533" green="0.69589944948186533" blue="0.69589944948186533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OLd-P2-0HU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="BBc-Wj-UtP"/>
+                            <constraint firstItem="OLd-P2-0HU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="YdT-c6-hr5"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DzG-WO-etz" customClass="DraggableView" customModule="CardsDesign" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="312" height="191"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I look like visible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz5-uh-X7W">
+                            <rect key="frame" x="89" y="34" width="124" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="124" id="fWZ-gb-2Sf"/>
+                                <constraint firstAttribute="height" constant="21" id="owO-al-vs2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrP-MY-Qzw">
+                            <rect key="frame" x="70" y="133" width="76" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="ZhJ-PM-AsN"/>
+                                <constraint firstAttribute="width" constant="76" id="oa7-8r-t1X"/>
+                            </constraints>
+                            <state key="normal" title="am i visible"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8g-1m-xlb">
+                            <rect key="frame" x="190" y="61" width="102" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="42R-js-YJ2"/>
+                                <constraint firstAttribute="width" constant="102" id="PCT-N2-1F7"/>
+                            </constraints>
+                            <state key="normal" title="am i visible too"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="tz5-uh-X7W" firstAttribute="top" secondItem="DzG-WO-etz" secondAttribute="top" constant="34" id="4ID-90-lJU"/>
+                        <constraint firstItem="tz5-uh-X7W" firstAttribute="leading" secondItem="DzG-WO-etz" secondAttribute="leading" constant="89" id="4xj-iU-GAZ"/>
+                        <constraint firstItem="UrP-MY-Qzw" firstAttribute="top" secondItem="tz5-uh-X7W" secondAttribute="bottom" constant="78" id="5u1-oX-PYW"/>
+                        <constraint firstItem="UrP-MY-Qzw" firstAttribute="leading" secondItem="DzG-WO-etz" secondAttribute="leading" constant="70" id="HkY-KS-z18"/>
+                        <constraint firstAttribute="trailing" secondItem="m8g-1m-xlb" secondAttribute="trailing" constant="20" id="Qx8-Tf-OrW"/>
+                        <constraint firstItem="m8g-1m-xlb" firstAttribute="top" secondItem="tz5-uh-X7W" secondAttribute="bottom" constant="6" id="xh2-fX-hT3"/>
+                    </constraints>
+                </view>
             </objects>
+            <point key="canvasLocation" x="135" y="138.38028169014083"/>
         </scene>
     </scenes>
 </document>
