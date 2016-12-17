@@ -151,9 +151,9 @@ class DraggableView: UIView {
         //imageview for restaurant image
         let imageRestaurant = "restaurant-1.jpg"
         let imageRestrau = UIImage(named: imageRestaurant)
-        let imageViewRestaurant = UIImageView(image: imageRestrau)
+        restrauImage = UIImageView(image: imageRestrau)
         
-        imageViewRestaurant.frame = CGRect(x: 18, y: 127, width: 255, height: 220)
+        restrauImage.frame = CGRect(x: 18, y: 127, width: 255, height: 220)
         
         
         //adding text to image
@@ -167,7 +167,7 @@ class DraggableView: UIView {
         ratingLabel.textColor = UIColor.white
         ratingLabel.font = cuisines.font.withSize(12)
         imageViewRating.addSubview(ratingLabel)
-        imageViewRestaurant.addSubview(imageViewRating)
+        restrauImage.addSubview(imageViewRating)
         
 //        var friendsImages: [UIImageView]?
 //        var userImage: UIImage!
@@ -237,7 +237,7 @@ class DraggableView: UIView {
         self.addSubview(locationTime)
         self.addSubview(wifi)
         self.addSubview(delivery)
-        self.addSubview(imageViewRestaurant)
+        self.addSubview(restrauImage)
         self.addSubview(imageViewUser1)
         self.addSubview(imageViewUser2)
         self.addSubview(imageViewUser3)

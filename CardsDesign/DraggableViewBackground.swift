@@ -27,6 +27,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var beenthereButton: UIButton!
     
     var fituLabel: UILabel!
+    var restaurants = [RestaurantModel]()
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -40,7 +41,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         allCards = []
         loadedCards = []
         cardsLoadedIndex = 0
-        self.loadCards()
     }
 
     func setupView() -> Void {
@@ -80,8 +80,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
        
         
         // this is the place to configure all the detail of a new card so we will be updating server data here
-        draggableView.ratingLabel.text = "3.4"
-        draggableView.ocTime.text = "upto 10 PM"
+        draggableView.restrauName.text = restaurants[index].name
+        draggableView.cuisines.text = restaurants[index].cuisines
+        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
+        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
         draggableView.delegate = self
         return draggableView
     }
@@ -89,7 +91,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func loadCards() -> Void {
         if exampleCardLabels.count > 0 {
             let numLoadedCardsCap = exampleCardLabels.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : exampleCardLabels.count
-            for i in 0 ..< exampleCardLabels.count {
+            for i in 0 ..< restaurants.count {
                 let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
                 allCards.append(newCard)
                 if i < numLoadedCardsCap {

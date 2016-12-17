@@ -28,3 +28,11 @@ class FIRDataObject: NSObject {
         }
     }
 }
+
+class RestaurantModel: FIRDataObject {
+    
+    var name: String = ""
+    var cuisines: String = ""
+    var delivery: String = ""
+    var mainImage: String = ""
+}

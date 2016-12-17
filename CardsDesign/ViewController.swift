@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var restaurants = [RestaurantModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let draggableBackground: DraggableViewBackground = DraggableViewBackground(frame: self.view.frame)
+        draggableBackground.restaurants = restaurants
+        draggableBackground.loadCards()
         self.view.addSubview(draggableBackground)
         // Do any additional setup after loading the view, typically from a nib.
     }
