@@ -16,6 +16,7 @@ class GetFirebaseData: UIViewController {
     var email: String!
     var recos: String!
     let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+    var restraurants = [RestaurantModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         rootRef = FIRDatabase.database().reference()
@@ -57,22 +58,23 @@ class GetFirebaseData: UIViewController {
     @IBAction func hitServer(_ sender: Any) {
         self.actInd.startAnimating()
         let restrauArr = self.recos.components(separatedBy: ",")
-        var restraurants = [RestaurantModel]()
         for restrau in restrauArr {
           rootRef.child("restaurants").child(restrau).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
 //            let value = snapshot.value as? NSDictionary
             let restaurant = RestaurantModel.init(snapshot: snapshot)
-            restraurants.append(restaurant)
-            if(restraurants.count == restrauArr.count) {
+            self.restraurants.append(restaurant)
+            if(self.restraurants.count == restrauArr.count) {
                 self.actInd.stopAnimating()
-                let cardViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                
-                // Set "Hello World" as a value to myStringValue
-                cardViewController.restaurants = restraurants
+//                let cardViewController = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantFeed") as! RestaurantFeed
+//                
+//                // Set "Hello World" as a value to myStringValue
+//                cardViewController.restaurants = restraurants
                 
                 // Take user to SecondViewController
-                self.navigationController?.pushViewController(cardViewController, animated: true)
+//                self.navigationController?.pushViewController(cardViewController, animated: true)
+                
+                self.performSegue(withIdentifier: "move", sender: nil)
             }
             // ...
           }) { (error) in
@@ -81,5 +83,11 @@ class GetFirebaseData: UIViewController {
         }
 //        let restrauRef = rootRef.child("restaurants")
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "move" {
+            let tabBarC : MainTabBar = segue.destination as! MainTabBar
+            tabBarC.restaurants = self.restraurants
+        }
     }
 }

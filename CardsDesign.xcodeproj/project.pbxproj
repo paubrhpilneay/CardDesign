@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */; };
 		54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DDF1E01F92E00D9A007 /* AppDelegate.swift */; };
-		54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DE11E01F92E00D9A007 /* ViewController.swift */; };
+		54039DE21E01F92E00D9A007 /* RestaurantFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DE11E01F92E00D9A007 /* RestaurantFeed.swift */; };
 		54039DE51E01F92E00D9A007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE31E01F92E00D9A007 /* Main.storyboard */; };
 		54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */; };
 		54039DF51E01F92E00D9A007 /* CardsDesignTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DF41E01F92E00D9A007 /* CardsDesignTests.swift */; };
 		54039E001E01F92F00D9A007 /* CardsDesignUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */; };
+		5410B8481E06787A0073ACB2 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8471E06787A0073ACB2 /* MainTabBar.swift */; };
+		5410B8501E06A1B70073ACB2 /* SecondTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B84F1E06A1B70073ACB2 /* SecondTab.swift */; };
+		5410B8521E06A1C30073ACB2 /* ThirdTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8511E06A1C30073ACB2 /* ThirdTab.swift */; };
+		5410B8541E06A2130073ACB2 /* FourthTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8531E06A2130073ACB2 /* FourthTab.swift */; };
+		546D34A01E059AC80053CD1C /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D349F1E059AC80053CD1C /* RestaurantDetail.swift */; };
 		54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B181E02162B003C6372 /* DraggableView.swift */; };
 		54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B191E02162B003C6372 /* DraggableViewBackground.swift */; };
 		54792B1D1E02162B003C6372 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B1A1E02162B003C6372 /* OverlayView.swift */; };
@@ -46,7 +51,7 @@
 		05D84B35CB793CD878790675 /* Pods_CardsDesignUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DDC1E01F92E00D9A007 /* CardsDesign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsDesign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DDF1E01F92E00D9A007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54039DE11E01F92E00D9A007 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		54039DE11E01F92E00D9A007 /* RestaurantFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFeed.swift; sourceTree = "<group>"; };
 		54039DE41E01F92E00D9A007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54039DE91E01F92E00D9A007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54039DEB1E01F92E00D9A007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +61,11 @@
 		54039DFB1E01F92F00D9A007 /* CardsDesignUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsDesignUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDesignUITests.swift; sourceTree = "<group>"; };
 		54039E011E01F92F00D9A007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5410B8471E06787A0073ACB2 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		5410B84F1E06A1B70073ACB2 /* SecondTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTab.swift; sourceTree = "<group>"; };
+		5410B8511E06A1C30073ACB2 /* ThirdTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTab.swift; sourceTree = "<group>"; };
+		5410B8531E06A2130073ACB2 /* FourthTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTab.swift; sourceTree = "<group>"; };
+		546D349F1E059AC80053CD1C /* RestaurantDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		54792B181E02162B003C6372 /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		54792B191E02162B003C6372 /* DraggableViewBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableViewBackground.swift; sourceTree = "<group>"; };
 		54792B1A1E02162B003C6372 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -135,10 +145,15 @@
 				54039DDF1E01F92E00D9A007 /* AppDelegate.swift */,
 				54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */,
 				54AA26C01E040A02004BE786 /* RestaurantModel.swift */,
-				54039DE11E01F92E00D9A007 /* ViewController.swift */,
+				54039DE11E01F92E00D9A007 /* RestaurantFeed.swift */,
+				546D349F1E059AC80053CD1C /* RestaurantDetail.swift */,
 				54792B181E02162B003C6372 /* DraggableView.swift */,
 				54792B191E02162B003C6372 /* DraggableViewBackground.swift */,
 				54792B1A1E02162B003C6372 /* OverlayView.swift */,
+				5410B8471E06787A0073ACB2 /* MainTabBar.swift */,
+				5410B84F1E06A1B70073ACB2 /* SecondTab.swift */,
+				5410B8511E06A1C30073ACB2 /* ThirdTab.swift */,
+				5410B8531E06A2130073ACB2 /* FourthTab.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
 				54792B221E0299CE003C6372 /* Assets.xcassets */,
@@ -365,12 +380,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5410B8481E06787A0073ACB2 /* MainTabBar.swift in Sources */,
 				54AA26BF1E04085F004BE786 /* GetFirebaseData.swift in Sources */,
 				54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */,
+				5410B8541E06A2130073ACB2 /* FourthTab.swift in Sources */,
 				54AA26C11E040A02004BE786 /* RestaurantModel.swift in Sources */,
 				54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */,
-				54039DE21E01F92E00D9A007 /* ViewController.swift in Sources */,
+				54039DE21E01F92E00D9A007 /* RestaurantFeed.swift in Sources */,
+				5410B8501E06A1B70073ACB2 /* SecondTab.swift in Sources */,
+				546D34A01E059AC80053CD1C /* RestaurantDetail.swift in Sources */,
 				54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */,
+				5410B8521E06A1C30073ACB2 /* ThirdTab.swift in Sources */,
 				54792B1D1E02162B003C6372 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

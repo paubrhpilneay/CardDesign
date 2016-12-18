@@ -44,17 +44,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ik3-te-1Rl"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="moveToCards" id="DTt-fZ-lvk"/>
+                        <segue destination="74R-i0-KKU" kind="presentation" identifier="move" id="nao-rn-7K6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-hh-Q5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="292.5" y="146.83098591549296"/>
         </scene>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantFeed" id="BYZ-38-t0r" customClass="RestaurantFeed" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -80,6 +80,7 @@
                             <constraint firstItem="OLd-P2-0HU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="YdT-c6-hr5"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="FRp-U4-eyN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="DzG-WO-etz" customClass="DraggableView" customModule="CardsDesign" customModuleProvider="target">
@@ -124,7 +125,62 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1132.5" y="138.38028169014083"/>
+            <point key="canvasLocation" x="1149" y="326"/>
+        </scene>
+        <!--Main Tab Bar-->
+        <scene sceneID="luj-o9-9CT">
+            <objects>
+                <tabBarController id="74R-i0-KKU" customClass="MainTabBar" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="e5u-Kd-xt1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.48507475859999999" green="0.41532886730000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9LK-d5-npu"/>
+                        <segue destination="SxB-8I-P0Y" kind="relationship" relationship="viewControllers" id="bag-cK-IOm"/>
+                        <segue destination="2H9-NR-1Nm" kind="relationship" relationship="viewControllers" id="NYb-9s-FYQ"/>
+                        <segue destination="AjL-YD-RVh" kind="relationship" relationship="viewControllers" id="fff-Mf-6mx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P8l-1Q-HEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="1148"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="pow-f4-boz">
+            <objects>
+                <viewController id="SxB-8I-P0Y" customClass="SecondTab" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Item" id="B7v-Mp-EIT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OOf-eA-mqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1982" y="1144"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="1Yo-8m-J5Z">
+            <objects>
+                <viewController id="AjL-YD-RVh" customClass="FourthTab" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="3" title="Item" id="y1Z-lE-Zxw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LC3-Qx-eA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1125" y="1953"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Vyk-e6-3Fd">
+            <objects>
+                <viewController id="2H9-NR-1Nm" customClass="ThirdTab" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="Item" id="x4d-3j-Soi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cmO-H9-io4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1954" y="1844"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="znC-tL-g1C">

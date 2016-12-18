@@ -38,6 +38,7 @@ class DraggableView: UIView {
     var restrauImage: UIImageView!
     var rating: String!
     var friendImage: [String] = ["user1.png","user2.png","user3.png"]
+    var imageButton: UIButton!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -154,7 +155,8 @@ class DraggableView: UIView {
         restrauImage = UIImageView(image: imageRestrau)
         
         restrauImage.frame = CGRect(x: 18, y: 127, width: 255, height: 220)
-        
+        imageButton = UIButton(frame: CGRect(x: 18, y: 127, width: 255, height: 220))
+        imageButton.alpha = 0
         
         //adding text to image
         let imageRating = "greenRect.png"
@@ -238,11 +240,14 @@ class DraggableView: UIView {
         self.addSubview(wifi)
         self.addSubview(delivery)
         self.addSubview(restrauImage)
+        self.addSubview(imageButton)
         self.addSubview(imageViewUser1)
         self.addSubview(imageViewUser2)
         self.addSubview(imageViewUser3)
         self.addSubview(addCount)
+       
     }
+    
     
     func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
