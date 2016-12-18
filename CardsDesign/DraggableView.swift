@@ -156,8 +156,9 @@ class DraggableView: UIView {
         
         restrauImage.frame = CGRect(x: 18, y: 127, width: 255, height: 220)
         imageButton = UIButton(frame: CGRect(x: 18, y: 127, width: 255, height: 220))
-        imageButton.alpha = 0
-        
+//        imageButton.alpha = 0
+        self.insertSubview(imageButton, belowSubview: restrauImage)
+
         //adding text to image
         let imageRating = "greenRect.png"
         let imageRtng = UIImage(named: imageRating)
@@ -240,7 +241,7 @@ class DraggableView: UIView {
         self.addSubview(wifi)
         self.addSubview(delivery)
         self.addSubview(restrauImage)
-        self.addSubview(imageButton)
+//        self.addSubview(imageButton)
         self.addSubview(imageViewUser1)
         self.addSubview(imageViewUser2)
         self.addSubview(imageViewUser3)
@@ -249,6 +250,7 @@ class DraggableView: UIView {
     }
     
     
+    //to convert the tabbar image in proper size
     func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 40)!

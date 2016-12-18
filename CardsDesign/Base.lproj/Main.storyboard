@@ -51,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="292.5" y="146.83098591549296"/>
         </scene>
-        <!--Item-->
+        <!--Restaurant Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="RestaurantFeed" id="BYZ-38-t0r" customClass="RestaurantFeed" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants to fit you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLd-P2-0HU">
-                                <rect key="frame" x="20" y="33" width="163" height="21"/>
+                                <rect key="frame" x="20" y="77" width="163" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="9gy-KV-F1g"/>
                                     <constraint firstAttribute="height" constant="21" id="nM7-li-F70"/>
@@ -80,7 +80,10 @@
                             <constraint firstItem="OLd-P2-0HU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="YdT-c6-hr5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="FRp-U4-eyN"/>
+                    <navigationItem key="navigationItem" id="r3F-sr-uWM"/>
+                    <connections>
+                        <segue destination="cPA-XC-Lro" kind="presentation" identifier="detailController" id="TKf-9F-GaX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="DzG-WO-etz" customClass="DraggableView" customModule="CardsDesign" customModuleProvider="target">
@@ -125,7 +128,25 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1149" y="326"/>
+            <point key="canvasLocation" x="2145" y="325.35211267605632"/>
+        </scene>
+        <!--Restaurant Detail-->
+        <scene sceneID="a7n-a4-rTK">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantDetail" id="cPA-XC-Lro" customClass="RestaurantDetail" customModule="CardsDesign" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5BB-l9-jKm"/>
+                        <viewControllerLayoutGuide type="bottom" id="vK8-ax-1PL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pbQ-1W-T47">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dfs-Jd-LLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3073.125" y="324.2957746478873"/>
         </scene>
         <!--Main Tab Bar-->
         <scene sceneID="luj-o9-9CT">
@@ -142,7 +163,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9LK-d5-npu"/>
+                        <segue destination="Ejm-Jf-kNW" kind="relationship" relationship="viewControllers" id="9LK-d5-npu"/>
                         <segue destination="SxB-8I-P0Y" kind="relationship" relationship="viewControllers" id="bag-cK-IOm"/>
                         <segue destination="2H9-NR-1Nm" kind="relationship" relationship="viewControllers" id="NYb-9s-FYQ"/>
                         <segue destination="AjL-YD-RVh" kind="relationship" relationship="viewControllers" id="fff-Mf-6mx"/>
@@ -199,6 +220,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Oq-fY-VhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-705" y="146.83098591549296"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="DUP-bH-MKx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ejm-Jf-kNW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="FRp-U4-eyN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nc0-pd-ced">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Pzk-o7-Kzy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bO0-0g-wDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1147.5" y="325.35211267605632"/>
         </scene>
     </scenes>
 </document>

@@ -11,7 +11,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate {
    
     var scrollView: UIScrollView!
     var containerView = UIView()
-    var restrau:[RestaurantModel]!
+    var restrau:RestaurantModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate {
         
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
-        self.scrollView.contentSize = CGSize(width:1000, height:1000)
+        self.scrollView.contentSize = CGSize(width:600, height:1000)
         
         containerView = UIView()
         

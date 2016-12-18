@@ -84,19 +84,19 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         draggableView.cuisines.text = restaurants[index].cuisines
         let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
         draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
-//        draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
+        draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
         draggableView.delegate = self
         return draggableView
     }
 
+    
     func ratingButtonTapped(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDetail") as! RestaurantDetail
-//        vc.restrau = self.restaurants[cardsLoadedIndex]
-//        navigationController?.pushViewController(vc,
-//                                                 animated: true)
+        vc.restrau = self.restaurants[cardsLoadedIndex]
+        MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
-
+    
     func loadCards() -> Void {
         if exampleCardLabels.count > 0 {
             let numLoadedCardsCap = exampleCardLabels.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : exampleCardLabels.count

@@ -18,6 +18,7 @@
 		5410B8501E06A1B70073ACB2 /* SecondTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B84F1E06A1B70073ACB2 /* SecondTab.swift */; };
 		5410B8521E06A1C30073ACB2 /* ThirdTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8511E06A1C30073ACB2 /* ThirdTab.swift */; };
 		5410B8541E06A2130073ACB2 /* FourthTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8531E06A2130073ACB2 /* FourthTab.swift */; };
+		5410B85A1E07179C0073ACB2 /* MyUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8591E07179C0073ACB2 /* MyUtility.swift */; };
 		546D34A01E059AC80053CD1C /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D349F1E059AC80053CD1C /* RestaurantDetail.swift */; };
 		54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B181E02162B003C6372 /* DraggableView.swift */; };
 		54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54792B191E02162B003C6372 /* DraggableViewBackground.swift */; };
@@ -65,6 +66,7 @@
 		5410B84F1E06A1B70073ACB2 /* SecondTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTab.swift; sourceTree = "<group>"; };
 		5410B8511E06A1C30073ACB2 /* ThirdTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTab.swift; sourceTree = "<group>"; };
 		5410B8531E06A2130073ACB2 /* FourthTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTab.swift; sourceTree = "<group>"; };
+		5410B8591E07179C0073ACB2 /* MyUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtility.swift; sourceTree = "<group>"; };
 		546D349F1E059AC80053CD1C /* RestaurantDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		54792B181E02162B003C6372 /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		54792B191E02162B003C6372 /* DraggableViewBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableViewBackground.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				5410B84F1E06A1B70073ACB2 /* SecondTab.swift */,
 				5410B8511E06A1C30073ACB2 /* ThirdTab.swift */,
 				5410B8531E06A2130073ACB2 /* FourthTab.swift */,
+				5410B8591E07179C0073ACB2 /* MyUtility.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
 				54792B221E0299CE003C6372 /* Assets.xcassets */,
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5410B8481E06787A0073ACB2 /* MainTabBar.swift in Sources */,
+				5410B85A1E07179C0073ACB2 /* MyUtility.swift in Sources */,
 				54AA26BF1E04085F004BE786 /* GetFirebaseData.swift in Sources */,
 				54792B1C1E02162B003C6372 /* DraggableViewBackground.swift in Sources */,
 				5410B8541E06A2130073ACB2 /* FourthTab.swift in Sources */,
