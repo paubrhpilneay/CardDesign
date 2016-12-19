@@ -18,6 +18,7 @@ class RestaurantFeed: UIViewController {
         draggableBackground.restaurants = restaurants
         draggableBackground.loadCards()
         self.view.addSubview(draggableBackground)
+        self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 

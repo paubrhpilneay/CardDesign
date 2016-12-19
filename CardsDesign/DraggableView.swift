@@ -318,7 +318,6 @@ class DraggableView: UIView {
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         }
         
-        
     }
 
     func afterSwipeAction() -> Void {
