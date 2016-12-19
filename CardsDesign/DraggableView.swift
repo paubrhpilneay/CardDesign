@@ -309,13 +309,13 @@ class DraggableView: UIView {
        
         if ydist < 0 && distance > -10 && distance < 10{
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
-            overlayView.alpha = CGFloat(min(fabsf(Float(ydist))/100, 0.7))
+            overlayView.alpha = CGFloat(min(fabsf(Float(ydist))/100 + 0.2, 0.7))
         }else if distance > 0 {
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeRight)
-            overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100, 0.7))
+            overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         } else {
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeLeft)
-            overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100, 0.7))
+            overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         }
         
         
