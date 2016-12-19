@@ -139,6 +139,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
     }
 
+    func cardSwipedTop(_ card: UIView) -> Void {
+        loadedCards.remove(at: 0)
+        
+        if cardsLoadedIndex < allCards.count {
+            loadedCards.append(allCards[cardsLoadedIndex])
+            cardsLoadedIndex = cardsLoadedIndex + 1
+            self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        }
+    }
+    
     func swipeRight() -> Void {
         if loadedCards.count <= 0 {
             return

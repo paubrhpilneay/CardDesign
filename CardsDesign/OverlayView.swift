@@ -12,6 +12,7 @@ import UIKit
 enum GGOverlayViewMode {
     case ggOverlayViewModeLeft
     case ggOverlayViewModeRight
+    case ggOverlayViewModeTop
 }
 
 class OverlayView: UIView{
@@ -38,8 +39,11 @@ class OverlayView: UIView{
 
         if _mode == GGOverlayViewMode.ggOverlayViewModeLeft {
             imageView.image = UIImage(named: "noButton")
-            imageView.frame = CGRect(x: 180, y: 35, width: 50, height: 80)
-        } else {
+            imageView.frame = CGRect(x: 180, y: 35, width: 44, height: 75)
+        } else if _mode == GGOverlayViewMode.ggOverlayViewModeTop{
+            imageView.image = UIImage(named: "beenthereButton")
+            imageView.frame = CGRect(x: -40, y: 35, width: 60, height: 80)
+        }else {
             imageView.image = UIImage(named: "yesButton")
             imageView.frame = CGRect(x: -40, y: 35, width: 50, height: 80)
         }

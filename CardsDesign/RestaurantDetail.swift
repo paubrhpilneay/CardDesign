@@ -19,9 +19,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate {
         let buttonOne = UIButton(type:UIButtonType.system) as UIButton
         
         
-        buttonOne.frame = CGRect(x:10, y:50, width:50, height:50)
-        buttonOne.backgroundColor = UIColor.green
-        buttonOne.setTitle("test", for: UIControlState.normal)
+        buttonOne.frame = CGRect(x:self.view.frame.size.width/2-120, y:10, width:10, height:10)
+        buttonOne.setImage(UIImage(named: "backButton"), for: UIControlState.normal)
         buttonOne.addTarget(self, action: Selector(("buttonAction1x1:")), for: UIControlEvents.touchUpInside)
         
         self.scrollView = UIScrollView()
@@ -34,7 +33,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(containerView)
         view.addSubview(scrollView)
         containerView.addSubview(buttonOne)
-        
+        self.navigationController?.isNavigationBarHidden = true
         
     }
     
