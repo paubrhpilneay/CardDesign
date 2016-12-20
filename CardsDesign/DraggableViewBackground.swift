@@ -15,7 +15,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
 
     let MAX_BUFFER_SIZE = 2
     let CARD_HEIGHT: CGFloat = 386
-    let CARD_WIDTH: CGFloat = 290
+    let CARD_WIDTH: CGFloat = 270
 
     var cardsLoadedIndex: Int!
     var loadedCards: [DraggableView]!
@@ -52,19 +52,19 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         fituLabel.textColor = UIColor.lightGray
         fituLabel.font = fituLabel.font.withSize(13)
         
-        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 27, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: 40, height: 40))
+        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 20, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: 40, height: 40))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 70, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
+        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 60, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
 
-        checkButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 160, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
+        checkButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 150, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        beenthereButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 90, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9 , width: 50, height: 40))
+        beenthereButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 80, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9 , width: 50, height: 40))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
         beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         

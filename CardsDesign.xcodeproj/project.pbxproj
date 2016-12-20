@@ -29,6 +29,11 @@
 		54AA26BF1E04085F004BE786 /* GetFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */; };
 		54AA26C11E040A02004BE786 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA26C01E040A02004BE786 /* RestaurantModel.swift */; };
 		54BA92D21E03D14400F71AF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */; };
+		54C3D2FC1E0816D7005D013D /* bariol_bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2F81E0814FF005D013D /* bariol_bold-webfont.ttf */; };
+		54C3D2FD1E0816D7005D013D /* bariol_light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2F91E0814FF005D013D /* bariol_light-webfont.ttf */; };
+		54C3D2FE1E0816D7005D013D /* bariol_regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */; };
+		54C3D2FF1E0816D7005D013D /* bariol_thin-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2FB1E0814FF005D013D /* bariol_thin-webfont.ttf */; };
+		54C3D3011E088D32005D013D /* HorizontalScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C3D3001E088D32005D013D /* HorizontalScroll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +82,11 @@
 		54AA26BE1E04085F004BE786 /* GetFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFirebaseData.swift; sourceTree = "<group>"; };
 		54AA26C01E040A02004BE786 /* RestaurantModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54C3D2F81E0814FF005D013D /* bariol_bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_bold-webfont.ttf"; sourceTree = "<group>"; };
+		54C3D2F91E0814FF005D013D /* bariol_light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_light-webfont.ttf"; sourceTree = "<group>"; };
+		54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_regular-webfont.ttf"; sourceTree = "<group>"; };
+		54C3D2FB1E0814FF005D013D /* bariol_thin-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_thin-webfont.ttf"; sourceTree = "<group>"; };
+		54C3D3001E088D32005D013D /* HorizontalScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScroll.swift; sourceTree = "<group>"; };
 		67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.debug.xcconfig"; sourceTree = "<group>"; };
 		6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.release.xcconfig"; sourceTree = "<group>"; };
 		9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +167,7 @@
 				5410B8511E06A1C30073ACB2 /* ThirdTab.swift */,
 				5410B8531E06A2130073ACB2 /* FourthTab.swift */,
 				5410B8591E07179C0073ACB2 /* MyUtility.swift */,
+				54C3D3001E088D32005D013D /* HorizontalScroll.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
 				54792B221E0299CE003C6372 /* Assets.xcassets */,
@@ -164,6 +175,10 @@
 				54792B241E02B2C4003C6372 /* restaurant-1.jpg */,
 				54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */,
 				54039DEB1E01F92E00D9A007 /* Info.plist */,
+				54C3D2F81E0814FF005D013D /* bariol_bold-webfont.ttf */,
+				54C3D2F91E0814FF005D013D /* bariol_light-webfont.ttf */,
+				54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */,
+				54C3D2FB1E0814FF005D013D /* bariol_thin-webfont.ttf */,
 			);
 			path = CardsDesign;
 			sourceTree = "<group>";
@@ -306,6 +321,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C3D2FC1E0816D7005D013D /* bariol_bold-webfont.ttf in Resources */,
+				54C3D2FD1E0816D7005D013D /* bariol_light-webfont.ttf in Resources */,
+				54C3D2FE1E0816D7005D013D /* bariol_regular-webfont.ttf in Resources */,
+				54C3D2FF1E0816D7005D013D /* bariol_thin-webfont.ttf in Resources */,
 				54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */,
 				54792B231E0299CE003C6372 /* Assets.xcassets in Resources */,
 				54792B271E02B777003C6372 /* greenRect.png in Resources */,
@@ -392,6 +411,7 @@
 				54AA26C11E040A02004BE786 /* RestaurantModel.swift in Sources */,
 				54792B1B1E02162B003C6372 /* DraggableView.swift in Sources */,
 				54039DE21E01F92E00D9A007 /* RestaurantFeed.swift in Sources */,
+				54C3D3011E088D32005D013D /* HorizontalScroll.swift in Sources */,
 				5410B8501E06A1B70073ACB2 /* SecondTab.swift in Sources */,
 				546D34A01E059AC80053CD1C /* RestaurantDetail.swift in Sources */,
 				54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */,

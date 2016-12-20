@@ -45,26 +45,26 @@ class DraggableView: UIView {
         super.init(coder: aDecoder)!
     }
     
-   
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.setupView()
         
         self.backgroundColor = UIColor.white
-
+        
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableView.beingDragged(_:)))
-
+        
         self.addGestureRecognizer(panGestureRecognizer)
-
+        
         overlayView = OverlayView(frame: CGRect(x: self.frame.size.width/2-100, y: 0, width: 100, height: 100))
         overlayView.alpha = 0
         self.addSubview(overlayView)
-
+        
         xFromCenter = 0
         yFromCenter = 0
     }
-
+    
     func setupView() -> Void {
         self.layer.cornerRadius = 4;
         self.layer.shadowRadius = 3;
@@ -77,17 +77,14 @@ class DraggableView: UIView {
         
         restrauName.textColor = UIColor.black
         let fontSize = restrauName.font.pointSize
-        restrauName.font = UIFont(name: "Georgia-Bold", size: fontSize-2)
-        
+        restrauName.font = UIFont(name: "Bariol-Bold", size: fontSize)
         
         //setting up cuisines
         cuisines = UILabel(frame: CGRect(x: 15, y: 40, width:130, height: 20))
         cuisines.text = "Europian,Italian"
-        cuisines.textColor = UIColor.gray
-        let cuisineSize = cuisines.font.pointSize
-        cuisines.font = UIFont(name: "STHeitiK-Light", size: cuisineSize-9)
-        cuisines.font = cuisines.font.withSize(10)
-        
+        cuisines.font = UIFont(name: "Bariol-Regular", size: 10)
+        cuisines.font = cuisines.font.withSize(12)
+        cuisines.textColor = UIColor.darkGray
         
         //green and grey dollars
         let imageGreen = "dollar_green.png"
@@ -97,9 +94,9 @@ class DraggableView: UIView {
         let imageView1 = UIImageView(image: imageGn!)
         let imageView2 = UIImageView(image: imageGn!)
         let imageView3 = UIImageView(image: imageGy!)
-        imageView1.frame = CGRect(x: 230, y: 25, width: 7, height: 13)
-        imageView2.frame = CGRect(x: 245, y: 25, width: 7, height: 13)
-        imageView3.frame = CGRect(x: 260, y: 25, width: 7, height: 13)
+        imageView1.frame = CGRect(x: 215, y: 25, width: 7, height: 13)
+        imageView2.frame = CGRect(x: 230, y: 25, width: 7, height: 13)
+        imageView3.frame = CGRect(x: 245, y: 25, width: 7, height: 13)
         
         
         //4 icons
@@ -120,34 +117,34 @@ class DraggableView: UIView {
         let imageViewDelivery = UIImageView(image: imageDlvry)
         
         imageViewClock.frame = CGRect(x: 30, y: 75, width: 14, height: 14)
-        imageViewLocation.frame = CGRect(x: 100, y: 75, width: 12, height: 16)
-        imageViewWifi.frame = CGRect(x: 170, y: 75, width: 17, height: 12)
-        imageViewDelivery.frame = CGRect(x: 240, y: 75, width: 14, height: 14)
+        imageViewLocation.frame = CGRect(x: 95, y: 73, width: 15, height: 17)
+        imageViewWifi.frame = CGRect(x: 160, y: 75, width: 17, height: 12)
+        imageViewDelivery.frame = CGRect(x: 225, y: 73, width: 13, height: 17)
         
         
         
         //labels for the 4 icons
         ocTime = UILabel(frame: CGRect(x: 18, y: 85, width:60, height: 40))
         ocTime.text = "upto 11 PM"
-        ocTime.textColor = UIColor.lightGray
-        ocTime.font = cuisines.font.withSize(8)
+        ocTime.textColor = UIColor.darkGray
+        ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
-        locationTime = UILabel(frame: CGRect(x: 100, y: 85, width:40, height: 40))
+        locationTime = UILabel(frame: CGRect(x: 90, y: 85, width:40, height: 40))
         locationTime.text = "2.5 m"
-        locationTime.textColor = UIColor.lightGray
-        locationTime.font = cuisines.font.withSize(8)
+        locationTime.textColor = UIColor.darkGray
+        locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        wifi = UILabel(frame: CGRect(x: 170, y: 85, width:40, height: 40))
+        wifi = UILabel(frame: CGRect(x: 160, y: 85, width:40, height: 40))
         wifi.text = "Wifi"
-        wifi.textColor = UIColor.lightGray
-        wifi.font = cuisines.font.withSize(8)
+        wifi.textColor = UIColor.darkGray
+        wifi.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        delivery = UILabel(frame: CGRect(x: 235, y: 85, width:40, height: 40))
+        delivery = UILabel(frame: CGRect(x: 217, y: 85, width:40, height: 40))
         delivery.text = "Delivery"
-        delivery.textColor = UIColor.lightGray
-        delivery.font = cuisines.font.withSize(8)
+        delivery.textColor = UIColor.darkGray
+        delivery.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
         //imageview for restaurant image
@@ -155,38 +152,38 @@ class DraggableView: UIView {
         let imageRestrau = UIImage(named: imageRestaurant)
         restrauImage = UIImageView(image: imageRestrau)
         
-        restrauImage.frame = CGRect(x: 18, y: 127, width: 255, height: 220)
+        restrauImage.frame = CGRect(x: 18, y: 127, width: 235, height: 220)
         imageButton = UIButton(frame: CGRect(x: 18, y: 127, width: 255, height: 220))
-//        imageButton.alpha = 0
+        //        imageButton.alpha = 0
         self.insertSubview(imageButton, belowSubview: restrauImage)
-
+        
         //adding text to image
         let imageRating = "greenRect.png"
         let imageRtng = UIImage(named: imageRating)
         self.rating = "4.2"
         let imageViewRating = UIImageView(image: imageRtng)
-        imageViewRating.frame = CGRect(x: 210, y: 10, width: 35, height: 25)
-        ratingLabel = UILabel(frame: CGRect(x: 10, y: 3, width: 20, height: 20))
+        imageViewRating.frame = CGRect(x: 180, y: 10, width: 40, height: 30)
+        ratingLabel = UILabel(frame: CGRect(x: 10, y: 3, width: 25, height: 25))
         ratingLabel.text = rating
         ratingLabel.textColor = UIColor.white
-        ratingLabel.font = cuisines.font.withSize(12)
+        ratingLabel.font = cuisines.font.withSize(13)
         imageViewRating.addSubview(ratingLabel)
         restrauImage.addSubview(imageViewRating)
         
-//        var friendsImages: [UIImageView]?
-//        var userImage: UIImage!
-//        //adding 3 circular friends image along with +n count
-//        for index in 0...2 {
-//            userImage = UIImage(named: friendImage[index])
-//            friendsImages[index] = UIImageView(image: userImage)
-//            friendsImages[index].layer.borderWidth = 1
-//            friendsImages[index].layer.masksToBounds = false
-//            friendsImages[index].layer.borderColor = UIColor.black.cgColor
-//            friendsImages[index].layer.cornerRadius = friendsImages[index].frame.height/2
-//            friendsImages[index].clipsToBounds = true
-//            friendsImages[index].frame = CGRect(x: 20 + index*5, y: 360, width: 10, height: 16)
-//            self.addSubview(friendsImages[index])
-//        }
+        //        var friendsImages: [UIImageView]?
+        //        var userImage: UIImage!
+        //        //adding 3 circular friends image along with +n count
+        //        for index in 0...2 {
+        //            userImage = UIImage(named: friendImage[index])
+        //            friendsImages[index] = UIImageView(image: userImage)
+        //            friendsImages[index].layer.borderWidth = 1
+        //            friendsImages[index].layer.masksToBounds = false
+        //            friendsImages[index].layer.borderColor = UIColor.black.cgColor
+        //            friendsImages[index].layer.cornerRadius = friendsImages[index].frame.height/2
+        //            friendsImages[index].clipsToBounds = true
+        //            friendsImages[index].frame = CGRect(x: 20 + index*5, y: 360, width: 10, height: 16)
+        //            self.addSubview(friendsImages[index])
+        //        }
         
         //adding 3 circular friends image along with +n count
         
@@ -194,17 +191,17 @@ class DraggableView: UIView {
         let imageUser1 = "user1.png"
         let imageUsr1 = UIImage(named: imageUser1)
         let imageViewUser1 = UIImageView(image: imageUsr1)
-        imageViewUser1.frame = CGRect(x: 15, y: 360, width: 18, height: 15)
+        imageViewUser1.frame = CGRect(x: 20, y: 360, width: 20, height: 18)
         imageViewUser1.layer.borderWidth = 1
         imageViewUser1.layer.masksToBounds = false
         imageViewUser1.layer.borderColor = UIColor.white.cgColor
         imageViewUser1.layer.cornerRadius = imageViewUser1.frame.height/2
         imageViewUser1.clipsToBounds = true
         
-        let imageUser2 = "user2.jpeg"
+        let imageUser2 = "user1.jpeg"
         let imageUsr2 = UIImage(named: imageUser2)
         let imageViewUser2 = UIImageView(image: imageUsr2)
-        imageViewUser2.frame = CGRect(x: 35, y: 360, width: 18, height: 15)
+        imageViewUser2.frame = CGRect(x: 40, y: 360, width: 20, height: 18)
         imageViewUser2.layer.borderWidth = 1
         imageViewUser2.layer.masksToBounds = false
         imageViewUser2.layer.borderColor = UIColor.white.cgColor
@@ -214,7 +211,7 @@ class DraggableView: UIView {
         let imageUser3 = "user3.png"
         let imageUsr3 = UIImage(named: imageUser3)
         let imageViewUser3 = UIImageView(image: imageUsr3)
-        imageViewUser3.frame = CGRect(x: 55, y: 360, width: 18, height: 15)
+        imageViewUser3.frame = CGRect(x: 60, y: 360, width: 20, height: 18)
         imageViewUser3.layer.borderWidth = 1
         imageViewUser3.layer.masksToBounds = false
         imageViewUser3.layer.borderColor = UIColor.white.cgColor
@@ -222,10 +219,10 @@ class DraggableView: UIView {
         imageViewUser3.clipsToBounds = true
         
         
-        let addCount = UILabel(frame: CGRect(x: 75, y: 345, width:60, height: 40))
+        let addCount = UILabel(frame: CGRect(x: 85, y: 350, width:60, height: 40))
         addCount.text = "+17 friends"
         addCount.textColor = UIColor.darkGray
-        addCount.font = cuisines.font.withSize(10)
+        addCount.font = UIFont(name: "Bariol-Thin", size: 10)
         
         
         self.addSubview(imageView1)
@@ -242,12 +239,12 @@ class DraggableView: UIView {
         self.addSubview(wifi)
         self.addSubview(delivery)
         self.addSubview(restrauImage)
-//        self.addSubview(imageButton)
+        //        self.addSubview(imageButton)
         self.addSubview(imageViewUser1)
         self.addSubview(imageViewUser2)
         self.addSubview(imageViewUser3)
         self.addSubview(addCount)
-       
+        
     }
     
     
@@ -285,9 +282,9 @@ class DraggableView: UIView {
             let rotationStrength: Float = min(xFromCenter/ROTATION_STRENGTH, ROTATION_MAX)
             let rotationAngle = ROTATION_ANGLE * rotationStrength
             let scale = max(1 - fabsf(rotationStrength) / SCALE_STRENGTH, SCALE_MAX)
-
+            
             self.center = CGPoint(x: self.originPoint.x + CGFloat(xFromCenter), y: self.originPoint.y + CGFloat(yFromCenter))
-
+            
             let transform = CGAffineTransform(rotationAngle: CGFloat(rotationAngle))
             let scaleTransform = transform.scaledBy(x: CGFloat(scale), y: CGFloat(scale))
             self.transform = scaleTransform
@@ -304,9 +301,9 @@ class DraggableView: UIView {
             break
         }
     }
-
+    
     func updateOverlay(_ distance: CGFloat, _ ydist: CGFloat) -> Void {
-       
+        
         if ydist < 0 && distance > -10 && distance < 10{
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
             overlayView.alpha = CGFloat(min(fabsf(Float(ydist))/100 + 0.2, 0.7))
@@ -319,7 +316,7 @@ class DraggableView: UIView {
         }
         
     }
-
+    
     func afterSwipeAction() -> Void {
         let floatXFromCenter = Float(xFromCenter)
         let floatYFromCenter = Float(yFromCenter)
@@ -341,23 +338,23 @@ class DraggableView: UIView {
     func rightAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: 500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
         UIView.animate(withDuration: 0.3,
-            animations: {
-                self.center = finishPoint
-            }, completion: {
-                (value: Bool) in
-                self.removeFromSuperview()
+                       animations: {
+                        self.center = finishPoint
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
         })
         delegate.cardSwipedRight(self)
     }
-
+    
     func leftAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: -500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
         UIView.animate(withDuration: 0.3,
-            animations: {
-                self.center = finishPoint
-            }, completion: {
-                (value: Bool) in
-                self.removeFromSuperview()
+                       animations: {
+                        self.center = finishPoint
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
         })
         delegate.cardSwipedLeft(self)
     }
@@ -373,29 +370,29 @@ class DraggableView: UIView {
         })
         delegate.cardSwipedTop(self)
     }
-
+    
     func rightClickAction() -> Void {
         let finishPoint = CGPoint(x: 600, y: self.center.y)
         UIView.animate(withDuration: 0.3,
-            animations: {
-                self.center = finishPoint
-                self.transform = CGAffineTransform(rotationAngle: 1)
-            }, completion: {
-                (value: Bool) in
-                self.removeFromSuperview()
+                       animations: {
+                        self.center = finishPoint
+                        self.transform = CGAffineTransform(rotationAngle: 1)
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
         })
         delegate.cardSwipedRight(self)
     }
-
+    
     func leftClickAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: -600, y: self.center.y)
         UIView.animate(withDuration: 0.3,
-            animations: {
-                self.center = finishPoint
-                self.transform = CGAffineTransform(rotationAngle: 1)
-            }, completion: {
-                (value: Bool) in
-                self.removeFromSuperview()
+                       animations: {
+                        self.center = finishPoint
+                        self.transform = CGAffineTransform(rotationAngle: 1)
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
         })
         delegate.cardSwipedLeft(self)
     }
