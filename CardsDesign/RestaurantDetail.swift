@@ -8,8 +8,8 @@
 import UIKit
 import MapKit
 
-class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
-   
+class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollDelegate, MKMapViewDelegate {
+   //, CLLocationManagerDelegate removed
     var scrollView: UIScrollView!
     var containerView = UIView()
     var restrau:RestaurantModel!
@@ -25,7 +25,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         let buttonOne: UIButton = UIButton(frame:CGRect(x:self.view.frame.size.width/2-133, y:30, width:7, height:10))
         buttonOne.setImage(UIImage(named: "backButton"), for: UIControlState.normal)
-        buttonOne.addTarget(self, action: #selector(newFunc), for: UIControlEvents.touchUpInside)
+//        buttonOne.addTarget(self, action: #selector(RestaurantDetail.newFunc()), for: UIControlEvents.touchUpInside)
         
 //        for family: String in UIFont.familyNames
 //        {
@@ -168,14 +168,14 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         mapView.delegate = self
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-        }
+//        if (CLLocationManager.locationServicesEnabled())
+//        {
+//            locationManager = CLLocationManager()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.startUpdatingLocation()
+//        }
         // Connect all the mappoints using Poly line.
         
         var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
@@ -357,8 +357,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         return newview
     }
     
-    func newFunc() {
-        self.navigationController?.popViewController(animated: true)
+    func newFunc() -> Void {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -470,13 +470,13 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         return annotationView
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations.last as! CLLocation
-        let annotation1 = RestrauUserCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        annotation1.title = "user-name"
-        annotations[1] = annotation1
-        
-        zoomToRegion(lat: location.coordinate.latitude, longFor:location.coordinate.longitude)
-    }
+//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+//        let location = locations.last as! CLLocation
+//        let annotation1 = RestrauUserCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        annotation1.title = "user-name"
+//        annotations[1] = annotation1
+//        
+//        zoomToRegion(lat: location.coordinate.latitude, longFor:location.coordinate.longitude)
+//    }
     
 }
