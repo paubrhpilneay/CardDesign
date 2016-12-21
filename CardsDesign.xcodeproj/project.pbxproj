@@ -34,6 +34,9 @@
 		54C3D2FE1E0816D7005D013D /* bariol_regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */; };
 		54C3D2FF1E0816D7005D013D /* bariol_thin-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D2FB1E0814FF005D013D /* bariol_thin-webfont.ttf */; };
 		54C3D3011E088D32005D013D /* HorizontalScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C3D3001E088D32005D013D /* HorizontalScroll.swift */; };
+		54C3D3031E096805005D013D /* RestrauUserCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C3D3021E096805005D013D /* RestrauUserCoordinate.swift */; };
+		54C3D3051E09AE52005D013D /* restaurants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D3041E09AE52005D013D /* restaurants.plist */; };
+		54C3D3091E0A637A005D013D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C3D3081E0A637A005D013D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_regular-webfont.ttf"; sourceTree = "<group>"; };
 		54C3D2FB1E0814FF005D013D /* bariol_thin-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bariol_thin-webfont.ttf"; sourceTree = "<group>"; };
 		54C3D3001E088D32005D013D /* HorizontalScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScroll.swift; sourceTree = "<group>"; };
+		54C3D3021E096805005D013D /* RestrauUserCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrauUserCoordinate.swift; sourceTree = "<group>"; };
+		54C3D3041E09AE52005D013D /* restaurants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = restaurants.plist; sourceTree = "<group>"; };
+		54C3D3081E0A637A005D013D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.debug.xcconfig"; sourceTree = "<group>"; };
 		6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.release.xcconfig"; sourceTree = "<group>"; };
 		9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C3D3091E0A637A005D013D /* MapKit.framework in Frameworks */,
 				09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +129,7 @@
 		2678F01846E20862CFAB955E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54C3D3081E0A637A005D013D /* MapKit.framework */,
 				CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */,
 				9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */,
 				05D84B35CB793CD878790675 /* Pods_CardsDesignUITests.framework */,
@@ -168,6 +176,7 @@
 				5410B8531E06A2130073ACB2 /* FourthTab.swift */,
 				5410B8591E07179C0073ACB2 /* MyUtility.swift */,
 				54C3D3001E088D32005D013D /* HorizontalScroll.swift */,
+				54C3D3021E096805005D013D /* RestrauUserCoordinate.swift */,
 				54039DE31E01F92E00D9A007 /* Main.storyboard */,
 				54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */,
 				54792B221E0299CE003C6372 /* Assets.xcassets */,
@@ -175,6 +184,7 @@
 				54792B241E02B2C4003C6372 /* restaurant-1.jpg */,
 				54BA92D11E03D14400F71AF1 /* GoogleService-Info.plist */,
 				54039DEB1E01F92E00D9A007 /* Info.plist */,
+				54C3D3041E09AE52005D013D /* restaurants.plist */,
 				54C3D2F81E0814FF005D013D /* bariol_bold-webfont.ttf */,
 				54C3D2F91E0814FF005D013D /* bariol_light-webfont.ttf */,
 				54C3D2FA1E0814FF005D013D /* bariol_regular-webfont.ttf */,
@@ -326,6 +336,7 @@
 				54C3D2FE1E0816D7005D013D /* bariol_regular-webfont.ttf in Resources */,
 				54C3D2FF1E0816D7005D013D /* bariol_thin-webfont.ttf in Resources */,
 				54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */,
+				54C3D3051E09AE52005D013D /* restaurants.plist in Resources */,
 				54792B231E0299CE003C6372 /* Assets.xcassets in Resources */,
 				54792B271E02B777003C6372 /* greenRect.png in Resources */,
 				54792B251E02B2C4003C6372 /* restaurant-1.jpg in Resources */,
@@ -416,6 +427,7 @@
 				546D34A01E059AC80053CD1C /* RestaurantDetail.swift in Sources */,
 				54039DE01E01F92E00D9A007 /* AppDelegate.swift in Sources */,
 				5410B8521E06A1C30073ACB2 /* ThirdTab.swift in Sources */,
+				54C3D3031E096805005D013D /* RestrauUserCoordinate.swift in Sources */,
 				54792B1D1E02162B003C6372 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
