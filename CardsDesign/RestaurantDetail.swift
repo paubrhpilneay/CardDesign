@@ -131,8 +131,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         let topLabel = UILabel(frame:CGRect(x:20, y:330 , width:140, height:40))
         topLabel.text = "TOP THREE DISH"
-        topLabel.textColor = UIColor.darkGray
-        topLabel.font = UIFont(name: "Bariol-Thin", size: 12)
+        topLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        topLabel.font = UIFont(name: "Bariol-Regular", size: 14)
         
         var offset: Int = 0
         let topImgArr = ["choice1","choice2","choice3"]
@@ -189,8 +189,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         let menuLabel = UILabel(frame:CGRect(x:20, y:550 + offset , width:50, height:40))
         menuLabel.text = "Menu"
-        menuLabel.textColor = UIColor.darkGray
-        menuLabel.font = UIFont(name: "Bariol-Thin", size: 14)
+        menuLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        menuLabel.font = UIFont(name: "Bariol-Regular", size: 14)
         
         let hMenuScroll = HorizontalScroll(frame:CGRect(x:15, y:595 + offset, width: Int(view.frame.size.width), height:80))
         hMenuScroll.backgroundColor = UIColor.white
@@ -198,8 +198,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         let review = UILabel(frame:CGRect(x:25, y:690 + offset , width:130, height:40))
         review.text = "OFFICIAL REVIEW"
-        review.textColor = UIColor.darkGray
-        review.font = UIFont(name: "Bariol-Thin", size: 14)
+        review.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        review.font = UIFont(name: "Bariol-Regular", size: 14)
 
         
         let imageViewStar = UIImageView(image: UIImage(named:"star"))
@@ -215,13 +215,13 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let textView = UILabel(frame: CGRect(x:25.0, y:Double(730 + offset), width:300.0, height:220.0))
         textView.numberOfLines = 15
         textView.text = "I had only heard of Fattoush until now and recently dined here for a \nbloggers meet along with a few foodie friends.\n\nThis place serves both Buffet and Ala Carte,so my review is based on \nthe Ala Carte experience ONLY. \n\nThe decor is nice and beautiful with two dining sections. I didnt know it was actually a pretty spacious place and easily accommodate a big crowd! \nTheres also a tiny children's play area which was very pleasing to see. So its a kids friendly place."
-        textView.font = UIFont(name: "Bariol-Thin", size: 11)
+        textView.font = UIFont(name: "Bariol-Regular", size: 11)
         
         
         let userreviews = UILabel(frame: CGRect(x: 23, y: 925 + offset, width:130, height: 40))
         userreviews.text = "USER REVIEWS"
-        userreviews.textColor = UIColor.darkGray
-        userreviews.font = UIFont(name: "Bariol-Thin", size: 14)
+        userreviews.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        userreviews.font = UIFont(name: "Bariol-Regular", size: 14)
         
         
         let hReviewScroll = HorizontalScroll(frame:CGRect(x:23, y:970 + offset, width: Int(view.frame.size.width), height:250))
