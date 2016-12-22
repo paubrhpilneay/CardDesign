@@ -57,7 +57,7 @@ class DraggableView: UIView {
         
         self.addGestureRecognizer(panGestureRecognizer)
         
-        overlayView = OverlayView(frame: CGRect(x: self.frame.size.width/4, y: 0, width: (self.frame.size.width*10)/27, height: (self.frame.size.height*50)/93))
+        overlayView = OverlayView(frame: CGRect(x: 5, y: 20, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386))
         overlayView.alpha = 0
         self.addSubview(overlayView)
         
@@ -66,10 +66,10 @@ class DraggableView: UIView {
     }
     
     func setupView() -> Void {
-        self.layer.cornerRadius = 4;
-        self.layer.shadowRadius = 3;
-        self.layer.shadowOpacity = 0.2;
-        self.layer.shadowOffset = CGSize(width: 1, height: 1);
+        self.layer.cornerRadius = 4
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
         
         //setting up restrau name
         restrauName = UILabel(frame: CGRect(x: self.frame.size.width/18, y: (self.frame.size.height*5)/193, width:(self.frame.size.width*16)/27, height: (self.frame.size.height*20)/193))
@@ -304,12 +304,15 @@ class DraggableView: UIView {
     func updateOverlay(_ distance: CGFloat, _ ydist: CGFloat) -> Void {
         
         if ydist < 0 && distance > -10 && distance < 10{
+            overlayView.frame = CGRect(x:5, y:15, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
             overlayView.alpha = CGFloat(min(fabsf(Float(ydist))/100 + 0.2, 0.7))
         }else if distance > 0 {
+            overlayView.frame = CGRect(x:5, y:15, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeRight)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         } else {
+            overlayView.frame = CGRect(x:self.frame.size.width-(self.frame.size.width*10)/27, y:5, width: (self.frame.size.width*10)/27, height: (self.frame.size.height*160)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeLeft)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         }

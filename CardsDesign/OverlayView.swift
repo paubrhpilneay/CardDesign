@@ -25,9 +25,9 @@ class OverlayView: UIView{
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.clear
         imageView = UIImageView(image: UIImage(named: "noButton"))
-        imageView.frame = CGRect(x: 180, y: 35, width: 50, height: 80)
+        imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.addSubview(imageView)
     }
 
@@ -39,13 +39,13 @@ class OverlayView: UIView{
 
         if _mode == GGOverlayViewMode.ggOverlayViewModeLeft {
             imageView.image = UIImage(named: "noButton")
-            imageView.frame = CGRect(x: 180, y: 35, width: 44, height: 75)
+            imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         } else if _mode == GGOverlayViewMode.ggOverlayViewModeTop{
             imageView.image = UIImage(named: "beenthereButton")
-            imageView.frame = CGRect(x: -40, y: 35, width: 60, height: 80)
+            imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         }else {
             imageView.image = UIImage(named: "yesButton")
-            imageView.frame = CGRect(x: -40, y: 35, width: 50, height: 80)
+            imageView.frame = CGRect(x: 0, y: 0, width:self.frame.size.width, height: self.frame.size.height)
         }
     }
 
