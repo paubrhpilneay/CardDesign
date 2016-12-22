@@ -14,8 +14,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var allCards: [DraggableView]!
 
     let MAX_BUFFER_SIZE = 2
-    let CARD_HEIGHT: CGFloat = 386
-    let CARD_WIDTH: CGFloat = 270
+    var CARD_HEIGHT: CGFloat = 386
+    var CARD_WIDTH: CGFloat = 270
 
     var cardsLoadedIndex: Int!
     var loadedCards: [DraggableView]!
@@ -33,38 +33,45 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         super.init(coder: aDecoder)!
     }
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         super.layoutSubviews()
+        CARD_WIDTH = self.frame.size.width - 50
+        CARD_HEIGHT = self.frame.size.height - 182
         self.setupView()
         exampleCardLabels = ["first", "second", "third", "fourth", "last"]
         allCards = []
         loadedCards = []
         cardsLoadedIndex = 0
     }
-
+    
     func setupView() -> Void {
         self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1)
         
-        fituLabel = UILabel(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 5, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 445, width: 200, height: 20))
+        fituLabel = UILabel(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH) / 2 + self.frame.width/64, y: (self.frame.size.height*32) / 568, width: (self.frame.width * 5) / 8, height: (self.frame.size.height * 5) / 142))
         fituLabel.text = "Restaurants to fit you"
         fituLabel.textAlignment = NSTextAlignment.left
         fituLabel.textColor = UIColor.lightGray
         fituLabel.font = fituLabel.font.withSize(13)
         
-        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 20, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: 40, height: 40))
+        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + self.frame.size.width/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: self.frame.size.width/8, height: (self.frame.size.height*5)/71))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 60, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
+        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + self.frame.size.width/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: self.frame.size.width/8, height: (self.frame.size.height*5)/71))
+        undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
+        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        
+        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + (self.frame.size.width*3)/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: self.frame.width/4, height: (self.frame.size.height*10)/71))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
 
-        checkButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 150, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 24, width: 80, height: 80))
+        checkButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - (self.frame.width*15)/32, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: self.frame.width/4, height: (self.frame.size.height*10)/71))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        beenthereButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 80, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9 , width: 50, height: 40))
+        beenthereButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - self.frame.size.width/4, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9 , width: (self.frame.width*5)/32, height: (self.frame.size.height*5)/71))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
         beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         

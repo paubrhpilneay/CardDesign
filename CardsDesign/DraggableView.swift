@@ -57,7 +57,7 @@ class DraggableView: UIView {
         
         self.addGestureRecognizer(panGestureRecognizer)
         
-        overlayView = OverlayView(frame: CGRect(x: self.frame.size.width/2-100, y: 0, width: 100, height: 100))
+        overlayView = OverlayView(frame: CGRect(x: self.frame.size.width/4, y: 0, width: (self.frame.size.width*10)/27, height: (self.frame.size.height*50)/93))
         overlayView.alpha = 0
         self.addSubview(overlayView)
         
@@ -72,7 +72,7 @@ class DraggableView: UIView {
         self.layer.shadowOffset = CGSize(width: 1, height: 1);
         
         //setting up restrau name
-        restrauName = UILabel(frame: CGRect(x: 15, y: 10, width:160, height: 40))
+        restrauName = UILabel(frame: CGRect(x: self.frame.size.width/18, y: (self.frame.size.height*5)/193, width:(self.frame.size.width*16)/27, height: (self.frame.size.height*20)/193))
         restrauName.text = "Smoke House Deli"
         
         restrauName.textColor = UIColor.black
@@ -80,7 +80,7 @@ class DraggableView: UIView {
         restrauName.font = UIFont(name: "Bariol-Bold", size: fontSize)
         
         //setting up cuisines
-        cuisines = UILabel(frame: CGRect(x: 15, y: 40, width:130, height: 20))
+        cuisines = UILabel(frame: CGRect(x: self.frame.size.width/18, y: (self.frame.size.height*20)/193, width:(self.frame.size.width*13)/27, height: (self.frame.size.height*10)/193))
         cuisines.text = "Europian,Italian"
         cuisines.font = UIFont(name: "Bariol-Regular", size: 10)
         cuisines.font = cuisines.font.withSize(12)
@@ -94,9 +94,9 @@ class DraggableView: UIView {
         let imageView1 = UIImageView(image: imageGn!)
         let imageView2 = UIImageView(image: imageGn!)
         let imageView3 = UIImageView(image: imageGy!)
-        imageView1.frame = CGRect(x: 215, y: 25, width: 7, height: 13)
-        imageView2.frame = CGRect(x: 230, y: 25, width: 7, height: 13)
-        imageView3.frame = CGRect(x: 245, y: 25, width: 7, height: 13)
+        imageView1.frame = CGRect(x: (self.frame.size.width*215)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
+        imageView2.frame = CGRect(x: (self.frame.size.width*23)/27, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
+        imageView3.frame = CGRect(x: (self.frame.size.width*245)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
         
         
         //4 icons
@@ -116,32 +116,32 @@ class DraggableView: UIView {
         let imageDlvry = UIImage(named: imageDelivery)
         let imageViewDelivery = UIImageView(image: imageDlvry)
         
-        imageViewClock.frame = CGRect(x: 30, y: 75, width: 14, height: 14)
-        imageViewLocation.frame = CGRect(x: 95, y: 73, width: 15, height: 17)
-        imageViewWifi.frame = CGRect(x: 160, y: 75, width: 17, height: 12)
-        imageViewDelivery.frame = CGRect(x: 225, y: 73, width: 13, height: 17)
+        imageViewClock.frame = CGRect(x: (self.frame.size.width)/9, y: (self.frame.size.height*75)/386, width: (self.frame.size.width*14)/270, height: (self.frame.size.height*14)/386)
+        imageViewLocation.frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*73)/386, width: (self.frame.size.width*5)/90, height: (self.frame.size.height*17)/386)
+        imageViewWifi.frame = CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*75)/386, width: (self.frame.size.width*17)/270, height: (self.frame.size.height*12)/386)
+        imageViewDelivery.frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*73)/386, width: (self.frame.size.width*13)/270, height: (self.frame.size.height*17)/386)
         
         
         
         //labels for the 4 icons
-        ocTime = UILabel(frame: CGRect(x: 18, y: 85, width:60, height: 40))
+        ocTime = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*60)/270, height: (self.frame.size.height*40)/386))
         ocTime.text = "upto 11 PM"
         ocTime.textColor = UIColor.darkGray
         ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
-        locationTime = UILabel(frame: CGRect(x: 90, y: 85, width:40, height: 40))
+        locationTime = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
         locationTime.text = "2.5 m"
         locationTime.textColor = UIColor.darkGray
         locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        wifi = UILabel(frame: CGRect(x: 160, y: 85, width:40, height: 40))
+        wifi = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
         wifi.text = "Wifi"
         wifi.textColor = UIColor.darkGray
         wifi.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        delivery = UILabel(frame: CGRect(x: 217, y: 85, width:40, height: 40))
+        delivery = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*40)/270, height: (self.frame.size.height*40)/386))
         delivery.text = "Delivery"
         delivery.textColor = UIColor.darkGray
         delivery.font = UIFont(name: "Bariol-Regular", size: 10)
@@ -152,9 +152,8 @@ class DraggableView: UIView {
         let imageRestrau = UIImage(named: imageRestaurant)
         restrauImage = UIImageView(image: imageRestrau)
         
-        restrauImage.frame = CGRect(x: 18, y: 127, width: 235, height: 220)
-        imageButton = UIButton(frame: CGRect(x: 18, y: 127, width: 255, height: 220))
-        //        imageButton.alpha = 0
+        restrauImage.frame = CGRect(x: self.frame.size.width/15, y: (self.frame.size.height*127)/386, width: self.frame.size.width - (self.frame.size.width*7)/54, height: self.frame.size.height - (self.frame.size.height*83)/193)
+        imageButton = UIButton(frame: CGRect(x: self.frame.size.width/15, y: (self.frame.size.height*127)/386, width: self.frame.size.width - (self.frame.size.width*7)/54, height: self.frame.size.height - (self.frame.size.height*83)/193))
         self.insertSubview(imageButton, belowSubview: restrauImage)
         
         //adding text to image
@@ -162,8 +161,8 @@ class DraggableView: UIView {
         let imageRtng = UIImage(named: imageRating)
         self.rating = "4.2"
         let imageViewRating = UIImageView(image: imageRtng)
-        imageViewRating.frame = CGRect(x: 180, y: 10, width: 40, height: 30)
-        ratingLabel = UILabel(frame: CGRect(x: 10, y: 3, width: 25, height: 25))
+        imageViewRating.frame = CGRect(x: (self.frame.size.width*2)/3, y: (self.frame.size.height*10)/386, width: (self.frame.size.width*4)/27, height: (self.frame.size.height*30)/386)
+        ratingLabel = UILabel(frame: CGRect(x: (self.frame.size.width)/27, y: (self.frame.size.height*3)/386, width: (self.frame.size.width*25)/270, height: (self.frame.size.height*25)/386))
         ratingLabel.text = rating
         ratingLabel.textColor = UIColor.white
         ratingLabel.font = cuisines.font.withSize(13)
@@ -191,7 +190,7 @@ class DraggableView: UIView {
         let imageUser1 = "user1.png"
         let imageUsr1 = UIImage(named: imageUser1)
         let imageViewUser1 = UIImageView(image: imageUsr1)
-        imageViewUser1.frame = CGRect(x: 20, y: 360, width: 20, height: 18)
+        imageViewUser1.frame = CGRect(x: (self.frame.size.width*2)/27, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
         imageViewUser1.layer.borderWidth = 1
         imageViewUser1.layer.masksToBounds = false
         imageViewUser1.layer.borderColor = UIColor.white.cgColor
@@ -201,7 +200,7 @@ class DraggableView: UIView {
         let imageUser2 = "user1.jpeg"
         let imageUsr2 = UIImage(named: imageUser2)
         let imageViewUser2 = UIImageView(image: imageUsr2)
-        imageViewUser2.frame = CGRect(x: 40, y: 360, width: 20, height: 18)
+        imageViewUser2.frame = CGRect(x: (self.frame.size.width*4)/27, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
         imageViewUser2.layer.borderWidth = 1
         imageViewUser2.layer.masksToBounds = false
         imageViewUser2.layer.borderColor = UIColor.white.cgColor
@@ -211,7 +210,7 @@ class DraggableView: UIView {
         let imageUser3 = "user3.png"
         let imageUsr3 = UIImage(named: imageUser3)
         let imageViewUser3 = UIImageView(image: imageUsr3)
-        imageViewUser3.frame = CGRect(x: 60, y: 360, width: 20, height: 18)
+        imageViewUser3.frame = CGRect(x: (self.frame.size.width*2)/9, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
         imageViewUser3.layer.borderWidth = 1
         imageViewUser3.layer.masksToBounds = false
         imageViewUser3.layer.borderColor = UIColor.white.cgColor
@@ -219,7 +218,7 @@ class DraggableView: UIView {
         imageViewUser3.clipsToBounds = true
         
         
-        let addCount = UILabel(frame: CGRect(x: 85, y: 350, width:60, height: 40))
+        let addCount = UILabel(frame: CGRect(x: (self.frame.size.width*85)/270, y: (self.frame.size.height*350)/386, width:(self.frame.size.width*2)/9, height: (self.frame.size.height*40)/386))
         addCount.text = "+17 friends"
         addCount.textColor = UIColor.darkGray
         addCount.font = UIFont(name: "Bariol-Thin", size: 10)

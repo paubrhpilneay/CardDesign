@@ -203,7 +203,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         hMenuScroll.backgroundColor = UIColor.white
         hMenuScroll.delegate = self
         
-        let review = UILabel(frame:CGRect(x:25, y:640 + offset , width:130, height:40))
+        let review = UILabel(frame:CGRect(x:25, y:680 + offset , width:130, height:40))
         review.text = "OFFICIAL REVIEW"
         review.textColor = UIColor.darkGray
         review.font = UIFont(name: "Bariol-Thin", size: 14)
