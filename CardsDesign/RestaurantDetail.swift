@@ -27,15 +27,11 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         buttonOne.setImage(UIImage(named: "backButton"), for: UIControlState.normal)
         buttonOne.addTarget(self, action: #selector(newFunc), for: UIControlEvents.touchUpInside)
         
-//        for family: String in UIFont.familyNames
-//        {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
         
+        let hScroll = HorizontalScroll(frame:CGRect(x:0, y:0, width: view.frame.width, height:150))
+        hScroll.backgroundColor = UIColor.gray
+        hScroll.delegate = self
+
         let restaurantName = UILabel(frame: CGRect(x: 15, y: 163, width:160, height: 40))
         restaurantName.text = "Smoke House Deli"
         restaurantName.font = UIFont(name: "Bariol-Regular", size: 18)
@@ -69,9 +65,9 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let imageView1 = UIImageView(image: imageGn!)
         let imageView2 = UIImageView(image: imageGn!)
         let imageView3 = UIImageView(image: imageGy!)
-        imageView1.frame = CGRect(x: 255, y: 180, width: 7, height: 13)
-        imageView2.frame = CGRect(x: 270,y: 180, width: 7, height: 13)
-        imageView3.frame = CGRect(x: 285, y: 180, width: 7, height: 13)
+        imageView1.frame = CGRect(x: (view.frame.size.width*255)/320, y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
+        imageView2.frame = CGRect(x: (view.frame.size.width*270)/320,y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
+        imageView3.frame = CGRect(x: (view.frame.size.width*285)/320, y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
         
         let imageClock = "yellowclock.png"
         let imageClk = UIImage(named: imageClock)
@@ -89,37 +85,34 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let imageDlvry = UIImage(named: imageDelivery)
         let imageViewDelivery = UIImageView(image: imageDlvry)
         
-        imageViewClock.frame = CGRect(x: 30, y: 270, width: 14, height: 14)
-        imageViewLocation.frame = CGRect(x: 110, y: 268, width: 15, height: 17)
-        imageViewWifi.frame = CGRect(x: 190, y: 270, width: 17, height: 12)
-        imageViewDelivery.frame = CGRect(x: 270, y: 268, width: 13, height: 17)
+        imageViewClock.frame = CGRect(x: view.frame.size.width/11, y: 270, width: 14, height: 14)
+        imageViewLocation.frame = CGRect(x: (view.frame.size.width*4)/11, y: 268, width: 15, height: 17)
+        imageViewWifi.frame = CGRect(x: (view.frame.size.width*7)/11, y: 270, width: 17, height: 12)
+        imageViewDelivery.frame = CGRect(x: (view.frame.size.width*10)/11, y: 268, width: 13, height: 17)
         
         
-        let ocTime = UILabel(frame: CGRect(x: 18, y: 277, width:60, height: 40))
+        let ocTime = UILabel(frame: CGRect(x: (view.frame.size.width/11) - 8, y: 277, width:60, height: 40))
         ocTime.text = "upto 11 PM"
         ocTime.textColor = UIColor.gray
         ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
-        let locationTime = UILabel(frame: CGRect(x: 106, y: 277, width:40, height: 40))
+        let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 277, width:40, height: 40))
         locationTime.text = "2.5 m"
         locationTime.textColor = UIColor.gray
         locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        let wifi = UILabel(frame: CGRect(x: 190, y: 277, width:40, height: 40))
+        let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 277, width:40, height: 40))
         wifi.text = "Wifi"
         wifi.textColor = UIColor.gray
         wifi.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        let delivery = UILabel(frame: CGRect(x: 260, y: 277, width:40, height: 40))
+        let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 277, width:40, height: 40))
         delivery.text = "Delivery"
         delivery.textColor = UIColor.gray
         delivery.font = UIFont(name: "Bariol-Regular", size: 10)
         
-        let hScroll = HorizontalScroll(frame:CGRect(x:0, y:0, width: view.frame.width, height:150))
-        hScroll.backgroundColor = UIColor.gray
-        hScroll.delegate = self
         
 //        let honorLabel:UILabel = UILabel(frame:CGRect(x:20, y:470, width:80,height:40))
 //        honorLabel.text = "HONORS"
@@ -203,7 +196,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         hMenuScroll.backgroundColor = UIColor.white
         hMenuScroll.delegate = self
         
-        let review = UILabel(frame:CGRect(x:25, y:680 + offset , width:130, height:40))
+        let review = UILabel(frame:CGRect(x:25, y:690 + offset , width:130, height:40))
         review.text = "OFFICIAL REVIEW"
         review.textColor = UIColor.darkGray
         review.font = UIFont(name: "Bariol-Thin", size: 14)
@@ -235,7 +228,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         hReviewScroll.backgroundColor = UIColor.white
         hReviewScroll.delegate = self
         
-        let reviewButton = UIImageView(frame: CGRect(x:18, y:1220 + offset, width:300, height:100))
+        let reviewButton = UIImageView(frame: CGRect(x:Int((view.frame.size.width - 300)/2), y:1220 + offset, width:300, height:100))
         reviewButton.image = UIImage(named:"reviewRect")
         let label = UILabel(frame:CGRect(x:90, y:20, width:200, height:50))
         label.text = "Write your own review"

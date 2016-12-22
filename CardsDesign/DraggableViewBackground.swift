@@ -49,6 +49,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func setupView() -> Void {
         self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1)
         
+        //Restaurant that fits you label at top
         fituLabel = UILabel(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH) / 2 + self.frame.width/64, y: (self.frame.size.height*32) / 568, width: (self.frame.width * 5) / 8, height: (self.frame.size.height * 5) / 142))
         fituLabel.text = "Restaurants to fit you"
         fituLabel.textAlignment = NSTextAlignment.left
@@ -100,7 +101,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     func ratingButtonTapped(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDetail") as! RestaurantDetail
-        vc.restrau = self.restaurants[cardsLoadedIndex]
+        vc.restrau = self.restaurants[cardsLoadedIndex-1]
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
     

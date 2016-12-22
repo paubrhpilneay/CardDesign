@@ -12,14 +12,20 @@ class RestaurantFeed: UIViewController {
     var restaurants = [RestaurantModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //assigning all restaurants that we got from recomendations to the property restaurants of this class
         let tbvc = tabBarController as! MainTabBar
         restaurants = tbvc.restaurants
+        
+        //loading cards and other page content
         let draggableBackground: DraggableViewBackground = DraggableViewBackground(frame: self.view.frame)
         draggableBackground.restaurants = restaurants
         draggableBackground.loadCards()
+        
+        
         self.view.addSubview(draggableBackground)
+        //hiding nav bar
         self.navigationController?.isNavigationBarHidden = true
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +42,7 @@ class RestaurantFeed: UIViewController {
         tabBarItem = UITabBarItem(title: "", image: newImage, tag: 0)
     }
     
+    //resizing image for the tab bar
     func imageWithImage(image: UIImage, newSize:CGSize)->UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: CGRect(x:0, y:0, width:newSize.width, height:newSize.height))

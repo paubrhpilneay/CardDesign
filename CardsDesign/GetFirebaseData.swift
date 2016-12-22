@@ -29,10 +29,13 @@ class GetFirebaseData: UIViewController {
             UIActivityIndicatorViewStyle.whiteLarge
         self.view.addSubview(actInd)
         actInd.startAnimating()
+        //signing in anonymously
         FIRAuth.auth()?.signInAnonymously() { (user, error) in
           let userRef = FIRDatabase.database().reference(withPath: "users")
           userRef.observe(.value, with: { snapshot in
             let enumerator = snapshot.children
+            // fetching recomendations for the signed in users
+            //this is the point where we will check if there is no recomendations available then we will fetch from a static pool of data
             while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                 let childSnapshot = snapshot.childSnapshot(forPath: rest.key)
                 let someValue = childSnapshot.value as? NSDictionary
@@ -40,14 +43,9 @@ class GetFirebaseData: UIViewController {
                     self.recos = someValue?["recomendations"] as? String ?? ""
                     self.actInd.stopAnimating()
                 }
-//                let someValue = childSnapshot.value["email"] as! [String:AnyObject]
-//                if(someValue === email) {
-//                
-//                }
             }
           })
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,34 +53,24 @@ class GetFirebaseData: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // When GET MY DATA is clicked
     @IBAction func hitServer(_ sender: Any) {
         self.actInd.startAnimating()
         let restrauArr = self.recos.components(separatedBy: ",")
+        //fetching all restaurants which are there in the recomendations for the user
         for restrau in restrauArr {
           rootRef.child("restaurants").child(restrau).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
-//            let value = snapshot.value as? NSDictionary
             let restaurant = RestaurantModel.init(snapshot: snapshot)
             self.restraurants.append(restaurant)
             if(self.restraurants.count == restrauArr.count) {
                 self.actInd.stopAnimating()
-//                let cardViewController = self.storyboard?.instantiateViewController(withIdentifier: "RestaurantFeed") as! RestaurantFeed
-//                
-//                // Set "Hello World" as a value to myStringValue
-//                cardViewController.restaurants = restraurants
-                
-                // Take user to SecondViewController
-//                self.navigationController?.pushViewController(cardViewController, animated: true)
-                
                 self.performSegue(withIdentifier: "move", sender: nil)
             }
-            // ...
           }) { (error) in
             print(error.localizedDescription)
           }
         }
-//        let restrauRef = rootRef.child("restaurants")
-        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "move" {

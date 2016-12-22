@@ -28,7 +28,7 @@ class FIRDataObject: NSObject {
         }
     }
 }
-
+//model class for restaurant
 class RestaurantModel: FIRDataObject {
     
     var name: String = ""

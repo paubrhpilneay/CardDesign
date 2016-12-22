@@ -125,23 +125,27 @@ class DraggableView: UIView {
         
         //labels for the 4 icons
         ocTime = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*60)/270, height: (self.frame.size.height*40)/386))
+//        ocTime.center.x = imageViewClock.center.x - (ocTime.frame.size.width - imageViewClock.frame.size.width)/2
         ocTime.text = "upto 11 PM"
         ocTime.textColor = UIColor.darkGray
         ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
         locationTime = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+//        locationTime.center.x = imageViewLocation.center.x - (locationTime.frame.size.width - imageViewLocation.frame.size.width)/2
         locationTime.text = "2.5 m"
         locationTime.textColor = UIColor.darkGray
         locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
         wifi = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+//        wifi.center.x = imageViewWifi.center.x - (wifi.frame.size.width - imageViewWifi.frame.size.width)/2
         wifi.text = "Wifi"
         wifi.textColor = UIColor.darkGray
         wifi.font = UIFont(name: "Bariol-Regular", size: 10)
         
         
         delivery = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*40)/270, height: (self.frame.size.height*40)/386))
+//        delivery.center.x = imageViewDelivery.center.x - (delivery.frame.size.width - imageViewDelivery.frame.size.width)/2
         delivery.text = "Delivery"
         delivery.textColor = UIColor.darkGray
         delivery.font = UIFont(name: "Bariol-Regular", size: 10)
