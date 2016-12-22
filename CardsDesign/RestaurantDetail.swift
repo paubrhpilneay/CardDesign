@@ -23,7 +23,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let buttonOne: UIButton = UIButton(frame:CGRect(x:self.view.frame.size.width/2-133, y:30, width:7, height:10))
+        let buttonOne: UIButton = UIButton(frame:CGRect(x:20, y:30, width:40, height:40))
         buttonOne.setImage(UIImage(named: "backButton"), for: UIControlState.normal)
         buttonOne.addTarget(self, action: #selector(newFunc), for: UIControlEvents.touchUpInside)
         
@@ -241,8 +241,9 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         scrollView.addSubview(containerView)
         
-        view.addSubview(buttonOne)
+        
         view.addSubview(scrollView)
+        view.addSubview(buttonOne)
         containerView.addSubview(restaurantName)
         containerView.addSubview(cuisines)
         containerView.addSubview(imageViewStars)
