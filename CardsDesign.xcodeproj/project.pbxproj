@@ -14,6 +14,7 @@
 		54039DEA1E01F92E00D9A007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54039DE81E01F92E00D9A007 /* LaunchScreen.storyboard */; };
 		54039DF51E01F92E00D9A007 /* CardsDesignTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DF41E01F92E00D9A007 /* CardsDesignTests.swift */; };
 		54039E001E01F92F00D9A007 /* CardsDesignUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */; };
+		540CAE281E0DA71800157764 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540CAE271E0DA71800157764 /* CoreLocation.framework */; };
 		5410B8481E06787A0073ACB2 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8471E06787A0073ACB2 /* MainTabBar.swift */; };
 		5410B8501E06A1B70073ACB2 /* SecondTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B84F1E06A1B70073ACB2 /* SecondTab.swift */; };
 		5410B8521E06A1C30073ACB2 /* ThirdTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B8511E06A1C30073ACB2 /* ThirdTab.swift */; };
@@ -70,6 +71,7 @@
 		54039DFB1E01F92F00D9A007 /* CardsDesignUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsDesignUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54039DFF1E01F92F00D9A007 /* CardsDesignUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDesignUITests.swift; sourceTree = "<group>"; };
 		54039E011E01F92F00D9A007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		540CAE271E0DA71800157764 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5410B8471E06787A0073ACB2 /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		5410B84F1E06A1B70073ACB2 /* SecondTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTab.swift; sourceTree = "<group>"; };
 		5410B8511E06A1C30073ACB2 /* ThirdTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTab.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540CAE281E0DA71800157764 /* CoreLocation.framework in Frameworks */,
 				54C3D3091E0A637A005D013D /* MapKit.framework in Frameworks */,
 				09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */,
 			);
@@ -129,6 +132,7 @@
 		2678F01846E20862CFAB955E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				540CAE271E0DA71800157764 /* CoreLocation.framework */,
 				54C3D3081E0A637A005D013D /* MapKit.framework */,
 				CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */,
 				9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */,

@@ -35,4 +35,5 @@ class RestaurantModel: FIRDataObject {
     var cuisines: String = ""
     var delivery: String = ""
     var mainImage: String = ""
+    var amenities: [String:Any] = [:]
 }

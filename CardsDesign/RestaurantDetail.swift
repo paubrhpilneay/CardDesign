@@ -22,6 +22,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         
         let buttonOne: UIButton = UIButton(frame:CGRect(x:20, y:30, width:40, height:40))
         buttonOne.setImage(UIImage(named: "backButton"), for: UIControlState.normal)
@@ -33,12 +34,12 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         hScroll.delegate = self
 
         let restaurantName = UILabel(frame: CGRect(x: 15, y: 163, width:160, height: 40))
-        restaurantName.text = "Smoke House Deli"
+        restaurantName.text = restrau.name
         restaurantName.font = UIFont(name: "Bariol-Regular", size: 18)
         restaurantName.font = UIFont.boldSystemFont(ofSize: 18.0)
         
         let cuisines = UILabel(frame: CGRect(x: 15, y: 187, width:90, height: 30))
-        cuisines.text = "Europian,Italian"
+        cuisines.text = restrau.cuisines
         cuisines.font = UIFont(name: "Bariol-Light", size: 12)
         cuisines.textColor = UIColor.darkGray
         
@@ -239,11 +240,30 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         reviewButton.addSubview(penImage)
         reviewButton.addSubview(label)
         
+        
+        let undoButton = UIButton(frame: CGRect(x: self.view.frame.size.width/8, y: self.view.frame.size.height - (self.view.frame.size.height*5)/71 - 5, width: self.view.frame.size.width/8, height: (self.view.frame.size.height*5)/71))
+        undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
+        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        
+        let xButton = UIButton(frame: CGRect(x: (self.view.frame.size.width)/4, y: self.view.frame.size.height - (self.view.frame.size.height*10)/71, width: self.view.frame.width/4, height: (self.view.frame.size.height*10)/71))
+        xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
+        xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
+        
+        let checkButton = UIButton(frame: CGRect(x:(self.view.frame.width * 7)/16, y:self.view.frame.size.height - (self.view.frame.size.height*10)/71 , width: self.view.frame.width/4, height: (self.view.frame.size.height*10)/71))
+        checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
+        checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        
+        let beenthereButton = UIButton(frame: CGRect(x:(self.view.frame.size.width*9)/16, y: self.view.frame.size.height - (self.view.frame.size.height*5)/71 - 5 , width: (self.view.frame.width*5)/32, height: (self.view.frame.size.height*5)/71))
+        beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
+        beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        
         scrollView.addSubview(containerView)
-        
-        
         view.addSubview(scrollView)
         view.addSubview(buttonOne)
+        view.addSubview(undoButton)
+        view.addSubview(xButton)
+        view.addSubview(checkButton)
+        view.addSubview(beenthereButton)
         containerView.addSubview(restaurantName)
         containerView.addSubview(cuisines)
         containerView.addSubview(imageViewStars)
@@ -352,7 +372,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     }
     
     func newFunc() {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLayoutSubviews() {

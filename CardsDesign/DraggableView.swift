@@ -29,17 +29,17 @@ class DraggableView: UIView {
     var overlayView: OverlayView!
     var xFromCenter: Float!
     var yFromCenter: Float!
+    
     var restrauName: UILabel!
     var cuisines: UILabel!
-    var ocTime: UILabel!
-    var locationTime: UILabel!
-    var wifi: UILabel!
-    var delivery: UILabel!
+
     var ratingLabel: UILabel!
     var restrauImage: UIImageView!
     var rating: String!
     var friendImage: [String] = ["user1.png","user2.png","user3.png"]
     var imageButton: UIButton!
+    var imageViewAmenities: [UIImageView]! = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
+    var amenitiesLabels: [UILabel]! = [UILabel(),UILabel(),UILabel(),UILabel()]
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -98,57 +98,61 @@ class DraggableView: UIView {
         imageView2.frame = CGRect(x: (self.frame.size.width*23)/27, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
         imageView3.frame = CGRect(x: (self.frame.size.width*245)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
         
-        
+       
         //4 icons
         let imageClock = "yellowclock.png"
         let imageClk = UIImage(named: imageClock)
-        let imageViewClock = UIImageView(image: imageClk)
+        imageViewAmenities[0] = UIImageView(image: imageClk)
         
         let imageMap = "map_icon.png"
         let imageMp = UIImage(named: imageMap)
-        let imageViewLocation = UIImageView(image: imageMp)
+        imageViewAmenities[1] = UIImageView(image: imageMp)
         
         let imageWifi = "wifi_icon.png"
         let imageWf = UIImage(named: imageWifi)
-        let imageViewWifi = UIImageView(image: imageWf)
+        imageViewAmenities[2] = UIImageView(image: imageWf)
         
         let imageDelivery = "food-delivery.png"
         let imageDlvry = UIImage(named: imageDelivery)
-        let imageViewDelivery = UIImageView(image: imageDlvry)
+        imageViewAmenities[3] = UIImageView(image: imageDlvry)
         
-        imageViewClock.frame = CGRect(x: (self.frame.size.width)/9, y: (self.frame.size.height*75)/386, width: (self.frame.size.width*14)/270, height: (self.frame.size.height*14)/386)
-        imageViewLocation.frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*73)/386, width: (self.frame.size.width*5)/90, height: (self.frame.size.height*17)/386)
-        imageViewWifi.frame = CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*75)/386, width: (self.frame.size.width*17)/270, height: (self.frame.size.height*12)/386)
-        imageViewDelivery.frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*73)/386, width: (self.frame.size.width*13)/270, height: (self.frame.size.height*17)/386)
+        imageViewAmenities[0].frame = CGRect(x: (self.frame.size.width)/9, y: (self.frame.size.height*75)/386, width: 20, height: 20)
+        imageViewAmenities[1].frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*73)/386, width: 20, height: 20)
+        imageViewAmenities[2].frame = CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*75)/386, width: 20, height: 20)
+        imageViewAmenities[3].frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*73)/386, width: 20, height: 20)
         
         
         
         //labels for the 4 icons
-        ocTime = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*60)/270, height: (self.frame.size.height*40)/386))
-//        ocTime.center.x = imageViewClock.center.x - (ocTime.frame.size.width - imageViewClock.frame.size.width)/2
-        ocTime.text = "upto 11 PM"
-        ocTime.textColor = UIColor.darkGray
-        ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
+        amenitiesLabels[0] = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*60)/270, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[0].textAlignment = .center
+        amenitiesLabels[0].center.x = imageViewAmenities[0].center.x
+        amenitiesLabels[0].text = "upto 11 PM"
+        amenitiesLabels[0].textColor = UIColor.darkGray
+        amenitiesLabels[0].font = UIFont(name: "Bariol-Regular", size: 10)
         
-        locationTime = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
-//        locationTime.center.x = imageViewLocation.center.x - (locationTime.frame.size.width - imageViewLocation.frame.size.width)/2
-        locationTime.text = "2.5 m"
-        locationTime.textColor = UIColor.darkGray
-        locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
-        
-        
-        wifi = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
-//        wifi.center.x = imageViewWifi.center.x - (wifi.frame.size.width - imageViewWifi.frame.size.width)/2
-        wifi.text = "Wifi"
-        wifi.textColor = UIColor.darkGray
-        wifi.font = UIFont(name: "Bariol-Regular", size: 10)
+        amenitiesLabels[1] = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[1].textAlignment = .center
+        amenitiesLabels[1].center.x = imageViewAmenities[1].center.x
+        amenitiesLabels[1].text = "2.5 m"
+        amenitiesLabels[1].textColor = UIColor.darkGray
+        amenitiesLabels[1].font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        delivery = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*40)/270, height: (self.frame.size.height*40)/386))
-//        delivery.center.x = imageViewDelivery.center.x - (delivery.frame.size.width - imageViewDelivery.frame.size.width)/2
-        delivery.text = "Delivery"
-        delivery.textColor = UIColor.darkGray
-        delivery.font = UIFont(name: "Bariol-Regular", size: 10)
+        amenitiesLabels[2] = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[2].textAlignment = .center
+        amenitiesLabels[2].center.x = imageViewAmenities[2].center.x
+        amenitiesLabels[2].text = "Wifi"
+        amenitiesLabels[2].textColor = UIColor.darkGray
+        amenitiesLabels[2].font = UIFont(name: "Bariol-Regular", size: 10)
+        
+        
+        amenitiesLabels[3] = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*40)/270, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[3].textAlignment = .center
+        amenitiesLabels[3].center.x = imageViewAmenities[3].center.x
+        amenitiesLabels[3].text = "Delivery"
+        amenitiesLabels[3].textColor = UIColor.darkGray
+        amenitiesLabels[3].font = UIFont(name: "Bariol-Regular", size: 10)
         
         
         //imageview for restaurant image
@@ -227,22 +231,20 @@ class DraggableView: UIView {
         addCount.textColor = UIColor.darkGray
         addCount.font = UIFont(name: "Bariol-Thin", size: 10)
         
-        
         self.addSubview(imageView1)
         self.addSubview(imageView2)
         self.addSubview(imageView3)
         self.addSubview(restrauName)
         self.addSubview(cuisines)
-        self.addSubview(imageViewClock)
-        self.addSubview(imageViewLocation)
-        self.addSubview(imageViewWifi)
-        self.addSubview(imageViewDelivery)
-        self.addSubview(ocTime)
-        self.addSubview(locationTime)
-        self.addSubview(wifi)
-        self.addSubview(delivery)
+        self.addSubview(imageViewAmenities[0])
+        self.addSubview(imageViewAmenities[1])
+        self.addSubview(imageViewAmenities[2])
+        self.addSubview(imageViewAmenities[3])
+        self.addSubview(amenitiesLabels[0])
+        self.addSubview(amenitiesLabels[1])
+        self.addSubview(amenitiesLabels[2])
+        self.addSubview(amenitiesLabels[3])
         self.addSubview(restrauImage)
-        //        self.addSubview(imageButton)
         self.addSubview(imageViewUser1)
         self.addSubview(imageViewUser2)
         self.addSubview(imageViewUser3)
@@ -251,7 +253,7 @@ class DraggableView: UIView {
     }
     
     
-    //to convert the tabbar image in proper size
+    //to write label on image
     func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 40)!

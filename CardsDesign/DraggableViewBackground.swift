@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class DraggableViewBackground: UIView, DraggableViewDelegate {
     var exampleCardLabels: [String]!
@@ -88,15 +89,114 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
        
         
         // this is the place to configure all the detail of a new card so we will be updating server data here
+        
+        
+        //adding name and cuisines of the restaurant
         draggableView.restrauName.text = restaurants[index].name
         draggableView.cuisines.text = restaurants[index].cuisines
+        
+        //adding image coming from firebase
         let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
         draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
         draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
+        
+        updateAmenities(draggableView, index)
         draggableView.delegate = self
         return draggableView
     }
+    
+    func updateAmenities(_ dView: DraggableView,_ restrauIndex: NSInteger) {
+        var ammenityKeys:Array = (restaurants[0].amenities as NSDictionary?)?.allKeys as! [String]
+//        var ammenityValues:Array = (restaurants[0].amenities as NSDictionary?)?.allValues as! [String]
+        for index in 0...ammenityKeys.count - 1  {
+            switch(ammenityKeys[index]) {
+            case "time"  : dView.imageViewAmenities[index].image = UIImage(named:"yellowclock.png")
+                           let date = NSDate()
+                           let dateFormatter = DateFormatter()
+                           dateFormatter.dateStyle = .full
+                           var day = (dateFormatter.string(from: date as Date)).components(separatedBy: ",")[0]
+                           if day == "Saturday" {
+                                day = "saturday"
+                           } else if day == "Sunday" {
+                                day = "sunday"
+                           } else {
+                                day = "monday-friday"
+                           }
+                           let dayOpenCloseTime = (((restaurants[restrauIndex].amenities as NSDictionary?)?[ammenityKeys[index]] as! NSDictionary?))?[day] as! String
+                           let calendar = NSCalendar.current
+                           let hour = calendar.component(.hour, from: date as Date)
+                           if dayOpenCloseTime == "closed" {
+                             dView.amenitiesLabels[index].text = "closed"
+                           } else {
+                             dView.amenitiesLabels[index].text = openingClosingTime(hour,dayOpenCloseTime)
+                           }
+                           break
+            case "location" : dView.imageViewAmenities[index].image = UIImage(named:"map_icon")
+                              dView.amenitiesLabels[index].text = calculateDistance((restaurants[restrauIndex].amenities as NSDictionary?)?["location"] as! String)+" m"
+                              break
+            case "wifi" : dView.imageViewAmenities[index].image = UIImage(named:"wifi_icon")
+                          let value = (restaurants[restrauIndex].amenities as NSDictionary?)?[ammenityKeys[index]] as! String
+                          if value == "yes" {
+                            dView.amenitiesLabels[index].text = "Wifi"
+                          }
+                          else {
+                            dView.amenitiesLabels[index].text = "No Wifi"
+                          }
+                          break
+            case "delivery" : dView.imageViewAmenities[index].image = UIImage(named:"food-delivery")
+                         let value = (restaurants[restrauIndex].amenities as NSDictionary?)?[ammenityKeys[index]] as! String
+                         if value == "yes" {
+                            dView.amenitiesLabels[index].text = "Delivery"
+                         }
+                         else {
+                            dView.amenitiesLabels[index].text = "Delivery Unavailable"
+                        }
+                        break
+            default : break
+                
+            }
+        }
+    }
+    
+    func openingClosingTime(_ currentTime:Int, _ openCloseTime:String) -> String {
+        let openTime = openCloseTime.components(separatedBy: "-")[0]
+        let closeTime = openCloseTime.components(separatedBy: "-")[1]
+        var open = Int()
+        var close = Int()
+        if openTime.lowercased().range(of: "p") != nil {
+            open = Int(openTime.replacingOccurrences(of: "PM", with: ""))! + 12
+        }else {
+            open = Int(openTime.replacingOccurrences(of: "AM", with: ""))!
+        }
+        if closeTime.lowercased().range(of: "p") != nil {
+            close = Int(closeTime.replacingOccurrences(of: "PM", with: ""))! + 12
+        }else {
+            close = Int(closeTime.replacingOccurrences(of: "AM", with: ""))!
+        }
+        if currentTime - open > 0 && close - currentTime > 0 {
+            return "upto \(closeTime)"
+        }
+        return "opens at \(openTime)"
+    }
+    
+    func calculateDistance(_ location:String) -> String {
+        let lat = Double(location.components(separatedBy: ",")[0])
+        let long = Double(location.components(separatedBy: ",")[1])
+        let restaurantLocation = CLLocation(latitude: lat!, longitude: long!)
+        
+        let locManager = CLLocationManager()
+        locManager.requestWhenInUseAuthorization()
+        var currentLocation = CLLocation()
+        
+        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorized){
+            
+            currentLocation = locManager.location!
+        }
+        
+        return String(currentLocation.distance(from: restaurantLocation))
 
+    }
     
     func ratingButtonTapped(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -106,8 +206,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     }
     
     func loadCards() -> Void {
-        if exampleCardLabels.count > 0 {
-            let numLoadedCardsCap = exampleCardLabels.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : exampleCardLabels.count
+        if restaurants.count > 0 {
+            let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
             for i in 0 ..< restaurants.count {
                 let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
                 allCards.append(newCard)
