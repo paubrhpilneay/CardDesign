@@ -100,7 +100,25 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
         draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
         
+        if restaurants[index].cost == 3 {
+            draggableView.imageView1.image = UIImage(named:"dollar_green")
+             draggableView.imageView2.image = UIImage(named:"dollar_green")
+             draggableView.imageView3.image = UIImage(named:"dollar_green")
+        } else if restaurants[index].cost == 2 {
+            draggableView.imageView1.image = UIImage(named:"dollar_green")
+            draggableView.imageView2.image = UIImage(named:"dollar_green")
+            draggableView.imageView3.image = UIImage(named:"dollar_grey")
+        } else if restaurants[index].cost == 1 {
+             draggableView.imageView2.image = UIImage(named:"dollar_grey")
+             draggableView.imageView3.image = UIImage(named:"dollar_grey")
+             draggableView.imageView1.image = UIImage(named:"dollar_green")
+        } else {
+             draggableView.imageView1.image = UIImage(named:"dollar_grey")
+             draggableView.imageView2.image = UIImage(named:"dollar_grey")
+             draggableView.imageView3.image = UIImage(named:"dollar_grey")
+        }
         updateAmenities(draggableView, index)
+        
         draggableView.delegate = self
         return draggableView
     }
@@ -189,7 +207,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         var currentLocation = CLLocation()
         
         if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorized){
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             
             currentLocation = locManager.location!
         }

@@ -32,7 +32,9 @@ class DraggableView: UIView {
     
     var restrauName: UILabel!
     var cuisines: UILabel!
-
+    var imageView1:UIImageView!
+    var imageView2:UIImageView!
+    var imageView3:UIImageView!
     var ratingLabel: UILabel!
     var restrauImage: UIImageView!
     var rating: String!
@@ -91,9 +93,9 @@ class DraggableView: UIView {
         let imageGray = "dollar_grey.png"
         let imageGn = UIImage(named: imageGreen)
         let imageGy = UIImage(named: imageGray)
-        let imageView1 = UIImageView(image: imageGn!)
-        let imageView2 = UIImageView(image: imageGn!)
-        let imageView3 = UIImageView(image: imageGy!)
+        imageView1 = UIImageView(image: imageGn!)
+        imageView2 = UIImageView(image: imageGn!)
+        imageView3 = UIImageView(image: imageGy!)
         imageView1.frame = CGRect(x: (self.frame.size.width*215)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
         imageView2.frame = CGRect(x: (self.frame.size.width*23)/27, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
         imageView3.frame = CGRect(x: (self.frame.size.width*245)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
@@ -117,21 +119,19 @@ class DraggableView: UIView {
         imageViewAmenities[3] = UIImageView(image: imageDlvry)
         
         imageViewAmenities[0].frame = CGRect(x: (self.frame.size.width)/9, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        imageViewAmenities[1].frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*73)/386, width: 20, height: 20)
+        imageViewAmenities[1].frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*75)/386, width: 20, height: 20)
         imageViewAmenities[2].frame = CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        imageViewAmenities[3].frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*73)/386, width: 20, height: 20)
-        
-        
+        imageViewAmenities[3].frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*75)/386, width: 20, height: 20)
         
         //labels for the 4 icons
-        amenitiesLabels[0] = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*60)/270, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[0] = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*88)/386, width:60, height: 40))
         amenitiesLabels[0].textAlignment = .center
         amenitiesLabels[0].center.x = imageViewAmenities[0].center.x
         amenitiesLabels[0].text = "upto 11 PM"
         amenitiesLabels[0].textColor = UIColor.darkGray
         amenitiesLabels[0].font = UIFont(name: "Bariol-Regular", size: 10)
         
-        amenitiesLabels[1] = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[1] = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*88)/386, width:60, height: 40))
         amenitiesLabels[1].textAlignment = .center
         amenitiesLabels[1].center.x = imageViewAmenities[1].center.x
         amenitiesLabels[1].text = "2.5 m"
@@ -139,7 +139,7 @@ class DraggableView: UIView {
         amenitiesLabels[1].font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        amenitiesLabels[2] = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*4)/27, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[2] = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*88)/386, width:60, height: 40))
         amenitiesLabels[2].textAlignment = .center
         amenitiesLabels[2].center.x = imageViewAmenities[2].center.x
         amenitiesLabels[2].text = "Wifi"
@@ -147,7 +147,7 @@ class DraggableView: UIView {
         amenitiesLabels[2].font = UIFont(name: "Bariol-Regular", size: 10)
         
         
-        amenitiesLabels[3] = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*85)/386, width:(self.frame.size.width*40)/270, height: (self.frame.size.height*40)/386))
+        amenitiesLabels[3] = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*88)/386, width:60, height: 40))
         amenitiesLabels[3].textAlignment = .center
         amenitiesLabels[3].center.x = imageViewAmenities[3].center.x
         amenitiesLabels[3].text = "Delivery"
