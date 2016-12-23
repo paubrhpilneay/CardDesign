@@ -67,6 +67,7 @@ class DraggableView: UIView {
         yFromCenter = 0
     }
     
+    //setting up cards content
     func setupView() -> Void {
         self.layer.cornerRadius = 4
         self.layer.shadowRadius = 3
@@ -276,6 +277,7 @@ class DraggableView: UIView {
         return newImage!
     }
     
+    //delegate in which call comes when dragged , here we are updating overlay when the view is dragged
     func beingDragged(_ gestureRecognizer: UIPanGestureRecognizer) -> Void {
         xFromCenter = Float(gestureRecognizer.translation(in: self).x)
         yFromCenter = Float(gestureRecognizer.translation(in: self).y)
@@ -307,6 +309,7 @@ class DraggableView: UIView {
         }
     }
     
+    //overlay view is updated about the movement direction by which it sets the mode that helps it determine to put different overlas for like , unlike nd already been
     func updateOverlay(_ distance: CGFloat, _ ydist: CGFloat) -> Void {
         
         if ydist < 0 && distance > -10 && distance < 10{
@@ -325,6 +328,7 @@ class DraggableView: UIView {
         
     }
     
+    //this is called when swipe is ended and according to the direction we call different functions or else if there is not much movement determined by ACTION_MARGIN then we animate the card and puts it back to its position
     func afterSwipeAction() -> Void {
         let floatXFromCenter = Float(xFromCenter)
         let floatYFromCenter = Float(yFromCenter)
@@ -343,6 +347,7 @@ class DraggableView: UIView {
         }
     }
     
+    //In this we animates the card in right direction and lets other delegate know about the action
     func rightAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: 500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
         UIView.animate(withDuration: 0.3,

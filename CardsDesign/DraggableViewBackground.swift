@@ -1,9 +1,7 @@
 //
 //  DraggableViewBackground.swift
-//  TinderSwipeCardsSwift
-//
-//  Created by Gao Chao on 4/30/15.
-//  Copyright (c) 2015 gcweb. All rights reserved.
+    //Eutierria
+    //Created by Abhinay Varma
 //
 
 import Foundation
@@ -46,7 +44,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         loadedCards = []
         cardsLoadedIndex = 0
     }
-    
+    //loadCard is called from restaurant feed using draggableviewbackground instance
+    //setting up cards + other part of card screen
     func setupView() -> Void {
         self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1)
         
@@ -83,49 +82,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         self.addSubview(undoButton)
         self.addSubview(beenthereButton)
     }
-
-    func createDraggableViewWithDataAtIndex(_ index: NSInteger) -> DraggableView {
-        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
-       
-        
-        // this is the place to configure all the detail of a new card so we will be updating server data here
-        
-        
-        //adding name and cuisines of the restaurant
-        draggableView.restrauName.text = restaurants[index].name
-        draggableView.cuisines.text = restaurants[index].cuisines
-        
-        //adding image coming from firebase
-        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
-        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
-        draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
-        
-        if restaurants[index].cost == 3 {
-            draggableView.imageView1.image = UIImage(named:"dollar_green")
-             draggableView.imageView2.image = UIImage(named:"dollar_green")
-             draggableView.imageView3.image = UIImage(named:"dollar_green")
-        } else if restaurants[index].cost == 2 {
-            draggableView.imageView1.image = UIImage(named:"dollar_green")
-            draggableView.imageView2.image = UIImage(named:"dollar_green")
-            draggableView.imageView3.image = UIImage(named:"dollar_grey")
-        } else if restaurants[index].cost == 1 {
-             draggableView.imageView2.image = UIImage(named:"dollar_grey")
-             draggableView.imageView3.image = UIImage(named:"dollar_grey")
-             draggableView.imageView1.image = UIImage(named:"dollar_green")
-        } else {
-             draggableView.imageView1.image = UIImage(named:"dollar_grey")
-             draggableView.imageView2.image = UIImage(named:"dollar_grey")
-             draggableView.imageView3.image = UIImage(named:"dollar_grey")
-        }
-        updateAmenities(draggableView, index)
-        
-        draggableView.delegate = self
-        return draggableView
-    }
     
+    //updating amenities icons based on the amenity puting image + text
+    //add more cases to extend amenities
     func updateAmenities(_ dView: DraggableView,_ restrauIndex: NSInteger) {
         var ammenityKeys:Array = (restaurants[0].amenities as NSDictionary?)?.allKeys as! [String]
-//        var ammenityValues:Array = (restaurants[0].amenities as NSDictionary?)?.allValues as! [String]
         for index in 0...ammenityKeys.count - 1  {
             switch(ammenityKeys[index]) {
             case "time"  : dView.imageViewAmenities[index].image = UIImage(named:"yellowclock.png")
@@ -176,6 +137,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
     }
     
+    //calculating ths open/close quote for screen according to the time nearest to open/close time
     func openingClosingTime(_ currentTime:Int, _ openCloseTime:String) -> String {
         let openTime = openCloseTime.components(separatedBy: "-")[0]
         let closeTime = openCloseTime.components(separatedBy: "-")[1]
@@ -197,6 +159,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         return "opens at \(openTime)"
     }
     
+    //calculating distance between location and the current location in meters
     func calculateDistance(_ location:String) -> String {
         let lat = Double(location.components(separatedBy: ",")[0])
         let long = Double(location.components(separatedBy: ",")[1])
@@ -216,13 +179,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
 
     }
     
+    //when image is tapped for displaying detailed controller of restaurant card
     func ratingButtonTapped(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDetail") as! RestaurantDetail
-        vc.restrau = self.restaurants[cardsLoadedIndex-1]
+        vc.restrau = self.restaurants[cardsLoadedIndex-2]
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
     
+    //this is the function which is creating draggable view and putting at max 2 cards on screen only
     func loadCards() -> Void {
         if restaurants.count > 0 {
             let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
@@ -244,7 +209,43 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             }
         }
     }
-
+    
+    //in this we are creating draggable view and customising them according to the server data and it conforns to dragableview delegate
+    func createDraggableViewWithDataAtIndex(_ index: NSInteger) -> DraggableView {
+        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
+        
+        
+        // this is the place to configure all the detail of a new card so we will be updating server data here
+        draggableView.restrauName.text = restaurants[index].name
+        draggableView.cuisines.text = restaurants[index].cuisines
+        
+        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
+        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
+        draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
+        
+        if restaurants[index].cost == 3 {
+            draggableView.imageView1.image = UIImage(named:"dollar_green")
+            draggableView.imageView2.image = UIImage(named:"dollar_green")
+            draggableView.imageView3.image = UIImage(named:"dollar_green")
+        } else if restaurants[index].cost == 2 {
+            draggableView.imageView1.image = UIImage(named:"dollar_green")
+            draggableView.imageView2.image = UIImage(named:"dollar_green")
+            draggableView.imageView3.image = UIImage(named:"dollar_grey")
+        } else if restaurants[index].cost == 1 {
+            draggableView.imageView2.image = UIImage(named:"dollar_grey")
+            draggableView.imageView3.image = UIImage(named:"dollar_grey")
+            draggableView.imageView1.image = UIImage(named:"dollar_green")
+        } else {
+            draggableView.imageView1.image = UIImage(named:"dollar_grey")
+            draggableView.imageView2.image = UIImage(named:"dollar_grey")
+            draggableView.imageView3.image = UIImage(named:"dollar_grey")
+        }
+        updateAmenities(draggableView, index)
+        
+        draggableView.delegate = self
+        return draggableView
+    }
+    
     func cardSwipedLeft(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
 
@@ -275,6 +276,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         }
     }
     
+    // when like button is pressed
     func swipeRight() -> Void {
         if loadedCards.count <= 0 {
             return
@@ -288,7 +290,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         })
         dragView.rightClickAction()
     }
-
+    
+    //when unlike button is pressed
     func swipeLeft() -> Void {
         if loadedCards.count <= 0 {
             return
