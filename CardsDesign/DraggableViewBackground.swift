@@ -27,6 +27,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     
     var fituLabel: UILabel!
     var restaurants = [RestaurantModel]()
+    var amenityLabelsArray:[String]! = ["","","",""]
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -104,29 +105,36 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
                            let calendar = NSCalendar.current
                            let hour = calendar.component(.hour, from: date as Date)
                            if dayOpenCloseTime == "closed" {
+                             amenityLabelsArray[index] = "closed"
                              dView.amenitiesLabels[index].text = "closed"
                            } else {
-                             dView.amenitiesLabels[index].text = openingClosingTime(hour,dayOpenCloseTime)
+                             amenityLabelsArray[index] = openingClosingTime(hour,dayOpenCloseTime)
+                             dView.amenitiesLabels[index].text = amenityLabelsArray[index]
                            }
                            break
             case "location" : dView.imageViewAmenities[index].image = UIImage(named:"map_icon")
-                              dView.amenitiesLabels[index].text = calculateDistance((restaurants[restrauIndex].amenities as NSDictionary?)?["location"] as! String)+" m"
+                              amenityLabelsArray[index] = calculateDistance((restaurants[restrauIndex].amenities as NSDictionary?)?["location"] as! String)+" m"
+                              dView.amenitiesLabels[index].text = amenityLabelsArray[index]
                               break
             case "wifi" : dView.imageViewAmenities[index].image = UIImage(named:"wifi_icon")
                           let value = (restaurants[restrauIndex].amenities as NSDictionary?)?[ammenityKeys[index]] as! String
                           if value == "yes" {
+                            amenityLabelsArray[index] = "Wifi"
                             dView.amenitiesLabels[index].text = "Wifi"
                           }
                           else {
+                            amenityLabelsArray[index] = "No Wifi"
                             dView.amenitiesLabels[index].text = "No Wifi"
                           }
                           break
             case "delivery" : dView.imageViewAmenities[index].image = UIImage(named:"food-delivery")
                          let value = (restaurants[restrauIndex].amenities as NSDictionary?)?[ammenityKeys[index]] as! String
                          if value == "yes" {
+                            amenityLabelsArray[index] = "Delivery"
                             dView.amenitiesLabels[index].text = "Delivery"
                          }
                          else {
+                            amenityLabelsArray[index] = "Delivery Unavailable"
                             dView.amenitiesLabels[index].text = "Delivery Unavailable"
                         }
                         break
@@ -183,6 +191,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDetail") as! RestaurantDetail
         vc.restrau = self.restaurants[cardsLoadedIndex-2]
+        vc.amenityLblArr = amenityLabelsArray
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
     
@@ -239,6 +248,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
             draggableView.imageView2.image = UIImage(named:"dollar_grey")
             draggableView.imageView3.image = UIImage(named:"dollar_grey")
         }
+        
+        draggableView.ratingLabel.text = String(restaurants[index].rating)
+        
         updateAmenities(draggableView, index)
         
         draggableView.delegate = self

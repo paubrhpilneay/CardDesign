@@ -13,12 +13,14 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     var scrollView: UIScrollView!
     var containerView = UIView()
     var restrau:RestaurantModel!
+    var amenityLblArr:[String]!
     var imageArr : [String] = ["deli2","deli3","deli4"]
     var menu : [String] = ["menu1","menu2","menu2","menu1","menu2","menu1","menu2","menu1"]
     var delegateCount:Int = 0
     let mapView: MKMapView! = MKMapView()
     var annotations:[RestrauUserCoordinate]!
     var locationManager: CLLocationManager!
+    var imageViewAmmenity:[UIImageView]! = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,70 +56,95 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         imageViewStars.frame = CGRect(x: 15, y: 227, width: 120, height: 15)
         
         let rating = UILabel(frame: CGRect(x: 160, y: 220, width:25, height: 30))
-        rating.text = "4.2"
+        rating.text = String(restrau.rating)
         rating.font = UIFont(name: "Bariol-Regular", size: 15)
         rating.textColor = UIColor(red:0, green:0.6, blue:0, alpha:1)
         rating.font = UIFont.boldSystemFont(ofSize: 15.0)
         
-        let imageGreen = "dollar_green.png"
-        let imageGray = "dollar_grey.png"
-        let imageGn = UIImage(named: imageGreen)
-        let imageGy = UIImage(named: imageGray)
-        let imageView1 = UIImageView(image: imageGn!)
-        let imageView2 = UIImageView(image: imageGn!)
-        let imageView3 = UIImageView(image: imageGy!)
-        imageView1.frame = CGRect(x: (view.frame.size.width*255)/320, y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
-        imageView2.frame = CGRect(x: (view.frame.size.width*270)/320,y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
-        imageView3.frame = CGRect(x: (view.frame.size.width*285)/320, y: 180, width: (view.frame.size.width*7)/320, height: (view.frame.size.height*13)/568)
+        let imageView:[UIImageView] = [UIImageView(),UIImageView(),UIImageView()]
+        imageView[0].frame = CGRect(x: (view.frame.size.width*255)/320, y: 180, width: 10, height: 20)
+        imageView[1].frame = CGRect(x: (view.frame.size.width*270)/320,y: 180, width: 10, height: 20)
+        imageView[2].frame = CGRect(x: (view.frame.size.width*285)/320, y: 180, width: 10, height: 20)
         
-        let imageClock = "yellowclock.png"
-        let imageClk = UIImage(named: imageClock)
-        let imageViewClock = UIImageView(image: imageClk)
-        
-        let imageMap = "map_icon.png"
-        let imageMp = UIImage(named: imageMap)
-        let imageViewLocation = UIImageView(image: imageMp)
-        
-        let imageWifi = "wifi_icon.png"
-        let imageWf = UIImage(named: imageWifi)
-        let imageViewWifi = UIImageView(image: imageWf)
-        
-        let imageDelivery = "food-delivery.png"
-        let imageDlvry = UIImage(named: imageDelivery)
-        let imageViewDelivery = UIImageView(image: imageDlvry)
-        
-        imageViewClock.frame = CGRect(x: view.frame.size.width/11, y: 270, width: 14, height: 14)
-        imageViewLocation.frame = CGRect(x: (view.frame.size.width*4)/11, y: 268, width: 15, height: 17)
-        imageViewWifi.frame = CGRect(x: (view.frame.size.width*7)/11, y: 270, width: 17, height: 12)
-        imageViewDelivery.frame = CGRect(x: (view.frame.size.width*10)/11, y: 268, width: 13, height: 17)
+        if restrau.cost == 3 {
+            imageView[0].image = UIImage(named:"dollar_green")
+            imageView[1].image = UIImage(named:"dollar_green")
+            imageView[2].image = UIImage(named:"dollar_green")
+        } else if restrau.cost == 2 {
+            imageView[0].image = UIImage(named:"dollar_green")
+            imageView[1].image = UIImage(named:"dollar_green")
+            imageView[2].image = UIImage(named:"dollar_grey")
+        } else if restrau.cost == 1 {
+            imageView[0].image = UIImage(named:"dollar_grey")
+            imageView[1].image = UIImage(named:"dollar_grey")
+           imageView[2].image = UIImage(named:"dollar_green")
+        } else {
+            imageView[0].image = UIImage(named:"dollar_grey")
+            imageView[1].image = UIImage(named:"dollar_grey")
+            imageView[2].image = UIImage(named:"dollar_grey")
+        }
         
         
-        let ocTime = UILabel(frame: CGRect(x: (view.frame.size.width/11) - 8, y: 277, width:60, height: 40))
-        ocTime.text = "upto 11 PM"
+        
+        imageViewAmmenity[0] = UIImageView(frame: CGRect(x: view.frame.size.width/11, y: 270, width: 20, height: 20))
+        
+        imageViewAmmenity[1] = UIImageView(frame: CGRect(x: (view.frame.size.width*4)/11 - 15, y: 268, width: 20, height: 20))
+        
+        imageViewAmmenity[2] = UIImageView(frame: CGRect(x: (view.frame.size.width*7)/11 - 17, y: 270, width: 20, height: 20))
+        
+        imageViewAmmenity[3] = UIImageView(frame: CGRect(x: (view.frame.size.width*10)/11 - 13, y: 268, width: 20, height: 20))
+        
+        
+        var ammenityKeys:Array = (restrau.amenities as NSDictionary?)?.allKeys as! [String]
+        for index in 0...ammenityKeys.count - 1  {
+            switch(ammenityKeys[index]) {
+                case "time"  : imageViewAmmenity[index].image = UIImage(named:"yellowclock.png")
+                                break
+                case "location" : imageViewAmmenity[index].image = UIImage(named:"map_icon")
+                              break
+                case "wifi" : imageViewAmmenity[index].image = UIImage(named:"wifi_icon")
+                            break
+                case "delivery" : imageViewAmmenity[index].image = UIImage(named:"food-delivery")
+                            break
+                default : break
+            }
+        }
+
+        
+        let ocTime = UILabel(frame: CGRect(x: (view.frame.size.width/11) - 8, y: 281, width:60, height: 40))
+        ocTime.text = amenityLblArr[0]
         ocTime.textColor = UIColor.gray
         ocTime.font = UIFont(name: "Bariol-Bold", size: 10)
+        ocTime.textAlignment = .center
         
-        let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 277, width:40, height: 40))
-        locationTime.text = "2.5 m"
+        let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 281, width:40, height: 40))
+        locationTime.text = amenityLblArr[1]
         locationTime.textColor = UIColor.gray
         locationTime.font = UIFont(name: "Bariol-Bold", size: 10)
+        locationTime.textAlignment = .center
         
-        
-        let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 277, width:40, height: 40))
-        wifi.text = "Wifi"
+        let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 281, width:40, height: 40))
+        wifi.text = amenityLblArr[2]
         wifi.textColor = UIColor.gray
         wifi.font = UIFont(name: "Bariol-Bold", size: 10)
+        wifi.textAlignment = .center
         
-        
-        let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 277, width:40, height: 40))
-        delivery.text = "Delivery"
+        let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 281, width:40, height: 40))
+        delivery.text = amenityLblArr[3]
         delivery.textColor = UIColor.gray
         delivery.font = UIFont(name: "Bariol-Bold", size: 10)
+        delivery.textAlignment = .center
         
         let topLabel = UILabel(frame:CGRect(x:20, y:330 , width:140, height:40))
         topLabel.text = "TOP THREE DISH"
         topLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
         topLabel.font = UIFont(name: "Bariol-Regular", size: 14)
+        
+        
+        ocTime.center.x = imageViewAmmenity[0].center.x
+        locationTime.center.x = imageViewAmmenity[1].center.x
+        wifi.center.x = imageViewAmmenity[2].center.x
+        delivery.center.x = imageViewAmmenity[3].center.x
         
         var offset: Int = 0
         let topImgArr = ["choice1","choice2","choice3"]
@@ -283,13 +310,13 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         containerView.addSubview(cuisines)
         containerView.addSubview(imageViewStars)
         containerView.addSubview(rating)
-        containerView.addSubview(imageView1)
-        containerView.addSubview(imageView2)
-        containerView.addSubview(imageView3)
-        containerView.addSubview(imageViewClock)
-        containerView.addSubview(imageViewDelivery)
-        containerView.addSubview(imageViewWifi)
-        containerView.addSubview(imageViewLocation)
+        containerView.addSubview(imageView[0])
+        containerView.addSubview(imageView[1])
+        containerView.addSubview(imageView[2])
+        containerView.addSubview(imageViewAmmenity[0])
+        containerView.addSubview(imageViewAmmenity[1])
+        containerView.addSubview(imageViewAmmenity[2])
+        containerView.addSubview(imageViewAmmenity[3])
         containerView.addSubview(ocTime)
         containerView.addSubview(locationTime)
         containerView.addSubview(wifi)
@@ -324,6 +351,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         }
     }
     
+    //configuring each scrollview n basis of delegate count
     func elementAtScrollViewIndex(index: Int) -> UIView {
         var newview:UIView = UIView()
         if delegateCount == 0  {
