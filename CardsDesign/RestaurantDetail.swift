@@ -245,19 +245,19 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let bgView = UIView(frame: CGRect(x: (self.view.center.x) - 160,y:self.view.frame.size.height - (self.view.frame.size.height*8)/71 - 10,width:315,height:110))
         bgView.backgroundColor = UIColor.white
         
-        let undoButton = UIButton(frame: CGRect(x: (self.view.center.x) - 140, y: (11*self.view.frame.size.height)/12, width: 80, height: 80))
+        let undoButton = UIButton(frame: CGRect(x: (self.view.center.x) - 140, y: self.view.frame.size.height - 40, width: 80, height: 80))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        let xButton = UIButton(frame: CGRect(x: (self.view.center.x) - 85, y: (self.view.frame.size.height*63)/71, width: 100, height: 100))
+        let xButton = UIButton(frame: CGRect(x: (self.view.center.x) - 85, y: self.view.frame.size.height - 80, width: 100, height: 100))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
         
-        let checkButton = UIButton(frame: CGRect(x:(self.view.center.x) - 5, y:(self.view.frame.size.height*63)/71 , width: 100, height: 100))
+        let checkButton = UIButton(frame: CGRect(x:(self.view.center.x) - 5, y:self.view.frame.size.height - 80 , width: 100, height: 100))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        let beenthereButton = UIButton(frame: CGRect(x:(self.view.center.x) + 65, y: (11*self.view.frame.size.height)/12 , width: 80, height: 80))
+        let beenthereButton = UIButton(frame: CGRect(x:(self.view.center.x) + 65, y: self.view.frame.size.height - 40 , width: 80, height: 80))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
         beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
@@ -313,7 +313,6 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         self.navigationController?.isNavigationBarHidden = true
     }
-    
     
     func numberOfScrollViewElements() -> Int {
         if delegateCount == 0 {
