@@ -45,7 +45,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
-        self.scrollView.contentSize = CGSize(width:view.frame.width, height:1500)
+        self.scrollView.contentSize = CGSize(width:view.frame.width, height:1650)
         
         containerView = UIView()
     
@@ -95,40 +95,24 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let ocTime = UILabel(frame: CGRect(x: (view.frame.size.width/11) - 8, y: 277, width:60, height: 40))
         ocTime.text = "upto 11 PM"
         ocTime.textColor = UIColor.gray
-        ocTime.font = UIFont(name: "Bariol-Regular", size: 10)
+        ocTime.font = UIFont(name: "Bariol-Bold", size: 10)
         
         let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 277, width:40, height: 40))
         locationTime.text = "2.5 m"
         locationTime.textColor = UIColor.gray
-        locationTime.font = UIFont(name: "Bariol-Regular", size: 10)
+        locationTime.font = UIFont(name: "Bariol-Bold", size: 10)
         
         
         let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 277, width:40, height: 40))
         wifi.text = "Wifi"
         wifi.textColor = UIColor.gray
-        wifi.font = UIFont(name: "Bariol-Regular", size: 10)
+        wifi.font = UIFont(name: "Bariol-Bold", size: 10)
         
         
         let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 277, width:40, height: 40))
         delivery.text = "Delivery"
         delivery.textColor = UIColor.gray
-        delivery.font = UIFont(name: "Bariol-Regular", size: 10)
-        
-        
-//        let honorLabel:UILabel = UILabel(frame:CGRect(x:20, y:470, width:80,height:40))
-//        honorLabel.text = "HONORS"
-//        honorLabel.textColor = UIColor.darkGray
-//        honorLabel.font = UIFont(name: "Bariol-Thin", size: 12)
-//        
-//        let imageHonors = ["honor1","honor2","honor3","honor4"]
-//        var offset: Int = 10
-//        for index in 0 ... (imageHonors.count - 1) {
-//            let imageHonor = UIImage(named: imageHonors[index])
-//            let imageViewHonor = UIImageView(image: imageHonor)
-//            imageViewHonor.frame = CGRect(x: offset, y: 510, width: 60, height: 60)
-//            offset = offset + 80
-//            containerView.addSubview(imageViewHonor)
-//        }
+        delivery.font = UIFont(name: "Bariol-Bold", size: 10)
         
         let topLabel = UILabel(frame:CGRect(x:20, y:330 , width:140, height:40))
         topLabel.text = "TOP THREE DISH"
@@ -158,27 +142,28 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         
         annotations = getMapAnnotations()
         zoomToRegion(lat: annotations[0].coordinate.latitude, longFor:annotations[0].coordinate.longitude)
+        
         mapView.addAnnotations(annotations)
         
         mapView.delegate = self
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        // Connect all the mappoints using Poly line.
-        
-        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
-        
-        for annotation in annotations {
-            points.append(annotation.coordinate)
-        }
-        let polyline = MKPolyline(coordinates: points, count: points.count)
-        mapView.add(polyline)
+//        if (CLLocationManager.locationServicesEnabled())
+//        {
+//            locationManager = CLLocationManager()
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.requestAlwaysAuthorization()
+//            locationManager.startUpdatingLocation()
+//        }
+//        // Connect all the mappoints using Poly line.
+//        
+//        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+//        
+//        for annotation in annotations {
+//            points.append(annotation.coordinate)
+//        }
+//        let polyline = MKPolyline(coordinates: points, count: points.count)
+//        mapView.add(polyline)
 //        showRouteOnMap()
         
         let addLabel = UILabel(frame:CGRect(x:20, y:510 + offset , width:250, height:40))
@@ -229,7 +214,23 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         hReviewScroll.backgroundColor = UIColor.white
         hReviewScroll.delegate = self
         
-        let reviewButton = UIImageView(frame: CGRect(x:Int((view.frame.size.width - 300)/2), y:1220 + offset, width:300, height:100))
+        
+        let honorLabel:UILabel = UILabel(frame:CGRect(x:20, y:1220 + offset, width:80,height:40))
+        honorLabel.text = "HONORS"
+        honorLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        honorLabel.font = UIFont(name: "Bariol-Regular", size: 14)
+        
+        let imageHonors = ["honor1","honor2","honor3","honor4"]
+        var newoffset:Int =  Int(view.frame.size.width)/16
+        for index in 0 ... (imageHonors.count - 1) {
+            let imageHonor = UIImage(named: imageHonors[index])
+            let imageViewHonor = UIImageView(image: imageHonor)
+            imageViewHonor.frame = CGRect(x: newoffset, y: 1260+offset, width: 60, height: 60)
+            newoffset = newoffset + Int(view.frame.size.width)/4
+            containerView.addSubview(imageViewHonor)
+        }
+        
+        let reviewButton = UIImageView(frame: CGRect(x:Int((view.frame.size.width - 300)/2), y:1360 + offset, width:300, height:100))
         reviewButton.image = UIImage(named:"reviewRect")
         let label = UILabel(frame:CGRect(x:90, y:20, width:200, height:50))
         label.text = "Write your own review"
@@ -241,29 +242,43 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         reviewButton.addSubview(label)
         
         
-        let undoButton = UIButton(frame: CGRect(x: self.view.frame.size.width/8, y: self.view.frame.size.height - (self.view.frame.size.height*5)/71 - 5, width: self.view.frame.size.width/8, height: (self.view.frame.size.height*5)/71))
+        let bgView = UIView(frame: CGRect(x: (self.view.center.x) - 160,y:self.view.frame.size.height - (self.view.frame.size.height*8)/71 - 10,width:315,height:110))
+        bgView.backgroundColor = UIColor.white
+        
+        let undoButton = UIButton(frame: CGRect(x: (self.view.center.x) - 140, y: (11*self.view.frame.size.height)/12, width: 80, height: 80))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        let xButton = UIButton(frame: CGRect(x: (self.view.frame.size.width)/4, y: self.view.frame.size.height - (self.view.frame.size.height*10)/71, width: self.view.frame.width/4, height: (self.view.frame.size.height*10)/71))
+        let xButton = UIButton(frame: CGRect(x: (self.view.center.x) - 85, y: (self.view.frame.size.height*63)/71, width: 100, height: 100))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
         
-        let checkButton = UIButton(frame: CGRect(x:(self.view.frame.width * 7)/16, y:self.view.frame.size.height - (self.view.frame.size.height*10)/71 , width: self.view.frame.width/4, height: (self.view.frame.size.height*10)/71))
+        let checkButton = UIButton(frame: CGRect(x:(self.view.center.x) - 5, y:(self.view.frame.size.height*63)/71 , width: 100, height: 100))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        let beenthereButton = UIButton(frame: CGRect(x:(self.view.frame.size.width*9)/16, y: self.view.frame.size.height - (self.view.frame.size.height*5)/71 - 5 , width: (self.view.frame.width*5)/32, height: (self.view.frame.size.height*5)/71))
+        let beenthereButton = UIButton(frame: CGRect(x:(self.view.center.x) + 65, y: (11*self.view.frame.size.height)/12 , width: 80, height: 80))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
         beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        
+        beenthereButton.center.y = xButton.center.y
+        undoButton.center.y = checkButton.center.y
+        
+        undoButton.alpha = 1
+        xButton.alpha = 1
+        checkButton.alpha = 1
+        beenthereButton.alpha = 1
         
         scrollView.addSubview(containerView)
         view.addSubview(scrollView)
         view.addSubview(buttonOne)
+        bgView.alpha = 0.4
+        view.addSubview(bgView)
         view.addSubview(undoButton)
         view.addSubview(xButton)
         view.addSubview(checkButton)
         view.addSubview(beenthereButton)
+        
         containerView.addSubview(restaurantName)
         containerView.addSubview(cuisines)
         containerView.addSubview(imageViewStars)
@@ -285,7 +300,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         containerView.addSubview(hMenuScroll)
         delegateCount += 1
         
-//        containerView.addSubview(honorLabel)
+        containerView.addSubview(honorLabel)
         containerView.addSubview(topLabel)
         containerView.addSubview(menuLabel)
         containerView.addSubview(addLabel)
@@ -483,14 +498,4 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         }
         return annotationView
     }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations.last as! CLLocation
-        let annotation1 = RestrauUserCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        annotation1.title = "user-name"
-        annotations[1] = annotation1
-        
-        zoomToRegion(lat: location.coordinate.latitude, longFor:location.coordinate.longitude)
-    }
-    
 }

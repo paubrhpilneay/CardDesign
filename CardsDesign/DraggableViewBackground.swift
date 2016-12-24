@@ -56,25 +56,24 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         fituLabel.textColor = UIColor.lightGray
         fituLabel.font = fituLabel.font.withSize(13)
         
-        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + self.frame.size.width/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: self.frame.size.width/8, height: (self.frame.size.height*5)/71))
+        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 50, y: self.frame.size.height/2 + CARD_HEIGHT/2, width: 80, height:80))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
-        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeTop), for: UIControlEvents.touchUpInside)
         
-        undoButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + self.frame.size.width/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9, width: self.frame.size.width/8, height: (self.frame.size.height*5)/71))
-        undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
-        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
-        
-        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + (self.frame.size.width*3)/16, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: self.frame.width/4, height: (self.frame.size.height*10)/71))
+        xButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 110 , y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: 100, height: 100))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
 
-        checkButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - (self.frame.width*15)/32, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: self.frame.width/4, height: (self.frame.size.height*10)/71))
+        checkButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 180, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: 100, height: 100))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        beenthereButton = UIButton(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - self.frame.size.width/4, y: self.frame.size.height/2 + CARD_HEIGHT/2 - 9 , width: (self.frame.width*5)/32, height: (self.frame.size.height*5)/71))
+        beenthereButton = UIButton(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 250, y: self.frame.size.height/2 + CARD_HEIGHT/2 , width: 80, height: 80))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
-        beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
+        beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeTop), for: UIControlEvents.touchUpInside)
+        
+        undoButton.center.y = xButton.center.y
+        beenthereButton.center.y = xButton.center.y
         
         self.addSubview(fituLabel)
         self.addSubview(xButton)
@@ -305,4 +304,19 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         })
         dragView.leftClickAction()
     }
+    
+    func swipeTop() -> Void {
+        if loadedCards.count <= 0 {
+            return
+        }
+        let dragView: DraggableView = loadedCards[0]
+        
+        dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
+        UIView.animate(withDuration: 2.2, animations: {
+            () -> Void in
+            dragView.overlayView.alpha = 1
+        })
+        dragView.topClickAction()
+    }
+
 }

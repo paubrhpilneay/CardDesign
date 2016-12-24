@@ -409,4 +409,18 @@ class DraggableView: UIView {
         })
         delegate.cardSwipedLeft(self)
     }
+    
+    func topClickAction() -> Void {
+        let finishPoint: CGPoint = CGPoint(x: self.center.x, y: -self.frame.height)
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.center = finishPoint
+                        self.transform = CGAffineTransform(rotationAngle: 1)
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
+        })
+        delegate.cardSwipedTop(self)
+    }
+
 }
