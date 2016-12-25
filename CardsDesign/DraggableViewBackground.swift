@@ -363,12 +363,34 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         refresh.isUserInteractionEnabled = true
         newview.addSubview(refresh)
         newview.addSubview(label)
+        newview.tag = 100
 //        self.insertSubview(newview, belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
         self.addSubview(newview)
     }
     
     func refreshTapped() {
-        
+        self.viewWithTag(100)?.removeFromSuperview()
+        cardsLoadedIndex = 0
+        allCards = []
+        if restaurants.count > 0 {
+            let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
+            for i in 0 ..< restaurants.count {
+                let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
+                allCards.append(newCard)
+                if i < numLoadedCardsCap {
+                    loadedCards.append(newCard)
+                }
+            }
+            
+            for i in 0 ..< loadedCards.count {
+                if i > 0 {
+                    self.insertSubview(loadedCards[i], belowSubview: loadedCards[i - 1])
+                } else {
+                    self.addSubview(loadedCards[i])
+                }
+                cardsLoadedIndex = cardsLoadedIndex + 1
+            }
+        }
     }
 
 }
