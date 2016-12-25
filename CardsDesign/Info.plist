@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>accept it please</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>bariol_light-webfont.ttf</string>

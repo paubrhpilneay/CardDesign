@@ -21,9 +21,11 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     var annotations:[RestrauUserCoordinate]!
     var locationManager: CLLocationManager!
     var imageViewAmmenity:[UIImageView]! = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
+    var moreImage:[String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moreImage = self.restrau.menu.components(separatedBy: ",")
         self.tabBarController?.tabBar.isHidden = true
         
         let buttonOne: UIButton = UIButton(frame:CGRect(x:20, y:30, width:40, height:40))
@@ -113,19 +115,19 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         ocTime.font = UIFont(name: "Bariol-Bold", size: 10)
         ocTime.textAlignment = .center
         
-        let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 281, width:40, height: 40))
+        let locationTime = UILabel(frame: CGRect(x: ((view.frame.size.width * 4)/11) - 8, y: 281, width:60, height: 40))
         locationTime.text = amenityLblArr[1]
         locationTime.textColor = UIColor.gray
         locationTime.font = UIFont(name: "Bariol-Bold", size: 10)
         locationTime.textAlignment = .center
         
-        let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 281, width:40, height: 40))
+        let wifi = UILabel(frame: CGRect(x: ((view.frame.size.width*7)/11) - 2, y: 281, width:60, height: 40))
         wifi.text = amenityLblArr[2]
         wifi.textColor = UIColor.gray
         wifi.font = UIFont(name: "Bariol-Bold", size: 10)
         wifi.textAlignment = .center
         
-        let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 281, width:40, height: 40))
+        let delivery = UILabel(frame: CGRect(x: ((view.frame.size.width*10)/11) - 12, y: 281, width:60, height: 40))
         delivery.text = amenityLblArr[3]
         delivery.textColor = UIColor.gray
         delivery.font = UIFont(name: "Bariol-Bold", size: 10)
@@ -143,20 +145,31 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         topLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
         topLabel.font = UIFont(name: "Bariol-Regular", size: 14)
 
-        var offset: Int = 0
-        let topImgArr = ["choice1","choice2","choice3"]
-        let textArr = ["Thai Coconut Curry Soup","Grilled Chicken Burger","Choco Berry Saver"]
+        var newOffset: Int = 0
+        let topImgArr = ["Thai Coconut Curry Soup","Grilled Chicken Burger","Choco Berry Saver"]
+        let textArr = restrau.top3dish.components(separatedBy:",")
         for index in 0...(topImgArr.count - 1) {
-            let imageTop = UIImage(named:topImgArr[index])
-            let imageViewTop = UIImageView(image: imageTop)
-            imageViewTop.frame = CGRect(x:20, y:375 + offset , width:30, height:30)
-            let labelImage = UILabel(frame:CGRect(x:72,y:370+offset,width:160,height:40))
-            labelImage.text = textArr[index]
-            labelImage.font = UIFont(name: "Bariol-Bold", size: 15)
-            offset = offset + 50
-            containerView.addSubview(labelImage)
-            containerView.addSubview(imageViewTop)
+            let url = URL(string: textArr[index])
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                DispatchQueue.main.async {
+                    if data != nil {  //Some time Data value will be nil so we need to validate such things
+                        let imageViewTop = UIImageView(image: UIImage(data:data!))
+                        imageViewTop.frame = CGRect(x:20, y:375 + newOffset , width:30, height:30)
+                        let labelImage = UILabel(frame:CGRect(x:72,y:370+newOffset,width:160,height:40))
+                        labelImage.text = topImgArr[index]
+                        labelImage.font = UIFont(name: "Bariol-Bold", size: 15)
+                        newOffset = newOffset + 50
+                        self.containerView.addSubview(labelImage)
+                        self.containerView.addSubview(imageViewTop)
+                    }
+                }
+            }
+            task.resume()
         }
+        let offset:Int = 150
         //mapview
         mapView.frame = CGRect(x:0, y:400 + offset, width:Int(view.frame.size.width), height:100)
         mapView.mapType = MKMapType.standard
@@ -234,14 +247,25 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         honorLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
         honorLabel.font = UIFont(name: "Bariol-Regular", size: 14)
         
-        let imageHonors = ["honor1","honor2","honor3","honor4"]
+        let imageHonors = restrau.honors.components(separatedBy: ",")
+        
         var newoffset:Int =  Int(view.frame.size.width)/16
         for index in 0 ... (imageHonors.count - 1) {
-            let imageHonor = UIImage(named: imageHonors[index])
-            let imageViewHonor = UIImageView(image: imageHonor)
-            imageViewHonor.frame = CGRect(x: newoffset, y: 1260+offset, width: 60, height: 60)
-            newoffset = newoffset + Int(view.frame.size.width)/4
-            containerView.addSubview(imageViewHonor)
+            let url = URL(string: imageHonors[index])
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                DispatchQueue.main.async {
+                    if data != nil {  //Some time Data value will be nil so we need to validate such things
+                        let imageViewHonor = UIImageView(image: UIImage(data: data!))
+                        imageViewHonor.frame = CGRect(x: newoffset, y: 1260+offset, width: 60, height: 60)
+                        newoffset = newoffset + Int(self.view.frame.size.width)/4
+                        self.containerView.addSubview(imageViewHonor)
+                    }
+                }
+            }
+            task.resume()
         }
         
         let reviewButton = UIImageView(frame: CGRect(x:Int((view.frame.size.width - 300)/2), y:1360 + offset, width:300, height:100))
@@ -332,7 +356,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         if delegateCount == 0 {
             return imageArr.count - 1
         }else if delegateCount == 1 {
-            return menu.count - 1
+            return moreImage.count - 1
         }else {
             return 3
         }
@@ -346,14 +370,27 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
             
             let moreImage = UIImage(named: imageArr[index])
             let moreImageView = UIImageView(image:moreImage)
-            moreImageView.frame = newview.frame
+//            moreImageView.frame = newview.frame
             newview.addSubview(moreImageView)
         } else if delegateCount == 1 {
-            newview = UIView(frame:CGRect(x:0, y:0, width:Int(view.frame.size.width)/3 - 30, height:100))
-            let moreImage = UIImage(named: menu[index])
-            let moreImageView = UIImageView(image:moreImage)
-            moreImageView.frame = newview.frame
-            newview.addSubview(moreImageView)
+            newview = UIView(frame:CGRect(x:0, y:0, width:Int(view.frame.size.width) - 240, height:100))
+            
+            let url = URL(string: self.moreImage[index])
+            var request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                (data, response, error) in
+                DispatchQueue.main.async {
+                    if data != nil {  //Some time Data value will be nil so we need to validate such things
+                        let moreImageView = UIImageView(image:UIImage(data:data!))
+                        moreImageView.frame = CGRect(x:0, y:0, width:newview.frame.size.width-20, height:100)
+                        moreImageView.contentMode = .scaleAspectFit
+                        newview.addSubview(moreImageView)
+                    }
+                }
+            }
+            task.resume()
+            
         } else {
             newview = UIView(frame:CGRect(x:0, y:10, width:Int(view.frame.size.width) - 100, height:200))
             newview.backgroundColor = UIColor.white
@@ -458,10 +495,10 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
 //        let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)
 //        //iterate and create annotations
 //        let dictArray = plist as! [[String:AnyObject]]
-        
-        let lat = 12.921407
-        let long = 77.633375
-        let annotation = RestrauUserCoordinate(latitude: lat , longitude: long)
+        let longlat = (restrau.amenities["location"] as! String).components(separatedBy:",")
+        let lat = Double(longlat[0])
+        let long = Double(longlat[1])
+        let annotation = RestrauUserCoordinate(latitude: lat! , longitude: long!)
         annotation.title = "restaurant-name"
         
         let lat1 = 12.919137

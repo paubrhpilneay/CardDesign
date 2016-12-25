@@ -7,8 +7,9 @@
 import Foundation
 import UIKit
 import CoreLocation
+import Firebase
 
-class DraggableViewBackground: UIView, DraggableViewDelegate {
+class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerDelegate {
     var exampleCardLabels: [String]!
     var allCards: [DraggableView]!
 
@@ -28,7 +29,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
     var fituLabel: UILabel!
     var restaurants = [RestaurantModel]()
     var amenityLabelsArray:[String]! = ["","","",""]
-
+    var storageRef: FIRStorageReference!
+    var currentLocation = CLLocation()
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
@@ -44,6 +47,11 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         allCards = []
         loadedCards = []
         cardsLoadedIndex = 0
+        let locManager = CLLocationManager()
+        locManager.delegate = self
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
+        locManager.requestAlwaysAuthorization()
+        locManager.startUpdatingLocation()
     }
     
     
@@ -78,9 +86,18 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         // this is the place to configure all the detail of a new card so we will be updating server data here
         draggableView.restrauName.text = restaurants[index].name
         draggableView.cuisines.text = restaurants[index].cuisines
-        
-        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
-        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
+        let url = URL(string: self.restaurants[index].mainImage)
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            (data, response, error) in
+            DispatchQueue.main.async {
+                if data != nil {  //Some time Data value will be nil so we need to validate such things
+                    draggableView.restrauImage.image = UIImage(data: data! as Data,scale:1.0)
+                }
+            }
+        }
+        task.resume()
         draggableView.restrauImage.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(ratingButtonTapped)))
         draggableView.restrauImage.isUserInteractionEnabled = true
         for index in 0...2 {
@@ -226,19 +243,22 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         let lat = Double(location.components(separatedBy: ",")[0])
         let long = Double(location.components(separatedBy: ",")[1])
         let restaurantLocation = CLLocation(latitude: lat!, longitude: long!)
-        
-        let locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        var currentLocation = CLLocation()
-        
-        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            
-            currentLocation = locManager.location!
-        }
-        
         return String(currentLocation.distance(from: restaurantLocation))
-
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+         manager.stopUpdatingLocation()
+        currentLocation = userLocation
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
     }
     
     //when image is tapped for displaying detailed controller of restaurant card
