@@ -279,6 +279,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        } else if loadedCards.count == 0 {
+            cardOver()
         }
     }
     
@@ -289,6 +291,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        }else if loadedCards.count == 0 {
+            cardOver()
         }
     }
 
@@ -299,6 +303,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        } else if loadedCards.count == 0 {
+            cardOver()
         }
     }
     
@@ -344,6 +350,25 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             dragView.overlayView.alpha = 1
         })
         dragView.topClickAction()
+    }
+    
+    func cardOver() {
+        let newview = UIView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
+        newview.backgroundColor = UIColor.white
+        let label = UILabel(frame:CGRect(x:40, y:50, width:250, height:30))
+        label.text = "Please Reload The Page"
+        let refresh = UIImageView(image:UIImage(named:"reload"))
+        refresh.frame = CGRect(x:30, y:80, width:50, height: 50)
+        refresh.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(refreshTapped)))
+        refresh.isUserInteractionEnabled = true
+        newview.addSubview(refresh)
+        newview.addSubview(label)
+//        self.insertSubview(newview, belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        self.addSubview(newview)
+    }
+    
+    func refreshTapped() {
+        
     }
 
 }
