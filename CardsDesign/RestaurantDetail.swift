@@ -85,15 +85,11 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         }
         
         
-        
+        //Amenities images
         imageViewAmmenity[0] = UIImageView(frame: CGRect(x: view.frame.size.width/11, y: 270, width: 20, height: 20))
-        
         imageViewAmmenity[1] = UIImageView(frame: CGRect(x: (view.frame.size.width*4)/11 - 15, y: 268, width: 20, height: 20))
-        
         imageViewAmmenity[2] = UIImageView(frame: CGRect(x: (view.frame.size.width*7)/11 - 17, y: 270, width: 20, height: 20))
-        
         imageViewAmmenity[3] = UIImageView(frame: CGRect(x: (view.frame.size.width*10)/11 - 13, y: 268, width: 20, height: 20))
-        
         
         var ammenityKeys:Array = (restrau.amenities as NSDictionary?)?.allKeys as! [String]
         for index in 0...ammenityKeys.count - 1  {
@@ -110,7 +106,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
             }
         }
 
-        
+        //Amenities labels
         let ocTime = UILabel(frame: CGRect(x: (view.frame.size.width/11) - 8, y: 281, width:60, height: 40))
         ocTime.text = amenityLblArr[0]
         ocTime.textColor = UIColor.gray
@@ -135,17 +131,18 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         delivery.font = UIFont(name: "Bariol-Bold", size: 10)
         delivery.textAlignment = .center
         
-        let topLabel = UILabel(frame:CGRect(x:20, y:330 , width:140, height:40))
-        topLabel.text = "TOP THREE DISH"
-        topLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
-        topLabel.font = UIFont(name: "Bariol-Regular", size: 14)
-        
-        
         ocTime.center.x = imageViewAmmenity[0].center.x
         locationTime.center.x = imageViewAmmenity[1].center.x
         wifi.center.x = imageViewAmmenity[2].center.x
         delivery.center.x = imageViewAmmenity[3].center.x
         
+        
+        //Top 3 Dishes
+        let topLabel = UILabel(frame:CGRect(x:20, y:330 , width:140, height:40))
+        topLabel.text = "TOP THREE DISH"
+        topLabel.textColor = UIColor(red: 0.5255, green: 0.5137, blue: 0.6588, alpha: 1.0)
+        topLabel.font = UIFont(name: "Bariol-Regular", size: 14)
+
         var offset: Int = 0
         let topImgArr = ["choice1","choice2","choice3"]
         let textArr = ["Thai Coconut Curry Soup","Grilled Chicken Burger","Choco Berry Saver"]
@@ -160,7 +157,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
             containerView.addSubview(labelImage)
             containerView.addSubview(imageViewTop)
         }
-        
+        //mapview
         mapView.frame = CGRect(x:0, y:400 + offset, width:Int(view.frame.size.width), height:100)
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
@@ -173,16 +170,6 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         mapView.addAnnotations(annotations)
         
         mapView.delegate = self
-        
-//        if (CLLocationManager.locationServicesEnabled())
-//        {
-//            locationManager = CLLocationManager()
-//            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.requestAlwaysAuthorization()
-//            locationManager.startUpdatingLocation()
-//        }
-//        // Connect all the mappoints using Poly line.
 //        
 //        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
 //        

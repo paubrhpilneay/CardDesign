@@ -13,10 +13,11 @@ enum GGOverlayViewMode {
     case ggOverlayViewModeLeft
     case ggOverlayViewModeRight
     case ggOverlayViewModeTop
+    case ggOverlayViewModeDown
 }
 
 class OverlayView: UIView{
-    var _mode: GGOverlayViewMode! = GGOverlayViewMode.ggOverlayViewModeLeft
+    var _mode: GGOverlayViewMode! = GGOverlayViewMode.ggOverlayViewModeDown
     var imageView: UIImageView!
 
     required init(coder aDecoder: NSCoder) {
@@ -26,8 +27,8 @@ class OverlayView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
-        imageView = UIImageView(image: UIImage(named: "noButton"))
-        imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        imageView = UIImageView()
+//        imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.addSubview(imageView)
     }
 
@@ -39,7 +40,7 @@ class OverlayView: UIView{
 
         if _mode == GGOverlayViewMode.ggOverlayViewModeLeft {
             imageView.image = UIImage(named: "noButton")
-            imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            imageView.frame = CGRect(x: 10, y: 0, width: self.frame.size.width + 90, height: self.frame.size.height + 130)
         } else if _mode == GGOverlayViewMode.ggOverlayViewModeTop{
             imageView.image = UIImage(named: "beenthereButton")
             imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width + 50, height: self.frame.size.height + 20)

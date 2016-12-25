@@ -32,16 +32,13 @@ class DraggableView: UIView {
     
     var restrauName: UILabel!
     var cuisines: UILabel!
-    var imageView1:UIImageView!
-    var imageView2:UIImageView!
-    var imageView3:UIImageView!
+    var imagePrice:[UIImageView]! = [UIImageView(),UIImageView(),UIImageView()]
     var ratingLabel: UILabel!
     var restrauImage: UIImageView!
-    var rating: String!
     var friendImage: [String] = ["user1.png","user2.png","user3.png"]
-    var imageButton: UIButton!
     var imageViewAmenities: [UIImageView]! = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
     var amenitiesLabels: [UILabel]! = [UILabel(),UILabel(),UILabel(),UILabel()]
+    var imageViewFriends: [UIImageView]! = [UIImageView(),UIImageView(),UIImageView()]
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -77,7 +74,6 @@ class DraggableView: UIView {
         //setting up restrau name
         restrauName = UILabel(frame: CGRect(x: self.frame.size.width/18, y: (self.frame.size.height*5)/193, width:(self.frame.size.width*16)/27, height: (self.frame.size.height*20)/193))
         restrauName.text = "Smoke House Deli"
-        
         restrauName.textColor = UIColor.black
         let fontSize = restrauName.font.pointSize
         restrauName.font = UIFont(name: "Bariol-Bold", size: fontSize)
@@ -90,165 +86,79 @@ class DraggableView: UIView {
         cuisines.textColor = UIColor.darkGray
         
         //green and grey dollars
-        let imageGreen = "dollar_green.png"
-        let imageGray = "dollar_grey.png"
-        let imageGn = UIImage(named: imageGreen)
-        let imageGy = UIImage(named: imageGray)
-        imageView1 = UIImageView(image: imageGn!)
-        imageView2 = UIImageView(image: imageGn!)
-        imageView3 = UIImageView(image: imageGy!)
-        imageView1.frame = CGRect(x: (self.frame.size.width*215)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
-        imageView2.frame = CGRect(x: (self.frame.size.width*23)/27, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
-        imageView3.frame = CGRect(x: (self.frame.size.width*245)/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
-        
+        for index in 0...2 {
+            imagePrice[index].frame = CGRect(x: (self.frame.size.width*CGFloat(215+15*index))/270, y: (self.frame.size.height*25)/386, width: (self.frame.size.width*7)/270, height: (self.frame.size.height*13)/386)
+        }
        
-        //4 icons
-        let imageClock = "yellowclock.png"
-        let imageClk = UIImage(named: imageClock)
-        imageViewAmenities[0] = UIImageView(image: imageClk)
+        //amenity icons
+        let imageArray = [UIImage(named:"yellowclock.png"),UIImage(named:"map_icon.png"),UIImage(named:"wifi_icon.png"),UIImage(named:"food-delivery.png")]
         
-        let imageMap = "map_icon.png"
-        let imageMp = UIImage(named: imageMap)
-        imageViewAmenities[1] = UIImageView(image: imageMp)
+        for index in 0...3 {
+            imageViewAmenities[index].image = imageArray[index]
+            imageViewAmenities[index].frame = CGRect(x: (self.frame.size.width)*CGFloat(65*index+30)/270, y: (self.frame.size.height*75)/386, width: 20, height: 20)
+        }
         
-        let imageWifi = "wifi_icon.png"
-        let imageWf = UIImage(named: imageWifi)
-        imageViewAmenities[2] = UIImageView(image: imageWf)
-        
-        let imageDelivery = "food-delivery.png"
-        let imageDlvry = UIImage(named: imageDelivery)
-        imageViewAmenities[3] = UIImageView(image: imageDlvry)
-        
-        imageViewAmenities[0].frame = CGRect(x: (self.frame.size.width)/9, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        imageViewAmenities[1].frame = CGRect(x: (self.frame.size.width*95)/270, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        imageViewAmenities[2].frame = CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        imageViewAmenities[3].frame = CGRect(x: (self.frame.size.width*225)/270, y: (self.frame.size.height*75)/386, width: 20, height: 20)
-        
-        //labels for the 4 icons
+        //labels for the amenity icons
+        let textArray = ["upto 11 PM","2.5 m","Wifi","Delivery"]
         amenitiesLabels[0] = UILabel(frame: CGRect(x: (self.frame.size.width*18)/270, y: (self.frame.size.height*88)/386, width:60, height: 40))
-        amenitiesLabels[0].textAlignment = .center
-        amenitiesLabels[0].center.x = imageViewAmenities[0].center.x
-        amenitiesLabels[0].text = "upto 11 PM"
-        amenitiesLabels[0].textColor = UIColor.darkGray
-        amenitiesLabels[0].font = UIFont(name: "Bariol-Regular", size: 10)
-        
         amenitiesLabels[1] = UILabel(frame: CGRect(x: (self.frame.size.width)/3, y: (self.frame.size.height*88)/386, width:60, height: 40))
-        amenitiesLabels[1].textAlignment = .center
-        amenitiesLabels[1].center.x = imageViewAmenities[1].center.x
-        amenitiesLabels[1].text = "2.5 m"
-        amenitiesLabels[1].textColor = UIColor.darkGray
-        amenitiesLabels[1].font = UIFont(name: "Bariol-Regular", size: 10)
-        
-        
         amenitiesLabels[2] = UILabel(frame: CGRect(x: (self.frame.size.width*16)/27, y: (self.frame.size.height*88)/386, width:60, height: 40))
-        amenitiesLabels[2].textAlignment = .center
-        amenitiesLabels[2].center.x = imageViewAmenities[2].center.x
-        amenitiesLabels[2].text = "Wifi"
-        amenitiesLabels[2].textColor = UIColor.darkGray
-        amenitiesLabels[2].font = UIFont(name: "Bariol-Regular", size: 10)
-        
-        
         amenitiesLabels[3] = UILabel(frame: CGRect(x: (self.frame.size.width*217)/270, y: (self.frame.size.height*88)/386, width:60, height: 40))
-        amenitiesLabels[3].textAlignment = .center
-        amenitiesLabels[3].center.x = imageViewAmenities[3].center.x
-        amenitiesLabels[3].text = "Delivery"
-        amenitiesLabels[3].textColor = UIColor.darkGray
-        amenitiesLabels[3].font = UIFont(name: "Bariol-Regular", size: 10)
         
+        for index in 0...3 {
+            amenitiesLabels[index].textAlignment = .center
+            amenitiesLabels[index].center.x = imageViewAmenities[index].center.x
+            amenitiesLabels[index].text = textArray[index]
+            amenitiesLabels[index].textColor = UIColor.darkGray
+            amenitiesLabels[index].font = UIFont(name: "Bariol-Regular", size: 10)
+            amenitiesLabels[index].contentMode = .scaleAspectFill
+        }
         
         //imageview for restaurant image
-        let imageRestaurant = "restaurant-1.jpg"
-        let imageRestrau = UIImage(named: imageRestaurant)
-        restrauImage = UIImageView(image: imageRestrau)
-        
+        restrauImage = UIImageView(image: UIImage(named: "restaurant-1.jpg"))
         restrauImage.frame = CGRect(x: self.frame.size.width/15, y: (self.frame.size.height*127)/386, width: self.frame.size.width - (self.frame.size.width*7)/54, height: self.frame.size.height - (self.frame.size.height*83)/193)
-        imageButton = UIButton(frame: CGRect(x: self.frame.size.width/15, y: (self.frame.size.height*127)/386, width: self.frame.size.width - (self.frame.size.width*7)/54, height: self.frame.size.height - (self.frame.size.height*83)/193))
-        self.insertSubview(imageButton, belowSubview: restrauImage)
         
-        //adding text to image
+        //text to image
         let imageRating = "greenRect.png"
         let imageRtng = UIImage(named: imageRating)
-        self.rating = "4.2"
         let imageViewRating = UIImageView(image: imageRtng)
         imageViewRating.frame = CGRect(x: (self.frame.size.width*2)/3, y: (self.frame.size.height*10)/386, width: (self.frame.size.width*4)/27, height: (self.frame.size.height*30)/386)
         ratingLabel = UILabel(frame: CGRect(x: (self.frame.size.width)/27, y: (self.frame.size.height*3)/386, width: (self.frame.size.width*25)/270, height: (self.frame.size.height*25)/386))
-        ratingLabel.text = rating
+        ratingLabel.text = "4.4"
         ratingLabel.textColor = UIColor.white
         ratingLabel.font = cuisines.font.withSize(13)
         imageViewRating.addSubview(ratingLabel)
         restrauImage.addSubview(imageViewRating)
         
-        //        var friendsImages: [UIImageView]?
-        //        var userImage: UIImage!
-        //        //adding 3 circular friends image along with +n count
-        //        for index in 0...2 {
-        //            userImage = UIImage(named: friendImage[index])
-        //            friendsImages[index] = UIImageView(image: userImage)
-        //            friendsImages[index].layer.borderWidth = 1
-        //            friendsImages[index].layer.masksToBounds = false
-        //            friendsImages[index].layer.borderColor = UIColor.black.cgColor
-        //            friendsImages[index].layer.cornerRadius = friendsImages[index].frame.height/2
-        //            friendsImages[index].clipsToBounds = true
-        //            friendsImages[index].frame = CGRect(x: 20 + index*5, y: 360, width: 10, height: 16)
-        //            self.addSubview(friendsImages[index])
-        //        }
-        
-        //adding 3 circular friends image along with +n count
-        
-        
-        let imageUser1 = "user1.png"
-        let imageUsr1 = UIImage(named: imageUser1)
-        let imageViewUser1 = UIImageView(image: imageUsr1)
-        imageViewUser1.frame = CGRect(x: (self.frame.size.width*2)/27, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
-        imageViewUser1.layer.borderWidth = 1
-        imageViewUser1.layer.masksToBounds = false
-        imageViewUser1.layer.borderColor = UIColor.white.cgColor
-        imageViewUser1.layer.cornerRadius = imageViewUser1.frame.height/2
-        imageViewUser1.clipsToBounds = true
-        
-        let imageUser2 = "user1.jpeg"
-        let imageUsr2 = UIImage(named: imageUser2)
-        let imageViewUser2 = UIImageView(image: imageUsr2)
-        imageViewUser2.frame = CGRect(x: (self.frame.size.width*4)/27, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
-        imageViewUser2.layer.borderWidth = 1
-        imageViewUser2.layer.masksToBounds = false
-        imageViewUser2.layer.borderColor = UIColor.white.cgColor
-        imageViewUser2.layer.cornerRadius = imageViewUser2.frame.height/2
-        imageViewUser2.clipsToBounds = true
-        
-        let imageUser3 = "user3.png"
-        let imageUsr3 = UIImage(named: imageUser3)
-        let imageViewUser3 = UIImageView(image: imageUsr3)
-        imageViewUser3.frame = CGRect(x: (self.frame.size.width*2)/9, y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
-        imageViewUser3.layer.borderWidth = 1
-        imageViewUser3.layer.masksToBounds = false
-        imageViewUser3.layer.borderColor = UIColor.white.cgColor
-        imageViewUser3.layer.cornerRadius = imageViewUser3.frame.height/2
-        imageViewUser3.clipsToBounds = true
-        
+        //3 circular friends image along with +n count
+        for index in 2...4 {
+            let imageUser1 = "user1.png"
+            let imageUsr1 = UIImage(named: imageUser1)
+            imageViewFriends[index - 2] = UIImageView(image: imageUsr1)
+            imageViewFriends[index - 2].frame = CGRect(x: CGFloat((Int(self.frame.size.width)*((index-1)*2))/27), y: (self.frame.size.height*360)/386, width: (self.frame.size.width*2)/27, height: (self.frame.size.height*18)/386)
+            imageViewFriends[index - 2].layer.borderWidth = 1
+            imageViewFriends[index - 2].layer.masksToBounds = false
+            imageViewFriends[index - 2].layer.borderColor = UIColor.white.cgColor
+            imageViewFriends[index - 2].layer.cornerRadius = imageViewFriends[index - 2].frame.height/2
+            imageViewFriends[index - 2].clipsToBounds = true
+        }
         
         let addCount = UILabel(frame: CGRect(x: (self.frame.size.width*85)/270, y: (self.frame.size.height*350)/386, width:(self.frame.size.width*2)/9, height: (self.frame.size.height*40)/386))
         addCount.text = "+17 friends"
         addCount.textColor = UIColor.darkGray
         addCount.font = UIFont(name: "Bariol-Thin", size: 10)
         
-        self.addSubview(imageView1)
-        self.addSubview(imageView2)
-        self.addSubview(imageView3)
+        for index in 0...2 {
+            self.addSubview(imagePrice[index])
+            self.addSubview(imageViewAmenities[index])
+            self.addSubview(amenitiesLabels[index])
+            self.addSubview(imageViewFriends[index])
+        }
         self.addSubview(restrauName)
         self.addSubview(cuisines)
-        self.addSubview(imageViewAmenities[0])
-        self.addSubview(imageViewAmenities[1])
-        self.addSubview(imageViewAmenities[2])
         self.addSubview(imageViewAmenities[3])
-        self.addSubview(amenitiesLabels[0])
-        self.addSubview(amenitiesLabels[1])
-        self.addSubview(amenitiesLabels[2])
         self.addSubview(amenitiesLabels[3])
         self.addSubview(restrauImage)
-        self.addSubview(imageViewUser1)
-        self.addSubview(imageViewUser2)
-        self.addSubview(imageViewUser3)
         self.addSubview(addCount)
         
     }
@@ -312,16 +222,16 @@ class DraggableView: UIView {
     //overlay view is updated about the movement direction by which it sets the mode that helps it determine to put different overlas for like , unlike nd already been
     func updateOverlay(_ distance: CGFloat, _ ydist: CGFloat) -> Void {
         
-        if ydist < 0 && distance > -10 && distance < 10{
+        if ydist < -10 && distance > -10 && distance < 10{
             overlayView.frame = CGRect(x:5, y:15, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
             overlayView.alpha = CGFloat(min(fabsf(Float(ydist))/100 + 0.2, 0.7))
-        }else if distance > 0 {
+        }else if distance > 10 {
             overlayView.frame = CGRect(x:5, y:15, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeRight)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         } else {
-            overlayView.frame = CGRect(x:self.frame.size.width-(self.frame.size.width*10)/27, y:5, width: (self.frame.size.width*10)/27, height: (self.frame.size.height*160)/386)
+            overlayView.frame = CGRect(x:self.frame.size.width-(self.frame.size.width*11)/27, y:0, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*40)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeLeft)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         }

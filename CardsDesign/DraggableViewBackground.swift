@@ -45,6 +45,61 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         loadedCards = []
         cardsLoadedIndex = 0
     }
+    
+    
+    //this is the function which is creating draggable view and putting at max 2 cards on screen only
+    func loadCards() -> Void {
+        if restaurants.count > 0 {
+            let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
+            for i in 0 ..< restaurants.count {
+                let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
+                allCards.append(newCard)
+                if i < numLoadedCardsCap {
+                    loadedCards.append(newCard)
+                }
+            }
+            
+            for i in 0 ..< loadedCards.count {
+                if i > 0 {
+                    self.insertSubview(loadedCards[i], belowSubview: loadedCards[i - 1])
+                } else {
+                    self.addSubview(loadedCards[i])
+                }
+                cardsLoadedIndex = cardsLoadedIndex + 1
+            }
+        }
+    }
+    
+    //in this we are creating draggable view and customising them according to the server data and it conforns to dragableview delegate
+    func createDraggableViewWithDataAtIndex(_ index: NSInteger) -> DraggableView {
+        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
+        
+        
+        // this is the place to configure all the detail of a new card so we will be updating server data here
+        draggableView.restrauName.text = restaurants[index].name
+        draggableView.cuisines.text = restaurants[index].cuisines
+        
+        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
+        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
+        draggableView.restrauImage.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(ratingButtonTapped)))
+        draggableView.restrauImage.isUserInteractionEnabled = true
+        for index in 0...2 {
+            let cost = restaurants[index].cost
+            if index > cost {
+                draggableView.imagePrice[index].image = UIImage(named:"dollar_green")
+            } else {
+                draggableView.imagePrice[index].image = UIImage(named:"dollar_green")
+            }
+        }
+        
+        draggableView.ratingLabel.text = String(restaurants[index].rating)
+        updateAmenities(draggableView, index)
+        draggableView.delegate = self
+        return draggableView
+    }
+    
+    
+    
     //loadCard is called from restaurant feed using draggableviewbackground instance
     //setting up cards + other part of card screen
     func setupView() -> Void {
@@ -195,67 +250,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate {
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
     
-    //this is the function which is creating draggable view and putting at max 2 cards on screen only
-    func loadCards() -> Void {
-        if restaurants.count > 0 {
-            let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
-            for i in 0 ..< restaurants.count {
-                let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
-                allCards.append(newCard)
-                if i < numLoadedCardsCap {
-                    loadedCards.append(newCard)
-                }   
-            }
-
-            for i in 0 ..< loadedCards.count {
-                if i > 0 {
-                    self.insertSubview(loadedCards[i], belowSubview: loadedCards[i - 1])
-                } else {
-                    self.addSubview(loadedCards[i])
-                }
-                cardsLoadedIndex = cardsLoadedIndex + 1
-            }
-        }
-    }
     
-    //in this we are creating draggable view and customising them according to the server data and it conforns to dragableview delegate
-    func createDraggableViewWithDataAtIndex(_ index: NSInteger) -> DraggableView {
-        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
-        
-        
-        // this is the place to configure all the detail of a new card so we will be updating server data here
-        draggableView.restrauName.text = restaurants[index].name
-        draggableView.cuisines.text = restaurants[index].cuisines
-        
-        let imageData = NSData(base64Encoded: restaurants[index].mainImage, options:  NSData.Base64DecodingOptions(rawValue: 0))
-        draggableView.restrauImage.image = UIImage(data: imageData as! Data,scale:1.0)
-        draggableView.imageButton.addTarget(self, action: #selector(ratingButtonTapped), for: .touchUpInside)
-        
-        if restaurants[index].cost == 3 {
-            draggableView.imageView1.image = UIImage(named:"dollar_green")
-            draggableView.imageView2.image = UIImage(named:"dollar_green")
-            draggableView.imageView3.image = UIImage(named:"dollar_green")
-        } else if restaurants[index].cost == 2 {
-            draggableView.imageView1.image = UIImage(named:"dollar_green")
-            draggableView.imageView2.image = UIImage(named:"dollar_green")
-            draggableView.imageView3.image = UIImage(named:"dollar_grey")
-        } else if restaurants[index].cost == 1 {
-            draggableView.imageView2.image = UIImage(named:"dollar_grey")
-            draggableView.imageView3.image = UIImage(named:"dollar_grey")
-            draggableView.imageView1.image = UIImage(named:"dollar_green")
-        } else {
-            draggableView.imageView1.image = UIImage(named:"dollar_grey")
-            draggableView.imageView2.image = UIImage(named:"dollar_grey")
-            draggableView.imageView3.image = UIImage(named:"dollar_grey")
-        }
-        
-        draggableView.ratingLabel.text = String(restaurants[index].rating)
-        
-        updateAmenities(draggableView, index)
-        
-        draggableView.delegate = self
-        return draggableView
-    }
     
     func cardSwipedLeft(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
