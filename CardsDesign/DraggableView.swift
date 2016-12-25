@@ -230,8 +230,8 @@ class DraggableView: UIView {
             overlayView.frame = CGRect(x:5, y:15, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*80)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeRight)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
-        } else {
-            overlayView.frame = CGRect(x:self.frame.size.width-(self.frame.size.width*11)/27, y:0, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*40)/386)
+        } else if distance < 0{
+            overlayView.frame = CGRect(x:self.frame.size.width-120, y:0, width: (self.frame.size.width*5)/27, height: (self.frame.size.height*40)/386)
             overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeLeft)
             overlayView.alpha = CGFloat(min(fabsf(Float(distance))/100 + 0.2, 0.9))
         }
@@ -246,7 +246,7 @@ class DraggableView: UIView {
             self.rightAction()
         } else if floatXFromCenter < -ACTION_MARGIN {
             self.leftAction()
-        } else if floatYFromCenter < ACTION_MARGIN && (floatXFromCenter > 40 || floatXFromCenter < -40) {
+        } else if floatYFromCenter < -ACTION_MARGIN {
             self.topAction()
         }else {
             UIView.animate(withDuration: 0.3, animations: {() -> Void in
@@ -260,7 +260,7 @@ class DraggableView: UIView {
     //In this we animates the card in right direction and lets other delegate know about the action
     func rightAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: 500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 0.5,
                        animations: {
                         self.center = finishPoint
         }, completion: {
@@ -272,7 +272,7 @@ class DraggableView: UIView {
     
     func leftAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: -500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 0.5,
                        animations: {
                         self.center = finishPoint
         }, completion: {
@@ -283,8 +283,8 @@ class DraggableView: UIView {
     }
     
     func topAction() -> Void {
-        let finishPoint: CGPoint = CGPoint(x: -500, y: 2 * CGFloat(yFromCenter) + self.originPoint.y)
-        UIView.animate(withDuration: 0.3,
+        let finishPoint: CGPoint = CGPoint(x: 2 * CGFloat(xFromCenter)+self.originPoint.x, y: -300)
+        UIView.animate(withDuration: 0.5,
                        animations: {
                         self.center = finishPoint
         }, completion: {
@@ -295,9 +295,10 @@ class DraggableView: UIView {
     }
     
     func rightClickAction() -> Void {
-        let finishPoint = CGPoint(x: 600, y: self.center.y)
-        UIView.animate(withDuration: 0.3,
+        let finishPoint = CGPoint(x: 600, y: self.center.y)        
+        UIView.animate(withDuration: 2,
                        animations: {
+                        self.overlayView.alpha = 1
                         self.center = finishPoint
                         self.transform = CGAffineTransform(rotationAngle: 1)
         }, completion: {
@@ -309,7 +310,7 @@ class DraggableView: UIView {
     
     func leftClickAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: -600, y: self.center.y)
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 2,
                        animations: {
                         self.center = finishPoint
                         self.transform = CGAffineTransform(rotationAngle: 1)
@@ -322,7 +323,7 @@ class DraggableView: UIView {
     
     func topClickAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: self.center.x, y: -self.frame.height)
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 2,
                        animations: {
                         self.center = finishPoint
                         self.transform = CGAffineTransform(rotationAngle: 1)

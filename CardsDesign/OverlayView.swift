@@ -39,11 +39,14 @@ class OverlayView: UIView{
         _mode = mode
 
         if _mode == GGOverlayViewMode.ggOverlayViewModeLeft {
+            imageView.frame = CGRect(x: 0, y: 0, width: 130, height: 120)
             imageView.image = UIImage(named: "noButton")
-            imageView.frame = CGRect(x: 10, y: 0, width: self.frame.size.width + 90, height: self.frame.size.height + 130)
+//            imageView.center = self.center
+            imageView.contentMode = .scaleAspectFill
+            
         } else if _mode == GGOverlayViewMode.ggOverlayViewModeTop{
             imageView.image = UIImage(named: "beenthereButton")
-            imageView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width + 50, height: self.frame.size.height + 20)
+            imageView.frame = CGRect(x: 10, y: 0, width: 110, height: 90)
         }else {
             imageView.image = UIImage(named: "yesButton")
             imageView.frame = CGRect(x: 0, y: 0, width:self.frame.size.width, height: self.frame.size.height)

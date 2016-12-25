@@ -310,7 +310,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         let dragView: DraggableView = loadedCards[0]
         
         dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeRight)
-        UIView.animate(withDuration: 2.2, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             () -> Void in
             dragView.overlayView.alpha = 1
         })
@@ -323,9 +323,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             return
         }
         let dragView: DraggableView = loadedCards[0]
-       
+        dragView.overlayView.frame = CGRect(x:self.frame.size.width - 150, y:10, width:130, height:120)
         dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeLeft)
-        UIView.animate(withDuration: 2.2, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             () -> Void in
             dragView.overlayView.alpha = 1
         })
@@ -339,7 +339,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         let dragView: DraggableView = loadedCards[0]
         
         dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeTop)
-        UIView.animate(withDuration: 2.2, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             () -> Void in
             dragView.overlayView.alpha = 1
         })
