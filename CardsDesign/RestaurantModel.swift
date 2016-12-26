@@ -41,4 +41,5 @@ class RestaurantModel: FIRDataObject {
     var top3dish: String = ""
     var honors: String = ""
     var menu: String = ""
+    var images: String = ""
 }

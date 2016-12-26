@@ -25,6 +25,8 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageArr = restrau.images.components(separatedBy: ",")
         moreImage = self.restrau.menu.components(separatedBy: ",")
         self.tabBarController?.tabBar.isHidden = true
         
@@ -175,6 +177,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        mapView.layoutMargins = UIEdgeInsetsMake(0, 0, -20, 0)
         containerView.addSubview(mapView)
         
         annotations = getMapAnnotations()
@@ -367,11 +370,25 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         var newview:UIView = UIView()
         if delegateCount == 0  {
             newview = UIView(frame:CGRect(x:0, y:0, width:Int(view.frame.size.width), height:230))
-            
-            let moreImage = UIImage(named: imageArr[index])
-            let moreImageView = UIImageView(image:moreImage)
-//            moreImageView.frame = newview.frame
-            newview.addSubview(moreImageView)
+            for index in 0...imageArr.count - 1 {
+                let url = URL(string: imageArr[index])
+                var request = URLRequest(url: url!)
+                request.httpMethod = "GET"
+                let task = URLSession.shared.dataTask(with: request as URLRequest) {
+                    (data, response, error) in
+                    DispatchQueue.main.async {
+                        if data != nil {  //Some time Data value will be nil so we need to validate such things
+                            let moreImage = UIImage(data: data!)
+                            let moreImageView = UIImageView(image:moreImage)
+                            moreImageView.contentMode = .scaleToFill
+                            //            moreImageView.frame = newview.frame
+                            newview.addSubview(moreImageView)
+                        }
+                    }
+                }
+                task.resume()
+            }
+
         } else if delegateCount == 1 {
             newview = UIView(frame:CGRect(x:0, y:0, width:Int(view.frame.size.width) - 240, height:100))
             
@@ -500,7 +517,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         let lat = Double(longlat[0])
         let long = Double(longlat[1])
         let annotation = RestrauUserCoordinate(latitude: lat! , longitude: long!)
-        annotation.title = "restaurant-name"
+        annotation.title = restrau.name
         
         let lat1 = 12.919137
         let long1 = 77.638106

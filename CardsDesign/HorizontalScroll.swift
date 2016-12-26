@@ -60,7 +60,7 @@ class HorizontalScroll:UIView {
               }
               scroller.addSubview(newview)
             }
-          scroller.contentSize = CGSize(width: self.frame.size.width * CGFloat(del.numberOfScrollViewElements()) + 10, height: self.frame.size.height)
+          scroller.contentSize = CGSize(width: self.frame.size.width * CGFloat(del.numberOfScrollViewElements()+1) + 50, height: self.frame.size.height)
         }
     }
 }
