@@ -438,6 +438,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
     }
     
     func newFunc() {
+        self.tabBarController?.tabBar.isHidden = false
         _ = self.navigationController?.popViewController(animated: true)
     }
     

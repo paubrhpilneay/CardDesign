@@ -296,6 +296,7 @@
 					54039DDB1E01F92E00D9A007 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = UX8S7P85XB;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					54039DEF1E01F92E00D9A007 = {
@@ -585,12 +586,15 @@
 			baseConfigurationReference = 67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UX8S7P85XB;
 				INFOPLIST_FILE = CardsDesign/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = purplehawk.abhinay.CardsDesign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -600,12 +604,14 @@
 			baseConfigurationReference = 6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UX8S7P85XB;
 				INFOPLIST_FILE = CardsDesign/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = purplehawk.abhinay.CardsDesign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
