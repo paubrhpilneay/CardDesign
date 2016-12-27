@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import Firebase
 
 class RestaurantFeed: UIViewController {
     var restaurants = [RestaurantModel]()
+    var recos:String!
+    var rootRef: FIRDatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //assigning all restaurants that we got from recomendations to the property restaurants of this class
         let tbvc = tabBarController as! MainTabBar
         restaurants = tbvc.restaurants
-        
+        recos = tbvc.recos
         //loading cards and other page content
         let draggableBackground: DraggableViewBackground = DraggableViewBackground(frame: self.view.frame)
         draggableBackground.restaurants = restaurants
+        draggableBackground.recos = recos
         draggableBackground.loadCards()
         
         

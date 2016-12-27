@@ -42,6 +42,7 @@ class GetFirebaseData: UIViewController {
                 if (someValue?["email"] as? String ?? "" == self.email) {
                     self.recos = someValue?["recomendations"] as? String ?? ""
                     self.actInd.stopAnimating()
+                    return
                 }
             }
           })
@@ -63,19 +64,23 @@ class GetFirebaseData: UIViewController {
             // Get user value
             let restaurant = RestaurantModel.init(snapshot: snapshot)
             self.restraurants.append(restaurant)
-            if(self.restraurants.count == restrauArr.count) {
+            if(self.restraurants.count == ((restrauArr.count > 7) ? 7 : restrauArr.count)) {
                 self.actInd.stopAnimating()
                 self.performSegue(withIdentifier: "move", sender: nil)
+                return
             }
           }) { (error) in
             print(error.localizedDescription)
           }
+          
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "move" {
             let tabBarC : MainTabBar = segue.destination as! MainTabBar
             tabBarC.restaurants = self.restraurants
+            tabBarC.recos = self.recos
         }
     }
+    
 }

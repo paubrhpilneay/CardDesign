@@ -28,9 +28,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     
     var fituLabel: UILabel!
     var restaurants = [RestaurantModel]()
+    var recos:String!
     var amenityLabelsArray:[String]! = ["","","",""]
-    var storageRef: FIRStorageReference!
+    var storageRef: FIRDatabaseReference!
+    
     var currentLocation = CLLocation()
+    var lastRestrau:String!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -39,6 +42,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        storageRef = FIRDatabase.database().reference()
         super.layoutSubviews()
         CARD_WIDTH = self.frame.size.width - 50
         CARD_HEIGHT = self.frame.size.height - 182
@@ -131,7 +135,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         
         undoButton = UIButton(frame: CGRect(x: (self.center.x) - 140, y: self.frame.size.height/2 + CARD_HEIGHT/2, width: 80, height:80))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
-        undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeTop), for: UIControlEvents.touchUpInside)
+        undoButton.addTarget(self, action: #selector(DraggableViewBackground.undoSwipe), for: UIControlEvents.touchUpInside)
         
         xButton = UIButton(frame: CGRect(x: (self.center.x) - 85 , y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: 100, height: 100))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
@@ -155,6 +159,23 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         self.addSubview(beenthereButton)
     }
     
+    func undoSwipe() {
+        if cardsLoadedIndex == 2{
+          return
+        }
+        
+        if loadedCards.count <= 0 {
+            return
+        }
+        let dragView: DraggableView = loadedCards[0]
+        
+        dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeDown)
+        UIView.animate(withDuration: 0.3, animations: {
+            () -> Void in
+            dragView.overlayView.alpha = 1
+        })
+        dragView.undoClickAction()
+    }
     //updating amenities icons based on the amenity puting image + text
     //add more cases to extend amenities
     func updateAmenities(_ dView: DraggableView,_ restrauIndex: NSInteger) {
@@ -270,42 +291,59 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
     
-    
+    func cardSwipedUndo(_ card: UIView) -> Void {
+        loadedCards[1].removeFromSuperview()
+        let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-3)
+        let nextCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-2)
+        loadedCards.remove(at: 1)
+        loadedCards.append(nextCard)
+        loadedCards[0] = newCard
+        self.addSubview(newCard)
+        self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        cardsLoadedIndex = cardsLoadedIndex - 1
+    }
     
     func cardSwipedLeft(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
-
+        
+        if (cardsLoadedIndex + 2)%7 == 0 {
+            cardLoad()
+        }
+        
         if cardsLoadedIndex < allCards.count {
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
-        } else if loadedCards.count == 0 {
-            cardOver()
         }
+        
     }
     
     func cardSwipedRight(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
         
+        if (cardsLoadedIndex + 2)%7 == 0 {
+            cardLoad()
+        }
         if cardsLoadedIndex < allCards.count {
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
-        }else if loadedCards.count == 0 {
-            cardOver()
         }
+       
     }
 
     func cardSwipedTop(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
         
+        if (cardsLoadedIndex + 2)%7 == 0 {
+            cardLoad()
+        }
         if cardsLoadedIndex < allCards.count {
             loadedCards.append(allCards[cardsLoadedIndex])
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
-        } else if loadedCards.count == 0 {
-            cardOver()
         }
+        
     }
     
     // when like button is pressed
@@ -352,45 +390,64 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         dragView.topClickAction()
     }
     
-    func cardOver() {
-        let newview = UIView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2, y: (self.frame.size.height - CARD_HEIGHT)/2 - 24, width: CARD_WIDTH, height: CARD_HEIGHT))
-        newview.backgroundColor = UIColor.white
-        let label = UILabel(frame:CGRect(x:40, y:50, width:250, height:30))
-        label.text = "Please Reload The Page"
-        let refresh = UIImageView(image:UIImage(named:"reload"))
-        refresh.frame = CGRect(x:30, y:80, width:50, height: 50)
-        refresh.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(refreshTapped)))
-        refresh.isUserInteractionEnabled = true
-        newview.addSubview(refresh)
-        newview.addSubview(label)
-        newview.tag = 100
-//        self.insertSubview(newview, belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
-        self.addSubview(newview)
-    }
-    
-    func refreshTapped() {
-        self.viewWithTag(100)?.removeFromSuperview()
-        cardsLoadedIndex = 0
-        allCards = []
-        if restaurants.count > 0 {
-            let numLoadedCardsCap = restaurants.count > MAX_BUFFER_SIZE ? MAX_BUFFER_SIZE : restaurants.count
-            for i in 0 ..< restaurants.count {
-                let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(i)
-                allCards.append(newCard)
-                if i < numLoadedCardsCap {
-                    loadedCards.append(newCard)
+    func cardLoad() {
+        var recoArr = recos.components(separatedBy: ",")
+        if recoArr.count < 7 {
+        
+        } else {
+            if recoArr.count - cardsLoadedIndex > 0 {
+                let value = (cardsLoadedIndex < recoArr.count && (recoArr.count-cardsLoadedIndex)>7) ? cardsLoadedIndex+8 : (recoArr.count-1)
+                for newIds in (cardsLoadedIndex + 2)...(value) {
+                    storageRef.child("restaurants").child(recoArr[newIds]).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let restaurant = RestaurantModel.init(snapshot: snapshot)
+                        self.restaurants.append(restaurant)
+                        let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(newIds)
+                        self.allCards.append(newCard)
+                    }) { (error) in
+                    print(error.localizedDescription)
+                    }
                 }
-            }
-            
-            for i in 0 ..< loadedCards.count {
-                if i > 0 {
-                    self.insertSubview(loadedCards[i], belowSubview: loadedCards[i - 1])
-                } else {
-                    self.addSubview(loadedCards[i])
+                if value == recoArr.count - 1 {
+                    loadCardsFromPopular(recoArr.count)
                 }
-                cardsLoadedIndex = cardsLoadedIndex + 1
             }
         }
+    }
+    
+    func loadCardsFromPopular(_ value:Int) {
+        var count:Int = 0
+        storageRef.child("restaurants").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let result = snapshot.children.allObjects as? [FIRDataSnapshot]
+            var flag:Bool = false
+            for child in result! {
+                if self.lastRestrau == nil {
+                    self.lastRestrau = ""
+                    flag = true
+                }
+                if flag {
+                    let restaurant = RestaurantModel.init(snapshot: child)
+                    self.recos.append(","+child.key)
+                    self.restaurants.append(restaurant)
+                    
+                    let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(value+count)
+                    self.allCards.append(newCard)
+                    if count == 6 {
+                        self.lastRestrau = child.key
+                        return
+                    }
+                     count = count + 1
+                }
+                if child.key == self.lastRestrau {
+                    flag = true
+                }
+               
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
     }
 
 }

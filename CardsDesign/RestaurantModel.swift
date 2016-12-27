@@ -42,4 +42,5 @@ class RestaurantModel: FIRDataObject {
     var honors: String = ""
     var menu: String = ""
     var images: String = ""
+    var likes: String = ""
 }

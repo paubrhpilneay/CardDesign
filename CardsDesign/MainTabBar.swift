@@ -10,7 +10,8 @@ import UIKit
 
 class MainTabBar: UITabBarController {
     var restaurants = [RestaurantModel]()
-    let kBarHeight:CGFloat = 40;
+    let kBarHeight:CGFloat = 40
+    var recos:String = ""
     
     override func viewWillLayoutSubviews() {
     

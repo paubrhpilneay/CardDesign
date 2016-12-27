@@ -287,7 +287,7 @@ class RestaurantDetail: UIViewController, UIScrollViewDelegate, HorizontaScrollD
         bgView.backgroundColor = UIColor.white
         
         let undoButton = UIButton(frame: CGRect(x: (self.view.center.x) - 140, y: self.view.frame.size.height - 40, width: 80, height: 80))
-        undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
+        undoButton.setImage(UIImage(named: "undo1"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
         let xButton = UIButton(frame: CGRect(x: (self.view.center.x) - 85, y: self.view.frame.size.height - 80, width: 100, height: 100))

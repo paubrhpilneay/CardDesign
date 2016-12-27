@@ -20,6 +20,7 @@ protocol DraggableViewDelegate {
     func cardSwipedLeft(_ card: UIView) -> Void
     func cardSwipedRight(_ card: UIView) -> Void
     func cardSwipedTop(_ card: UIView) -> Void
+    func cardSwipedUndo(_ card: UIView) -> Void
 }
 
 class DraggableView: UIView {
@@ -296,7 +297,7 @@ class DraggableView: UIView {
     
     func rightClickAction() -> Void {
         let finishPoint = CGPoint(x: 600, y: self.center.y)        
-        UIView.animate(withDuration: 2,
+        UIView.animate(withDuration: 1,
                        animations: {
                         self.overlayView.alpha = 1
                         self.center = finishPoint
@@ -310,7 +311,7 @@ class DraggableView: UIView {
     
     func leftClickAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: -600, y: self.center.y)
-        UIView.animate(withDuration: 2,
+        UIView.animate(withDuration: 1,
                        animations: {
                         self.center = finishPoint
                         self.transform = CGAffineTransform(rotationAngle: 1)
@@ -323,7 +324,7 @@ class DraggableView: UIView {
     
     func topClickAction() -> Void {
         let finishPoint: CGPoint = CGPoint(x: self.center.x, y: -self.frame.height)
-        UIView.animate(withDuration: 2,
+        UIView.animate(withDuration: 1,
                        animations: {
                         self.center = finishPoint
                         self.transform = CGAffineTransform(rotationAngle: 1)
@@ -332,6 +333,19 @@ class DraggableView: UIView {
             self.removeFromSuperview()
         })
         delegate.cardSwipedTop(self)
+    }
+    
+    func undoClickAction() -> Void {
+        let finishPoint: CGPoint = CGPoint(x: self.center.x, y: self.frame.height)
+        UIView.animate(withDuration: 1,
+                       animations: {
+                        self.center = finishPoint
+                        self.transform = CGAffineTransform(rotationAngle: 1)
+        }, completion: {
+            (value: Bool) in
+            self.removeFromSuperview()
+        })
+        delegate.cardSwipedUndo(self)
     }
 
 }
