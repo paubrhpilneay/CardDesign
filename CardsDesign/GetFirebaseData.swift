@@ -15,6 +15,8 @@ class GetFirebaseData: UIViewController {
     var rootRef: FIRDatabaseReference!
     var email: String!
     var recos: String!
+    var friends: String!
+    var userId: String!
     let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     var restraurants = [RestaurantModel]()
     override func viewDidLoad() {
@@ -41,6 +43,8 @@ class GetFirebaseData: UIViewController {
                 let someValue = childSnapshot.value as? NSDictionary
                 if (someValue?["email"] as? String ?? "" == self.email) {
                     self.recos = someValue?["recomendations"] as? String ?? ""
+                    self.userId = childSnapshot.key as String!
+                    self.friends = someValue?["friends"] as! String!
                     self.actInd.stopAnimating()
                     return
                 }
@@ -79,6 +83,8 @@ class GetFirebaseData: UIViewController {
         if segue.identifier == "move" {
             let tabBarC : MainTabBar = segue.destination as! MainTabBar
             tabBarC.restaurants = self.restraurants
+            tabBarC.userId = self.userId
+            tabBarC.friends = self.friends
             tabBarC.recos = self.recos
         }
     }

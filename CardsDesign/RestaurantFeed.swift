@@ -12,6 +12,8 @@ import Firebase
 class RestaurantFeed: UIViewController {
     var restaurants = [RestaurantModel]()
     var recos:String!
+    var userId: String!
+    var friends: String!
     var rootRef: FIRDatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +21,14 @@ class RestaurantFeed: UIViewController {
         //assigning all restaurants that we got from recomendations to the property restaurants of this class
         let tbvc = tabBarController as! MainTabBar
         restaurants = tbvc.restaurants
+        userId = tbvc.userId
+        friends = tbvc.friends
         recos = tbvc.recos
         //loading cards and other page content
         let draggableBackground: DraggableViewBackground = DraggableViewBackground(frame: self.view.frame)
         draggableBackground.restaurants = restaurants
+        draggableBackground.userId = userId
+        draggableBackground.friends = friends
         draggableBackground.recos = recos
         draggableBackground.loadCards()
         

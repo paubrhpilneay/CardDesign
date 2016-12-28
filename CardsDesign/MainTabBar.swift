@@ -12,6 +12,8 @@ class MainTabBar: UITabBarController {
     var restaurants = [RestaurantModel]()
     let kBarHeight:CGFloat = 40
     var recos:String = ""
+    var friends:String = ""
+    var userId:String = ""
     
     override func viewWillLayoutSubviews() {
     

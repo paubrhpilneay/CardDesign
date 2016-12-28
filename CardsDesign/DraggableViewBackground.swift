@@ -34,6 +34,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     
     var currentLocation = CLLocation()
     var lastRestrau:String!
+    var likedRestraus:String = "id"
+    var friends: String!
+    var userId:String!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -113,13 +116,47 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             }
         }
         
+        //friends
+//        let totalUsersLikes = restaurants[index].likes.components(separatedBy:",")
+//        let friendsArray = friends.components(separatedBy: ",")
+//        var count:Int = 0
+//        var requestArray:[String] = ["","",""]
+        
+        
+//        for index in 0...friendsArray.count - 1 {
+//            if totalUsersLikes.contains(friendsArray[index]) {
+//                requestArray.append(friendsArray[index])
+//                count = count + 1
+//            }
+//        }
+//        
+//        let userRef = FIRDatabase.database().reference(withPath: "users").child(requestArray[index])
+//        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//            let url = URL(string:requestArray[index])
+//            var request = URLRequest(url: url!)
+//            request.httpMethod = "GET"
+//            let task = URLSession.shared.dataTask(with: request as URLRequest) {
+//                (data, response, error) in
+//                DispatchQueue.main.async {
+//                    if data != nil {  //Some time Data value will be nil so we need to validate such things
+//                        draggableView.imageViewFriends[counter].image = UIImage(data: data! as Data,scale:1.0)
+//                    }
+//                }
+//            }
+//            task.resume()
+//        })
+//        
+//        for index in 0...2 {
+//            
+//        }
+//        
+//        draggableView.addCount.text = String(count)
+        
         draggableView.ratingLabel.text = String(restaurants[index].rating)
         updateAmenities(draggableView, index)
         draggableView.delegate = self
         return draggableView
     }
-    
-    
     
     //loadCard is called from restaurant feed using draggableviewbackground instance
     //setting up cards + other part of card screen
@@ -133,24 +170,24 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         fituLabel.textColor = UIColor.lightGray
         fituLabel.font = fituLabel.font.withSize(13)
         
-        undoButton = UIButton(frame: CGRect(x: (self.center.x) - 140, y: self.frame.size.height/2 + CARD_HEIGHT/2, width: 80, height:80))
+        undoButton = UIButton(frame: CGRect(x: (self.center.x) - 120, y: self.frame.size.height - 95, width: 50, height:50))
         undoButton.setImage(UIImage(named: "undo"), for: UIControlState())
         undoButton.addTarget(self, action: #selector(DraggableViewBackground.undoSwipe), for: UIControlEvents.touchUpInside)
         
-        xButton = UIButton(frame: CGRect(x: (self.center.x) - 85 , y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: 100, height: 100))
+        xButton = UIButton(frame: CGRect(x: (self.center.x) - 85 , y: self.frame.size.height - 115, width: 100, height: 100))
         xButton.setImage(UIImage(named: "xButton"), for: UIControlState())
         xButton.addTarget(self, action: #selector(DraggableViewBackground.swipeLeft), for: UIControlEvents.touchUpInside)
 
-        checkButton = UIButton(frame: CGRect(x: (self.center.x) - 5, y: self.frame.size.height/2 + CARD_HEIGHT/2 - (self.frame.size.height*3)/71, width: 100, height: 100))
+        checkButton = UIButton(frame: CGRect(x: (self.center.x) - 5, y: self.frame.size.height - 115, width: 100, height: 100))
         checkButton.setImage(UIImage(named: "checkButton"), for: UIControlState())
         checkButton.addTarget(self, action: #selector(DraggableViewBackground.swipeRight), for: UIControlEvents.touchUpInside)
         
-        beenthereButton = UIButton(frame: CGRect(x: (self.center.x) + 65, y: self.frame.size.height/2 + CARD_HEIGHT/2 , width: 80, height: 80))
+        beenthereButton = UIButton(frame: CGRect(x: (self.center.x) + 65, y: self.frame.size.height - 92, width: 80, height: 80))
         beenthereButton.setImage(UIImage(named: "beenthere"), for: UIControlState())
         beenthereButton.addTarget(self, action: #selector(DraggableViewBackground.swipeTop), for: UIControlEvents.touchUpInside)
         
-        undoButton.center.y = xButton.center.y
-        beenthereButton.center.y = xButton.center.y
+        beenthereButton.center.y = checkButton.center.y
+        checkButton.center.y = xButton.center.y
         
         self.addSubview(fituLabel)
         self.addSubview(xButton)
@@ -159,23 +196,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         self.addSubview(beenthereButton)
     }
     
-    func undoSwipe() {
-        if cardsLoadedIndex == 2{
-          return
-        }
-        
-        if loadedCards.count <= 0 {
-            return
-        }
-        let dragView: DraggableView = loadedCards[0]
-        
-        dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeDown)
-        UIView.animate(withDuration: 0.3, animations: {
-            () -> Void in
-            dragView.overlayView.alpha = 1
-        })
-        dragView.undoClickAction()
-    }
     //updating amenities icons based on the amenity puting image + text
     //add more cases to extend amenities
     func updateAmenities(_ dView: DraggableView,_ restrauIndex: NSInteger) {
@@ -292,15 +312,18 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
     
     func cardSwipedUndo(_ card: UIView) -> Void {
-        loadedCards[1].removeFromSuperview()
-        let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-3)
-        let nextCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-2)
-        loadedCards.remove(at: 1)
-        loadedCards.append(nextCard)
-        loadedCards[0] = newCard
-        self.addSubview(newCard)
-        self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
-        cardsLoadedIndex = cardsLoadedIndex - 1
+        
+        if loadedCards.count == 2 {
+          let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-3)
+          loadedCards = []
+          loadedCards.append(newCard)
+          self.addSubview(newCard)
+          cardsLoadedIndex = cardsLoadedIndex - 1
+        }else {
+            let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(cardsLoadedIndex-1)
+            loadedCards.append(newCard)
+            self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
+        }
     }
     
     func cardSwipedLeft(_ card: UIView) -> Void {
@@ -315,7 +338,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
         }
-        
+        saveOnFirebase("unlike")
     }
     
     func cardSwipedRight(_ card: UIView) -> Void {
@@ -329,7 +352,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
         }
-       
+       saveOnFirebase("like")
     }
 
     func cardSwipedTop(_ card: UIView) -> Void {
@@ -343,9 +366,32 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             cardsLoadedIndex = cardsLoadedIndex + 1
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
         }
-        
+        saveOnFirebase("beenThere")
     }
     
+    
+    //when undo pressed
+    func undoSwipe() {
+        if cardsLoadedIndex == 2{
+            return
+        }
+        
+        if loadedCards.count <= 0 {
+            return
+        }
+        let dragView: DraggableView = loadedCards[0]
+        let dragView1: DraggableView = loadedCards[1]
+        dragView1.alpha = 0
+        
+        dragView.overlayView.setMode(GGOverlayViewMode.ggOverlayViewModeDown)
+        UIView.animate(withDuration: 0.3, animations: {
+            () -> Void in
+            dragView.overlayView.alpha = 1
+        })
+        dragView.undoClickAction()
+        dragView1.undoClickAction()
+    }
+
     // when like button is pressed
     func swipeRight() -> Void {
         if loadedCards.count <= 0 {
@@ -375,7 +421,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         })
         dragView.leftClickAction()
     }
-    
+    //when beenthere pressed
     func swipeTop() -> Void {
         if loadedCards.count <= 0 {
             return
@@ -389,7 +435,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         })
         dragView.topClickAction()
     }
-    
+    //called on 7-3=4, 14-3=11
     func cardLoad() {
         var recoArr = recos.components(separatedBy: ",")
         if recoArr.count < 7 {
@@ -400,11 +446,21 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
                 for newIds in (cardsLoadedIndex + 2)...(value) {
                     storageRef.child("restaurants").child(recoArr[newIds]).observeSingleEvent(of: .value, with: { (snapshot) in
                         let restaurant = RestaurantModel.init(snapshot: snapshot)
-                        self.restaurants.append(restaurant)
-                        let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(newIds)
-                        self.allCards.append(newCard)
+                        let unlikeValues = restaurant.unlikes.components(separatedBy: ",")
+                        var countForUnlike = 0
+                        for index in 0...unlikeValues.count - 1 {
+                            if unlikeValues[index] == self.userId {
+                              countForUnlike = countForUnlike + 1
+                            }
+                        }
+                        //chacking 3 unlikes
+                        if countForUnlike != 3 {
+                            self.restaurants.append(restaurant)
+                            let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(newIds)
+                            self.allCards.append(newCard)
+                        }
                     }) { (error) in
-                    print(error.localizedDescription)
+                      print(error.localizedDescription)
                     }
                 }
                 if value == recoArr.count - 1 {
@@ -417,31 +473,33 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     func loadCardsFromPopular(_ value:Int) {
         var count:Int = 0
         storageRef.child("restaurants").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
+            
             let result = snapshot.children.allObjects as? [FIRDataSnapshot]
             var flag:Bool = false
             for child in result! {
+                
+                    
                 if self.lastRestrau == nil {
                     self.lastRestrau = ""
                     flag = true
                 }
                 if flag {
                     let restaurant = RestaurantModel.init(snapshot: child)
-                    self.recos.append(","+child.key)
-                    self.restaurants.append(restaurant)
-                    
-                    let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(value+count)
-                    self.allCards.append(newCard)
-                    if count == 6 {
+                    if !(self.likedRestraus.components(separatedBy: ",").contains(restaurant.id)) {
+                      self.recos.append(","+child.key)
+                      self.restaurants.append(restaurant)
+                      let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(value+count)
+                      self.allCards.append(newCard)
+                      if count == 6 {
                         self.lastRestrau = child.key
                         return
-                    }
+                      }
                      count = count + 1
+                    }
                 }
                 if child.key == self.lastRestrau {
                     flag = true
                 }
-               
             }
             
         }) { (error) in
@@ -450,4 +508,28 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
 
     }
 
+    func saveOnFirebase(_ action:String) {
+        switch action {
+            case "like" : let newRef = storageRef.child("restaurants").child(restaurants[cardsLoadedIndex - 3].id)
+                          likedRestraus.append("," + restaurants[cardsLoadedIndex - 3].id)
+                          restaurants[cardsLoadedIndex - 2].likes = restaurants[cardsLoadedIndex - 3].likes + ",\(userId)"//logged in user
+                          let value:String = restaurants[cardsLoadedIndex-2].likes
+                          let newValue = ["likes" : value]
+                          newRef.updateChildValues(newValue)
+                          break
+            case "unlike" : let newRef = storageRef.child("restaurants").child(restaurants[cardsLoadedIndex - 3].id)
+                        restaurants[cardsLoadedIndex - 2].unlikes = restaurants[cardsLoadedIndex - 3].unlikes + ",\(userId)"//logged in user
+                        let value:String = restaurants[cardsLoadedIndex-2].unlikes
+                        let newValue = ["unlikes" : value]
+                        newRef.updateChildValues(newValue)
+                        break
+            case "beenThere" : let newRef = storageRef.child("restaurants").child(restaurants[cardsLoadedIndex - 3].id)
+                           restaurants[cardsLoadedIndex - 2].beenthere = restaurants[cardsLoadedIndex - 3].beenthere + ",\(userId)" // logged in user
+                           let value:String = restaurants[cardsLoadedIndex-2].beenthere
+                           let newValue = ["beenthere" : value]
+                           newRef.updateChildValues(newValue)
+                           break
+            default: break
+        }
+    }
 }

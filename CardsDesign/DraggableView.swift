@@ -40,6 +40,7 @@ class DraggableView: UIView {
     var imageViewAmenities: [UIImageView]! = [UIImageView(),UIImageView(),UIImageView(),UIImageView()]
     var amenitiesLabels: [UILabel]! = [UILabel(),UILabel(),UILabel(),UILabel()]
     var imageViewFriends: [UIImageView]! = [UIImageView(),UIImageView(),UIImageView()]
+    var addCount: UILabel!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -144,7 +145,7 @@ class DraggableView: UIView {
             imageViewFriends[index - 2].clipsToBounds = true
         }
         
-        let addCount = UILabel(frame: CGRect(x: (self.frame.size.width*85)/270, y: (self.frame.size.height*350)/386, width:(self.frame.size.width*2)/9, height: (self.frame.size.height*40)/386))
+        addCount = UILabel(frame: CGRect(x: (self.frame.size.width*85)/270, y: (self.frame.size.height*350)/386, width:(self.frame.size.width*2)/9, height: (self.frame.size.height*40)/386))
         addCount.text = "+17 friends"
         addCount.textColor = UIColor.darkGray
         addCount.font = UIFont(name: "Bariol-Thin", size: 10)
