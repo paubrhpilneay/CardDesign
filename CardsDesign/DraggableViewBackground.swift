@@ -310,7 +310,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         vc.amenityLblArr = amenityLabelsArray
         MyUtility.firstAvailableUIViewController(fromResponder:self)?.navigationController?.pushViewController(vc,animated: true)
     }
-    
+    //delegate method
     func cardSwipedUndo(_ card: UIView) -> Void {
         
         if loadedCards.count == 2 {
@@ -325,7 +325,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
             self.insertSubview(loadedCards[MAX_BUFFER_SIZE - 1], belowSubview: loadedCards[MAX_BUFFER_SIZE - 2])
         }
     }
-    
+    //delegate method
     func cardSwipedLeft(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
         
@@ -340,7 +340,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         }
         saveOnFirebase("unlike")
     }
-    
+    //delegate method
     func cardSwipedRight(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
         
@@ -354,7 +354,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         }
        saveOnFirebase("like")
     }
-
+    //delegate method
     func cardSwipedTop(_ card: UIView) -> Void {
         loadedCards.remove(at: 0)
         
@@ -453,7 +453,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
                               countForUnlike = countForUnlike + 1
                             }
                         }
-                        //chacking 3 unlikes
+                        //checking 3 unlikes
                         if countForUnlike != 3 {
                             self.restaurants.append(restaurant)
                             let newCard: DraggableView = self.createDraggableViewWithDataAtIndex(newIds)
@@ -470,6 +470,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         }
     }
     
+    //loading popular nodes when out of recoms.
     func loadCardsFromPopular(_ value:Int) {
         var count:Int = 0
         storageRef.child("restaurants").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -507,7 +508,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         }
 
     }
-
+    //saving data on firebase in case of like/unlike/beenthere
     func saveOnFirebase(_ action:String) {
         switch action {
             case "like" : let newRef = storageRef.child("restaurants").child(restaurants[cardsLoadedIndex - 3].id)

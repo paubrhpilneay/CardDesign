@@ -38,6 +38,7 @@
 		54C3D3031E096805005D013D /* RestrauUserCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C3D3021E096805005D013D /* RestrauUserCoordinate.swift */; };
 		54C3D3051E09AE52005D013D /* restaurants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C3D3041E09AE52005D013D /* restaurants.plist */; };
 		54C3D3091E0A637A005D013D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C3D3081E0A637A005D013D /* MapKit.framework */; };
+		54FAA0DB1E12CB4E00D249F3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FAA0DA1E12CB4E00D249F3 /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		54C3D3021E096805005D013D /* RestrauUserCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrauUserCoordinate.swift; sourceTree = "<group>"; };
 		54C3D3041E09AE52005D013D /* restaurants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = restaurants.plist; sourceTree = "<group>"; };
 		54C3D3081E0A637A005D013D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		54FAA0DA1E12CB4E00D249F3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		67918F76D9ADAF3611690466 /* Pods-CardsDesign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.debug.xcconfig"; sourceTree = "<group>"; };
 		6793292633CDDDD1E035AEC8 /* Pods-CardsDesign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardsDesign.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardsDesign/Pods-CardsDesign.release.xcconfig"; sourceTree = "<group>"; };
 		9F8B29E942909EFE5A1C9214 /* Pods_CardsDesignTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CardsDesignTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54FAA0DB1E12CB4E00D249F3 /* CoreTelephony.framework in Frameworks */,
 				540CAE281E0DA71800157764 /* CoreLocation.framework in Frameworks */,
 				54C3D3091E0A637A005D013D /* MapKit.framework in Frameworks */,
 				09C0D31A83AE15B5D031FB80 /* Pods_CardsDesign.framework in Frameworks */,
@@ -132,6 +135,7 @@
 		2678F01846E20862CFAB955E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54FAA0DA1E12CB4E00D249F3 /* CoreTelephony.framework */,
 				540CAE271E0DA71800157764 /* CoreLocation.framework */,
 				54C3D3081E0A637A005D013D /* MapKit.framework */,
 				CB12D79146CDD5326BA87114 /* Pods_CardsDesign.framework */,
